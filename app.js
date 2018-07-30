@@ -2,6 +2,9 @@
 const util = require('/utils/util.js');
 App({
     onLaunch: function() {
+        this.checkLogin(res => {});
+    },
+    checkLogin: function (success) {
         wx.getSetting({ // 查看是否授权
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
@@ -14,22 +17,52 @@ App({
                                     if (res.code) {
                                         let loginCode = res.code,
                                             param = {};
-                                        param.url = "login/signIn";
-                                        param.data = {};
-                                        param.data.code = loginCode;
-                                        param.data.raw_data = loginrawData;
-                                        param.data.signature = loginSignature;
-                                        util.requests(param, res => {
-                                            // console.log('登录成功！' + res)
-                                            wx.setStorage({
-                                                key: 'token',
-                                                data: res.data.data.token,
-                                            })
-                                            wx.setStorage({
-                                                key: 'user_id',
-                                                data: res.data.data.id,
-                                            })
-                                        });
+                                            param.url = "login/signIn";
+                                            param.data = {};
+                                            param.data.code = loginCode;
+                                            param.data.raw_data = loginrawData;
+                                            param.data.signature = loginSignature;
+                                        wx.request({
+                                            url: util.BASEURL + param.url,
+                                            method: 'POST',
+                                            data: param.data,
+                                            header: {
+                                                'content-type': 'application/json'
+                                            },
+                                            success(res) {
+                                                return success();
+                                                switch (res.data.code) {
+                                                    case 1:
+                                                        wx.setStorage({
+                                                            key: 'token',
+                                                            data: res.data.data.token,
+                                                        })
+                                                        wx.setStorage({
+                                                            key: 'user_id',
+                                                            data: res.data.data.id,
+                                                        });
+                                                        break;
+                                                    case 0:
+                                                        wx.showModal({
+                                                            title: '提示',
+                                                            content: res.data.msg
+                                                        })
+                                                        break;
+                                                    default:
+                                                        wx.showModal({
+                                                            title: '提示',
+                                                            content: '程序异常，请稍后再试'
+                                                        })
+                                                        break;
+                                                }
+                                            },
+                                            fail(res) {
+                                                wx.showModal({
+                                                    title: '提示',
+                                                    content: '获取数据失败，请稍后再试！'
+                                                })
+                                            }
+                                        })
                                     } else {
                                         console.log('登录失败！' + res.errMsg)
                                     }
@@ -40,5 +73,5 @@ App({
                 }
             }
         })
-    },
+    }
 })

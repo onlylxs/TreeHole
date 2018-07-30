@@ -41,7 +41,9 @@ Page({
                 })
             }
         });
-        this.getTopicList();
+        app.checkLogin(res => {
+            this.getTopicList();
+        });
     },
     //跳转详情页面
     ToDetail: function(e) {
@@ -107,6 +109,7 @@ Page({
         param.url = "we_topic/index";
         param.data = {};
         param.data.order = this.data.sortIdx;
+        param.data.token = wx.getStorageSync('token');
         param.data.start_time = Date.parse(this.data.startDate);
         param.data.end_time = Date.parse(this.data.endDate);
         param.data.page = this.data.page;
@@ -142,7 +145,7 @@ Page({
             Ttype = e.currentTarget.dataset.ttype,
             is_liked = e.currentTarget.dataset.is_liked,
             param = {};
-        if (is_liked == 0){
+        if (is_liked == 0) {
             param.url = "likes/vote";
         } else {
             param.url = "likes/cancelVote";
@@ -152,6 +155,7 @@ Page({
         param.data.topic_id = tid;
         param.data.user_id = wx.getStorageSync('user_id');
         util.requests(param, res => {
+            // if(res.data.code)
             this.likesFunc(parseInt(Ttype), index);
             wx.showToast({
                 title: res.data.msg,

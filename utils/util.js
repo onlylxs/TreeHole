@@ -25,19 +25,28 @@ const requests = (param, success) => {
             'content-type': 'application/json'
         },
         success(res) {
-            return success(res);
+            switch (res.data.code) {
+                case 1:
+                    return success(res);
+                    break;
+                case 0:
+                    wx.showModal({
+                        title: '提示',
+                        content: res.data.msg
+                    })
+                    break;
+                default:
+                    wx.showModal({
+                        title: '提示',
+                        content: '程序异常，请稍后再试'
+                    })
+                    break;
+            }
         },
         fail(res) {
             wx.showModal({
                 title: '提示',
-                content: '获取数据失败，请稍后再试！',
-                success: function(res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定')
-                    } else if (res.cancel) {
-                        console.log('用户点击取消')
-                    }
-                }
+                content: '获取数据失败，请稍后再试！'
             })
         }
     })
