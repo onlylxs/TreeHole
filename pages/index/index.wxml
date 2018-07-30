@@ -27,6 +27,7 @@
                     </view>
                 </view>
             </view>
+            
             <!-- 热话榜 -->
             <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
                 <view class="mark-box">热话榜</view>

@@ -24,7 +24,6 @@ Text{font-family: Microsoft YaHei;font-size: 26rpx;}
 .Tree_bottom .botton_right text.selected{color:red !important;}
 .choice__HD::after, .Tree_List::after,choice__HD .choice__Left .TimeBoxBtn:after{content: '';display: block;clear: both;}
 
-
-.loadmore{width: 80%;}
-.loadmore_line{border-top: 1px solid #e5e5e5;}
-.loadmore_line .loadmore_tips{position: relative;top: -0.9em;padding: 0 0.55em;background-color: #fff;color: #808080;}
+.loadmore{width: 80%; margin: 0 auto; font-size: 14px; text-align: center;}
+.loadmore_line{border-top: 1px solid #E5E5E5;margin-top:1.25rem;}
+.loadmore_line .loadmore_tips{position: relative; top: -0.65rem; background-color: #FFFFFF; color: #808080;padding:0 0.65rem;}
