@@ -1,0 +1,30 @@
+<template name="seachTemplBox">
+    <view class='choice__box'>
+        <view class='choice__HD'>
+            <view class='choice__Left' wx:if='{{TimeCk}}'>
+                <Text class="choice__title" catchtap="ChangeTimeTF"><Text class='iconfont icon-time'></Text>按时间查看</Text>
+                <view class="TimeBox" wx:if="{{TimeTF}}">
+                    <view>只查看从</view>
+                    <view class="startTBox">
+                        <picker mode="date" value="{{startDate}}" bindchange="startDateFunc">{{startDate}}</picker>
+                    </view>
+                    <view>到</view>
+                    <view class="endTBox">
+                        <picker mode="date" value="{{endDate}}" bindchange="endDateFunc">{{endDate}}</picker>
+                    </view>
+                    <view>的内容</view>
+                    <view class="TimeBoxBtn">
+                        <text catchtap="ChangeTimeFunc">确定</text>
+                    </view>
+                </view>
+            </view>
+            <view class='choice__Right'>
+                <Text class="choice__title titleR" catchtap="ChangeSortTF"><Text class='iconfont {{clss}}' ></Text>{{sortText}}</Text>
+                <view class="sort__box" wx:if="{{SortTF}}">
+                    <Text wx:for="{{sortList}}" wx:key="{{index}}" class="choice__title" catchtap="ChangeSortFunc" data-clss="{{item.clss}}" data-text="{{item.text}}" data-idx="{{item.idx}}"><Text class="iconfont {{item.clss}}"></Text>{{item.text}}</Text>
+                </view>
+            </view>
+        </view>
+        <view class='mb__header'></view>
+    </view>
+</template>

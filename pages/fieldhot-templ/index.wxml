@@ -1,0 +1,28 @@
+<template name="fieldTemplBox">
+    <view class="fieldList">
+        <view class="mark-box">热门领域</view>
+        <view class="item">
+            <text class="title">史前动物</text>
+            <text class="number">5555</text>
+        </view>
+        <view class="item">
+            <text class="title">北京一中</text>
+            <text class="number">53035</text>
+        </view>
+        <view class="item">
+            <text class="title">天空之城</text>
+            <text class="number">49192</text>
+        </view>
+        <view class="item">
+            <text class="title">某领域</text>
+            <text class="number">9958</text>
+        </view>
+        <view class="item">
+            <text class="title">王者荣耀</text>
+            <text class="number">32</text>
+        </view>
+        <view class="item more">
+            <text>载入更多</text>
+        </view>
+    </view>
+</template>

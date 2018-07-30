@@ -1,0 +1,79 @@
+<import src="../seach-templ/index.wxml" />
+<view class="container">
+    <!--调用seachHD查询模版  -->
+    <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
+    <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+        <button open-type="getUserInfo"> 获取授权信息 </button>
+        <view class="Tree_List">
+            <!-- 今日话题 -->
+            <view class="Tree_Item Tree_Item_Mark" wx:for="{{todays}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
+                <view class="mark-box">今日话题</view>
+                <text class='content_text' bindtap='ToDetail'>{{item.content}}</text>
+                <view class='Tree_bottom'>
+                    <text class="time_text">{{item.create_time}}</text>
+                    <view class="botton_right">
+                        <label class="photo-box" wx-if="{{item.photos.length>0}}">
+                            <text class='iconfont icon-picture'></text>
+                            <text>{{item.photos.length}}</text>
+                        </label>
+                        <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="1" data-is_liked="{{item.is_liked}}">
+                            <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
+                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
+                        </label>
+                        <label class="mess-box">
+                            <text class='iconfont icon-xiaoxi'></text>
+                            <text>{{item.details}}</text>
+                        </label>
+                    </view>
+                </view>
+            </view>
+            <!-- 热话榜 -->
+            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
+                <view class="mark-box">热话榜</view>
+                <text class='content_text' bindtap='ToDetail'>{{item.content}}</text>
+                <view class='Tree_bottom'>
+                    <text class="time_text">{{item.create_time}}</text>
+                    <view class="botton_right">
+                        <label class="photo-box">
+                            <text class='iconfont icon-picture'></text>
+                            <text>{{item.photos.length}}</text>
+                        </label>
+                        <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="2" data-is_liked="{{item.is_liked}}">
+                            <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
+                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
+                        </label>
+                        <label class="mess-box">
+                            <text class='iconfont icon-xiaoxi'></text>
+                            <text>{{item.details}}</text>
+                        </label>
+                    </view>
+                </view>
+            </view>
+
+            <!-- 话题列表 -->
+            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" >
+                <text class='content_text' bindtap='ToDetail'>{{item.content}}</text>
+                <view class='Tree_bottom'>
+                    <text class="time_text">{{item.create_time}}</text>
+                    <view class="botton_right">
+                        <label class="photo-box" wx-if="{{item.photos.length>0}}">
+                            <text class='iconfont icon-picture'></text>
+                            <text>{{item.photos.length}}</text>
+                        </label>
+                        <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="3" data-is_liked="{{item.is_liked}}">
+                            <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
+                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
+                        </label>
+                        <label class="mess-box">
+                            <text class='iconfont icon-xiaoxi'></text>
+                            <text>{{item.details}}</text>
+                        </label>
+                    </view>
+                </view>
+            </view>
+            <view class="loadmore loadmore_line">
+                <text class="loadmore_tips">暂无数据</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>

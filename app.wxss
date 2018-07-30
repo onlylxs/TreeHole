@@ -1,0 +1,30 @@
+@import 'static/iconfont/iconfont.wxss';
+@import "pages/seach-templ/index.wxss";
+@import "pages/fieldhot-templ/index.wxss";
+/**app.wxss**/
+.container{padding-bottom: 5rpx;}
+Text{font-family: Microsoft YaHei;font-size: 26rpx;}
+.TreeHole{background: #fff;}
+.mb__header{padding-bottom: 90rpx;}
+.Tree_List{padding: 0 30rpx 0 30rpx;clear: both;margin-top: 40rpx;}
+.Tree_List .Tree_Item{border: 1rpx solid #ccc;box-shadow: 0 1px 1px 1px #ccc;border-radius:6rpx; padding: 20rpx;margin-bottom: 20rpx;position: relative;}
+.Tree_List .Tree_Item.Tree_Item_Mark{margin: 70rpx 0 50rpx 0;}
+.Tree_List .Tree_Item .mark-box{width: 140rpx;height: 50rpx;line-height: 50rpx;position: absolute;top: -35rpx;left: 20rpx;border: 1rpx solid #ed711a;color: #ed711a;text-align: center;font-size: 26rpx;background: #fff;}
+.Tree_List .Tree_Item .content_text{height: 120rpx;line-height: 1.55;display: -webkit-box;-webkit-line-clamp: 3;overflow: hidden;-webkit-line-break: auto;-webkit-box-orient: vertical;}
+.Tree_List .Tree_Item .content_text.No_Overflow{height: auto !important;overflow: inherit !important;-webkit-line-clamp: inherit !important;}
+.Tree_bottom{display: flex;flex-direction: row;align-items: flex-end;}
+.Tree_bottom .time_text{color: #999;width: 300rpx;}
+.Tree_bottom .botton_right{flex: 1;text-align: right;display: flex;justify-content: flex-end}
+.Tree_bottom .botton_right label{margin-left: 20rpx;}
+.Tree_bottom .botton_right .photo-box{background: #ed711a;border-radius: 2px;padding: 0 6rpx;height: 38rpx;line-height: 38rpx;margin-top:8rpx;}
+.Tree_bottom .botton_right .photo-box text{color: #fff;font-size:24rpx;}
+.Tree_bottom .botton_right .photo-box text.iconfont{color: #fff;font-size:30rpx;}
+.Tree_bottom .botton_right text{font-size: 26rpx;color: #787878;}
+.Tree_bottom .botton_right text.iconfont{font-size: 36rpx;vertical-align: middle;margin-right: 3rpx;color: #787878;}
+.Tree_bottom .botton_right text.selected{color:red !important;}
+.choice__HD::after, .Tree_List::after,choice__HD .choice__Left .TimeBoxBtn:after{content: '';display: block;clear: both;}
+
+
+.loadmore{width: 80%;}
+.loadmore_line{border-top: 1px solid #e5e5e5;}
+.loadmore_line .loadmore_tips{position: relative;top: -0.9em;padding: 0 0.55em;background-color: #fff;color: #808080;}
