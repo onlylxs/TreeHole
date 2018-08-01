@@ -52,7 +52,7 @@ Page({
     ToDetail: function (e) {
         let tpid = e.currentTarget.dataset.tpid;
         wx.navigateTo({
-            url: '../treeDetail/index?id=' + tpid
+            url: '../treeDetail/index?tid=' + tpid
         })
     },
     // 获取开始时间
@@ -158,7 +158,6 @@ Page({
         param.data.topic_id = tid;
         param.data.user_id = wx.getStorageSync('user_id');
         util.requests(param, res => {
-            // if(res.data.code)
             this.likesFunc(parseInt(Ttype), index);
             wx.showToast({
                 title: res.data.msg,
