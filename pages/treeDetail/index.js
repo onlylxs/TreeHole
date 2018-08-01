@@ -22,9 +22,10 @@ Page({
             'clss': 'icon-remen',
             'text': '最热门'
         }],
-        page: 1,    //分页
+        page: 1, //分页
         sortIdx: 1, //排序编号
-        d_content:''
+        d_content: '',
+        wx_show: false
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -34,27 +35,33 @@ Page({
         this.topicDetail();
     },
     //话题详情
-    topicDetail: function() {
+    topicDetail: function () {
+        wx.showLoading({
+            title: '加载中',
+        })
         let param = {};
         param.url = "we_topic_detail/topicDetail";
         param.data = {};
+        param.data.token = wx.getStorageSync('token');
         param.data.id = this.data.tid;
         param.data.page = this.data.page;
         param.data.order = this.data.sortIdx;
         util.requests(param, res => {
             this.setData({
-                d_content:res.data.data  
-            })
+                d_content: res.data.data,
+                wx_show: true
+            });
+            wx.hideLoading();
         });
     },
     // 排序显示隐藏
-    ChangeSortTF: function (e) {
+    ChangeSortTF: function(e) {
         this.setData({
             SortTF: !this.data.SortTF
         })
     },
     // 排序显示隐藏
-    ChangeSortFunc: function (e) {
+    ChangeSortFunc: function(e) {
         let clsss = e.currentTarget.dataset.clss || '',
             sortTexts = e.currentTarget.dataset.text || '',
             sortIdx = e.currentTarget.dataset.idx;

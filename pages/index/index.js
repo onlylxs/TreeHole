@@ -133,6 +133,7 @@ Page({
                 last_page: topic_list.last_page
             });
             this.data.page++;
+            wx.hideLoading();
         });
     },
     // 到达底部加载更多

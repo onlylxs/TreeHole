@@ -1,5 +1,5 @@
 <import src="../seach-templ/index.wxml" />
-<view class="container">
+<view class="container" wx-if="{{wx_show}}">
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}"  />
     <view class="Tree_List">
         <view class="Tree_Item Tree_Item_Mark">
