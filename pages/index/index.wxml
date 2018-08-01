@@ -1,5 +1,5 @@
 <import src="../seach-templ/index.wxml" />
-<view class="container">
+<view class="container" wx-if="{{wx_show}}">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
     <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">

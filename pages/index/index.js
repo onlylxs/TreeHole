@@ -30,7 +30,8 @@ Page({
         hots: [], //最热门
         todays: [], //今日话题
         topicList: [], //话题列表
-        sortIdx: 1 //排序编号
+        sortIdx: 1, //排序编号
+        wx_show:false,
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -43,7 +44,7 @@ Page({
         });
         wx.showLoading({
             title: '加载中',
-        })
+        });
         app.checkLogin(res => {
             this.getTopicList();
         });
@@ -116,6 +117,7 @@ Page({
         param.data.start_time = Date.parse(this.data.startDate);
         param.data.end_time = Date.parse(this.data.endDate);
         param.data.page = this.data.page;
+        param.closeLoad = true;
         util.requests(param, res => {
             let topic_list = res.data.data.topic_list,
                 list = this.data.topicList,
@@ -130,10 +132,10 @@ Page({
                 todays: today_list,
                 hots: hots_list,
                 topicList: list,
-                last_page: topic_list.last_page
+                last_page: topic_list.last_page,
+                wx_show:true
             });
             this.data.page++;
-            wx.hideLoading();
         });
     },
     // 到达底部加载更多

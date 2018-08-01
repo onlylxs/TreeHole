@@ -46,12 +46,12 @@ Page({
         param.data.id = this.data.tid;
         param.data.page = this.data.page;
         param.data.order = this.data.sortIdx;
+        param.closeLoad = true;
         util.requests(param, res => {
             this.setData({
                 d_content: res.data.data,
                 wx_show: true
             });
-            wx.hideLoading();
         });
     },
     // 排序显示隐藏

@@ -3,14 +3,14 @@
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}"  />
     <view class="Tree_List">
         <view class="Tree_Item Tree_Item_Mark">
-            <view class="mark-box">树洞主</view>
+            <view class="mark-box" style="width:auto;padding:0 15rpx;">{{d_content.nick_name}}</view>
             <text class='content_text No_Overflow'>{{d_content.content}}</text>
             <view class='Tree_bottom'>
                 <text class="time_text">{{d_content.create_time}}</text>
                 <view class="botton_right">
                     <label class="live-box">
-                        <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
-                        <text>{{d_content.likes}}</text>
+                        <text class='iconfont icon-aixin  {{d_content.is_liked == 1 ? "selected" : ""}}'></text>
+                        <text class='{{d_content.is_liked == 1 ? "selected" : ""}}'>{{d_content.likes}}</text>
                     </label>
                     <label class="mess-box">
                         <text class='iconfont icon-xiaoxi'></text>

@@ -50,6 +50,11 @@ const requests = (param, success) => {
                 title: '提示',
                 content: '获取数据失败，请稍后再试！'
             });
+        },
+        complete(){
+            if(param.closeLoad){
+                wx.hideLoading();
+            }
         }
     })
 }

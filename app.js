@@ -1,10 +1,10 @@
 //app.js
 const util = require('/utils/util.js');
 App({
-    onLaunch: function() {
+    onLaunch: function () {
         // this.checkLogin(res => {});
     },
-    checkLogin: function(success) {
+    checkLogin: function (success) {
         wx.getSetting({ // 查看是否授权
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
