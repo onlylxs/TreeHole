@@ -2,9 +2,9 @@
 const util = require('/utils/util.js');
 App({
     onLaunch: function() {
-        this.checkLogin(res => {});
+        // this.checkLogin(res => {});
     },
-    checkLogin: function (success) {
+    checkLogin: function(success) {
         wx.getSetting({ // 查看是否授权
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
@@ -17,11 +17,11 @@ App({
                                     if (res.code) {
                                         let loginCode = res.code,
                                             param = {};
-                                            param.url = "login/signIn";
-                                            param.data = {};
-                                            param.data.code = loginCode;
-                                            param.data.raw_data = loginrawData;
-                                            param.data.signature = loginSignature;
+                                        param.url = "login/signIn";
+                                        param.data = {};
+                                        param.data.code = loginCode;
+                                        param.data.raw_data = loginrawData;
+                                        param.data.signature = loginSignature;
                                         wx.request({
                                             url: util.BASEURL + param.url,
                                             method: 'POST',
@@ -30,7 +30,6 @@ App({
                                                 'content-type': 'application/json'
                                             },
                                             success(res) {
-                                                return success();
                                                 switch (res.data.code) {
                                                     case 1:
                                                         wx.setStorage({
@@ -41,6 +40,7 @@ App({
                                                             key: 'user_id',
                                                             data: res.data.data.id,
                                                         });
+                                                        return success();
                                                         break;
                                                     case 0:
                                                         wx.showModal({
@@ -61,6 +61,9 @@ App({
                                                     title: '提示',
                                                     content: '获取数据失败，请稍后再试！'
                                                 })
+                                            },
+                                            complete() {
+                                                wx.hideLoading();
                                             }
                                         })
                                     } else {
@@ -70,6 +73,8 @@ App({
                             });
                         }
                     })
+                } else {
+                    wx.hideLoading();
                 }
             }
         })

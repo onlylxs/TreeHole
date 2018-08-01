@@ -44,10 +44,14 @@ const requests = (param, success) => {
             }
         },
         fail(res) {
+            wx.hideLoading();
             wx.showModal({
-                title: '提示',
+                title: '提示123123',
                 content: '获取数据失败，请稍后再试！'
-            })
+            });
+        },
+        complete() {
+            wx.hideLoading();
         }
     })
 }

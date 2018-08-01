@@ -8,7 +8,7 @@
             <!-- 今日话题 -->
             <view class="Tree_Item Tree_Item_Mark" wx:for="{{todays}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
                 <view class="mark-box">今日话题</view>
-                <text class='content_text' bindtap='ToDetail'>{{item.content}}</text>
+                <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
@@ -27,11 +27,11 @@
                     </view>
                 </view>
             </view>
-            
+
             <!-- 热话榜 -->
             <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
                 <view class="mark-box">热话榜</view>
-                <text class='content_text' bindtap='ToDetail'>{{item.content}}</text>
+                <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
@@ -52,8 +52,8 @@
             </view>
 
             <!-- 话题列表 -->
-            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" >
-                <text class='content_text' bindtap='ToDetail'>{{item.content}}</text>
+            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}">
+                <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
@@ -73,7 +73,7 @@
                 </view>
             </view>
             <view class="loadmore loadmore_line">
-                <text class="loadmore_tips">暂无数据</text>
+                <text class="loadmore_tips">到底了~</text>
             </view>
         </view>
     </scroll-view>

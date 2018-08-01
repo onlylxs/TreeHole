@@ -41,15 +41,18 @@ Page({
                 })
             }
         });
+        wx.showLoading({
+            title: '加载中',
+        })
         app.checkLogin(res => {
             this.getTopicList();
         });
     },
     //跳转详情页面
-    ToDetail: function(e) {
-        let itemid = e.currentTarget.dataset.itemId;
+    ToDetail: function (e) {
+        let tpid = e.currentTarget.dataset.tpid;
         wx.navigateTo({
-            url: '../treeDetail/index?id=' + itemid
+            url: '../treeDetail/index?id=' + tpid
         })
     },
     // 获取开始时间
