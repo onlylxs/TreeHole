@@ -1,6 +1,6 @@
 <import src="../seach-templ/index.wxml" />
-<view class="container" wx-if="{{wx_show}}">
-    <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}"  />
+<view class="container" wx:if="{{wx_show}}">
+    <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}" />
     <view class="Tree_List">
         <view class="Tree_Item Tree_Item_Mark">
             <view class="mark-box" style="width:auto;padding:0 15rpx;">{{d_content.nick_name}}</view>
@@ -8,64 +8,27 @@
             <view class='Tree_bottom'>
                 <text class="time_text">{{d_content.create_time}}</text>
                 <view class="botton_right">
-                    <label class="live-box">
+                    <label class="live-box" bindtap='setLikes' data-is_liked="{{d_content.is_liked}}">
                         <text class='iconfont icon-aixin  {{d_content.is_liked == 1 ? "selected" : ""}}'></text>
                         <text class='{{d_content.is_liked == 1 ? "selected" : ""}}'>{{d_content.likes}}</text>
-                    </label>
-                    <label class="mess-box">
-                        <text class='iconfont icon-xiaoxi'></text>
-                        <text>{{d_content.details}}</text>
                     </label>
                 </view>
             </view>
         </view>
     </view>
-    <view class="Tree_List">
-        <view class="Tree_Item">
-            <text class='content_text'>地方官梵蒂冈热豆腐隔热隔热个人人隔热隔热二人过热尔特人而我认为如果他逢人的广泛的非人道飞洒地方而对方而非发生的而发生的而法国个人的风而对方嗯我是份人士的奋斗史访问速度反倒是过分的事格热尔过热的非……</text>
-            <view class='Tree_bottom'>
-                <text class="time_text">2018年7月12日 11:48</text>
-                <view class="botton_right">
-                    <label class="live-box">
-                        <text class='iconfont icon-aixin'></text>
-                        <text>9838</text>
-                    </label>
-                </view>
-            </view>
-        </view>
-        <view class="Tree_Item">
-            <text class='content_text'>而对方嗯我是份人士的奋斗史访问速度反倒是过分的事格热尔过热的非……</text>
-            <view class='Tree_bottom'>
-                <text class="time_text">2018年7月12日 11:48</text>
-                <view class="botton_right">
-                    <label class="live-box">
-                        <text class='iconfont icon-aixin'></text>
-                        <text>9838</text>
-                    </label>
-                </view>
-            </view>
-        </view>
-        <view class="Tree_Item">
-            <text class='content_text'>地方官梵蒂冈热豆腐隔热隔热个人人隔热隔热二人过热尔特人而我认为如果他逢人的广泛的非人道飞洒地方而对方而非发生的而发生的而法国个人的风而对方嗯我是份人士的奋斗史访问速度反倒是过分的事格热尔过热的非……</text>
-            <view class='Tree_bottom'>
-                <text class="time_text">2018年7月12日 11:48</text>
-                <view class="botton_right">
-                    <label class="live-box">
-                        <text class='iconfont icon-aixin'></text>
-                        <text>9838</text>
-                    </label>
-                </view>
-            </view>
-        </view>
-        <view class="Tree_Item">
-            <text class='content_text'>而对方嗯我是份人士的奋斗史访问速度反倒是过分的事格热尔过热的非……</text>
-            <view class='Tree_bottom'>
-                <text class="time_text">2018年7月12日 11:48</text>
-                <view class="botton_right">
-                    <label class="live-box">
-                        <text class='iconfont icon-aixin'></text>
-                        <text>9838</text>
-                    </label>
+    <view wx:if="{{comm_detail.length > 0}}">
+        <view class='Reply-tit'><text>树洞回复</text></view>
+        <view class="Tree_List">
+            <view class="Tree_Item" wx:for="{{comm_detail}}" wx:key="{{index}}">
+                <text class='content_text'>{{item.content}}</text>
+                <view class='Tree_bottom'>
+                    <text class="time_text">{{item.create_time}}</text>
+                    <view class="botton_right">
+                        <label class="live-box">
+                            <text class='iconfont icon-aixin'></text>
+                            <text>{{item.likes}}</text>
+                        </label>
+                    </view>
                 </view>
             </view>
         </view>
@@ -73,8 +36,8 @@
     <view class="comment-mt"></view>
     <view class="comment-foot">
         <view class="comment-box">
-            <input type="text" placeholder="请输入评论..." />
-            <button>发送</button>
+            <input type="text" placeholder="请输入评论..." bindinput="comment_content" />
+            <button bindtap='SendComment'>发送</button>
         </view>
     </view>
 </view>

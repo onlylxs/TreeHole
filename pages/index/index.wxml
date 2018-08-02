@@ -1,18 +1,18 @@
 <import src="../seach-templ/index.wxml" />
-<view class="container" wx-if="{{wx_show}}">
+<view class="container" wx:if="{{wx_show}}">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
     <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
         <button open-type="getUserInfo"> 获取授权信息 </button>
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" wx:for="{{todays}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
+            <view class="Tree_Item Tree_Item_Mark" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
                 <view class="mark-box">今日话题</view>
                 <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
-                        <label class="photo-box" wx-if="{{item.photos.length>0}}">
+                        <label class="photo-box" wx:if="{{item.photos.length>0}}">
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>
@@ -29,7 +29,7 @@
             </view>
 
             <!-- 热话榜 -->
-            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx-if="{{item.id >=0}}">
+            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
                 <view class="mark-box">热话榜</view>
                 <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
                 <view class='Tree_bottom'>
@@ -57,7 +57,7 @@
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
-                        <label class="photo-box" wx-if="{{item.photos.length>0}}">
+                        <label class="photo-box" wx:if="{{item.photos.length>0}}">
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>

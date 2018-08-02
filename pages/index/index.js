@@ -168,6 +168,7 @@ Page({
             });
         });
     },
+    //话题点赞
     likesFunc(Ttype, index) {
         let tlist = [];
         switch (Ttype) {
