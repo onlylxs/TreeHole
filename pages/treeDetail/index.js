@@ -5,6 +5,7 @@ import util from '../../utils/util.js';
 
 Page({
     data: {
+        height: '',
         TimeCk: false,
         SortTF: false,
         clss: 'icon-paixu',
@@ -26,10 +27,18 @@ Page({
         sortIdx: 1, //排序编号
         d_content: '',
         comm_detail: [],
-        wx_show: false
+        wx_show: false,
+        loadmore:true,
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
+        wx.getSystemInfo({
+            success: (res) => {
+                this.setData({
+                    height: res.windowHeight - 90
+                })
+            }
+        });
         this.setData({
             tid: options.tid
         });
@@ -59,7 +68,8 @@ Page({
             SortTF: !this.data.SortTF,
             sortIdx: sortIdx,
             page: 1,
-            topicList: []
+            comm_detail: [],
+            loadmore: true
         })
         this.topicDetail();
     },
@@ -84,9 +94,22 @@ Page({
             this.setData({
                 d_content: res.data.data,
                 comm_detail: list,
+                last_page: cdetail.last_page || 0,
                 wx_show: true
             });
+            if (cdetail.last_page <= this.data.page) {
+                this.setData({
+                    loadmore: false
+                });
+            }
+            this.data.page++;
         });
+    },
+    // 到达底部加载更多
+    lower: function(e) {
+        if (this.data.last_page >= this.data.page) {
+            this.topicDetail();
+        }
     },
     //获取评论内容
     comment_content: function(e) {
@@ -111,7 +134,7 @@ Page({
                 commObj = {};
             commObj.content = this.data.comm_content;
             commObj.likes = 0;
-            list.push(commObj);
+            list.splice(0, 0, commObj);
             this.setData({
                 comm_detail: list,
             });

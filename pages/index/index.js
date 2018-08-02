@@ -31,7 +31,8 @@ Page({
         todays: [], //今日话题
         topicList: [], //话题列表
         sortIdx: 1, //排序编号
-        wx_show:false,
+        wx_show: false,
+        loadmore: true,
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -45,16 +46,17 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
-        if (wx.getStorageSync('token')){
+
+        if (wx.getStorageSync('token')) {
             this.getTopicList();
-        }else{
+        } else {
             app.checkLogin(res => {
                 this.getTopicList();
             });
         }
     },
     //跳转详情页面
-    ToDetail: function (e) {
+    ToDetail: function(e) {
         let tpid = e.currentTarget.dataset.tpid;
         wx.navigateTo({
             url: '../treeDetail/index?tid=' + tpid
@@ -82,7 +84,8 @@ Page({
         this.setData({
             TimeTF: !this.data.TimeTF,
             page: 1,
-            topicList: []
+            topicList: [],
+            loadmore: true
         });
         this.getTopicList();
     },
@@ -107,7 +110,8 @@ Page({
             SortTF: !this.data.SortTF,
             sortIdx: sortIdx,
             page: 1,
-            topicList: []
+            topicList: [],
+            loadmore: true
         })
         this.getTopicList();
     },
@@ -137,9 +141,14 @@ Page({
                 hots: hots_list,
                 topicList: list,
                 last_page: topic_list.last_page,
-                wx_show:true
+                wx_show: true
             });
             this.data.page++;
+            if (topic_list.last_page <= this.data.page) {
+                this.setData({
+                    loadmore: false
+                });
+            }
         });
     },
     // 到达底部加载更多

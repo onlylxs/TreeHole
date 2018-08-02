@@ -6,9 +6,9 @@
         <button open-type="getUserInfo"> 获取授权信息 </button>
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
                 <view class="mark-box">今日话题</view>
-                <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
+                <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
@@ -16,7 +16,7 @@
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>
-                        <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="1" data-is_liked="{{item.is_liked}}">
+                        <label class="live-box" catchtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="1" data-is_liked="{{item.is_liked}}">
                             <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
                             <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
                         </label>
@@ -29,9 +29,9 @@
             </view>
 
             <!-- 热话榜 -->
-            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
+            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{item.id >=0}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                 <view class="mark-box">热话榜</view>
-                <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
+                <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
@@ -39,7 +39,7 @@
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>
-                        <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="2" data-is_liked="{{item.is_liked}}">
+                        <label class="live-box" catchtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="2" data-is_liked="{{item.is_liked}}">
                             <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
                             <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
                         </label>
@@ -52,8 +52,8 @@
             </view>
 
             <!-- 话题列表 -->
-            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}">
-                <text class='content_text' bindtap='ToDetail' data-tpid="{{item.id}}">{{item.content}}</text>
+            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
+                <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
@@ -61,7 +61,7 @@
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>
-                        <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="3" data-is_liked="{{item.is_liked}}">
+                        <label class="live-box" catchtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="3" data-is_liked="{{item.is_liked}}">
                             <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
                             <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
                         </label>
@@ -72,7 +72,14 @@
                     </view>
                 </view>
             </view>
-            <view class="loadmore loadmore_line">
+            <view class="spinner" wx:if="{{loadmore}}">
+                <view class="rect1"></view>
+                <view class="rect2"></view>
+                <view class="rect3"></view>
+                <view class="rect4"></view>
+                <view class="rect5"></view>
+            </view>
+            <view class="loadmore loadmore_line" wx:if="{{loadmore == false}}">
                 <text class="loadmore_tips">到底了~</text>
             </view>
         </view>
