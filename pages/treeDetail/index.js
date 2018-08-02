@@ -25,8 +25,8 @@ Page({
         page: 1, //分页
         sortIdx: 1, //排序编号
         d_content: '',
-        comm_detail:[],
-        wx_show: true
+        comm_detail: [],
+        wx_show: false
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -76,8 +76,10 @@ Page({
         util.requests(param, res => {
             let cdetail = res.data.data.detail,
                 list = this.data.comm_detail;
-            for (let i = 0; i < cdetail.data.length; i++) {
-                list.push(cdetail.data[i]);
+            if (cdetail != '') {
+                for (let i = 0; i < cdetail.data.length; i++) {
+                    list.push(cdetail.data[i]);
+                }
             }
             this.setData({
                 d_content: res.data.data,
@@ -100,7 +102,20 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.topic_id = this.data.tid;
         param.data.content = this.data.comm_content;
-        util.requests(param, res => {});
+        util.requests(param, res => {
+            wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+            });
+            let list = this.data.comm_detail,
+                commObj = {};
+            commObj.content = this.data.comm_content;
+            commObj.likes = 0;
+            list.push(commObj);
+            this.setData({
+                comm_detail: list,
+            });
+        });
     },
     //话题点赞
     setLikes: function(e) {
@@ -121,10 +136,10 @@ Page({
                 icon: 'none',
             });
             let dContent = this.data.d_content;
-            if (dContent.is_liked == 1){
+            if (dContent.is_liked == 1) {
                 dContent.is_liked = 0;
                 dContent.likes -= 1;
-            }else{
+            } else {
                 dContent.is_liked = 1;
                 dContent.likes += 1;
             }

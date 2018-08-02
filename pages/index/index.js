@@ -45,9 +45,13 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
-        app.checkLogin(res => {
+        if (wx.getStorageSync('token')){
             this.getTopicList();
-        });
+        }else{
+            app.checkLogin(res => {
+                this.getTopicList();
+            });
+        }
     },
     //跳转详情页面
     ToDetail: function (e) {
