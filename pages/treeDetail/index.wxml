@@ -17,17 +17,17 @@
                 </view>
             </view>
         </view>
-        <view wx:if="{{comm_detail.length > 0}}">
+        <view wx:if="{{comm_detailList.length > 0}}">
             <view class='Reply-tit'>
                 <text>树洞回复</text>
             </view>
             <view class="Tree_List">
-                <view class="Tree_Item" wx:for="{{comm_detail}}" wx:key="{{index}}">
+                <view class="Tree_Item" wx:for="{{comm_detailList}}" wx:key="{{index}}">
                     <text class='content_text'>{{item.content}}</text>
                     <view class='Tree_bottom'>
                         <text class="time_text">{{item.create_time}}</text>
                         <view class="botton_right">
-                            <label class="live-box">
+                            <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-isliked="{{item.is_liked}}">
                                 <text class='iconfont icon-aixin'></text>
                                 <text>{{item.likes}}</text>
                             </label>

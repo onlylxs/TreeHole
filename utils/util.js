@@ -1,14 +1,17 @@
 const BASEURL = "http://www.413club.cn/index.php/api/";
 
-const formatTime = date => {
+const formatTime = (date,hhss) => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
     const hour = date.getHours()
     const minute = date.getMinutes()
     const second = date.getSeconds()
-    // return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-    return [year, month, day].map(formatNumber).join('-');
+    if(hhss){
+        return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    }else{
+        return [year, month, day].map(formatNumber).join('-');
+    }
 }
 
 const formatNumber = n => {

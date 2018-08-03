@@ -26,7 +26,7 @@ Page({
         page: 1, //分页
         sortIdx: 1, //排序编号
         d_content: '',
-        comm_detail: [],
+        comm_detailList: [],
         wx_show: false,
         loadmore:true,
     },
@@ -68,7 +68,7 @@ Page({
             SortTF: !this.data.SortTF,
             sortIdx: sortIdx,
             page: 1,
-            comm_detail: [],
+            comm_detailList: [],
             loadmore: true
         })
         this.topicDetail();
@@ -85,7 +85,8 @@ Page({
         param.closeLoad = true;
         util.requests(param, res => {
             let cdetail = res.data.data.detail,
-                list = this.data.comm_detail;
+                list = this.data.comm_detailList;
+            
             if (cdetail != '') {
                 for (let i = 0; i < cdetail.data.length; i++) {
                     list.push(cdetail.data[i]);
@@ -93,11 +94,11 @@ Page({
             }
             this.setData({
                 d_content: res.data.data,
-                comm_detail: list,
+                comm_detailList: list,
                 last_page: cdetail.last_page || 0,
                 wx_show: true
             });
-            if (cdetail.last_page <= this.data.page) {
+            if (this.data.last_page <= this.data.page) {
                 this.setData({
                     loadmore: false
                 });
@@ -130,44 +131,51 @@ Page({
                 title: res.data.msg,
                 icon: 'none',
             });
-            let list = this.data.comm_detail,
+            let list = this.data.comm_detailList,
                 commObj = {};
             commObj.content = this.data.comm_content;
             commObj.likes = 0;
+            commObj.create_time = util.formatTime(new Date(),true);
             list.splice(0, 0, commObj);
             this.setData({
-                comm_detail: list,
+                comm_detailList: list,
             });
         });
     },
-    //话题点赞
+    //评论点赞
     setLikes: function(e) {
-        let is_liked = e.currentTarget.dataset.is_liked,
+        let tid = e.currentTarget.dataset.tid,
+            is_liked = e.currentTarget.dataset.isliked,
+            index = e.currentTarget.dataset.index,
             param = {};
         if (is_liked == 0) {
-            param.url = "likes/vote";
+            param.url = "we_topic_detail/vote";
         } else {
-            param.url = "likes/cancelVote";
+            param.url = "we_detail_likes/cancelVote";
         }
         param.data = {};
         param.data.token = wx.getStorageSync('token');
-        param.data.topic_id = this.data.tid;
         param.data.user_id = wx.getStorageSync('user_id');
+        param.data.detail_id = tid;
         util.requests(param, res => {
             wx.showToast({
                 title: res.data.msg,
                 icon: 'none',
             });
-            let dContent = this.data.d_content;
-            if (dContent.is_liked == 1) {
-                dContent.is_liked = 0;
-                dContent.likes -= 1;
-            } else {
-                dContent.is_liked = 1;
-                dContent.likes += 1;
+            let tlist = this.data.comm_detailList;
+            for (let i in tlist) { //遍历列表数据
+                if (i == index) { //根据下标找到目标
+                    if (tlist[i].is_liked == 0) { //如果是没点赞+1
+                        tlist[i].is_liked = 1;
+                        tlist[i].likes = parseInt(tlist[i].likes) + 1
+                    } else {
+                        tlist[i].is_liked = 0;
+                        tlist[i].likes = parseInt(tlist[i].likes) - 1
+                    }
+                }
             }
             this.setData({
-                d_content: dContent,
+                comm_detailList: tlist,
             });
         });
     },
