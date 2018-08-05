@@ -47,9 +47,9 @@ Page({
             title: '加载中',
         });
 
-        // app.checkLogin(res => {
+        app.checkLogin(res => {
             this.getTopicList();
-        // });
+        });
     },
     //跳转详情页面
     ToDetail: function(e) {
