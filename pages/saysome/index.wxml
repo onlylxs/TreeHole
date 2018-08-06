@@ -1,22 +1,22 @@
 <view class="container">
     <view class="say_choice">
-        <text class="lables">发布位置</text>
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <text class="lables">发布领域</text>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" data-text="{{array[index]}}">
             <text class="picker">{{array[index]}}</text>
         </picker>
     </view>
     <view class="say_textarea">
-        <textarea placeholder="请输入内容..."></textarea>
+        <textarea placeholder="请输入内容..." bindinput="sayContent"></textarea>
     </view>
     <view class="addre_box" bindtap="getMap">
-        <text class="iconfont icon-dizhi"></text><text>重庆观音桥</text>
+        <text class="iconfont icon-dizhi"></text><text>{{positionT}}</text>
     </view>
     <view class="images_box">
-        <image src="../../static/images/add.png" lazy-load="true" mode="aspectFit" />
         <image src="../../static/images/ico-field.png" lazy-load="true" mode="center" />
         <image src="../../static/images/ico-field.png" lazy-load="true" mode="center" />
         <image src="../../static/images/ico-field.png" lazy-load="true" mode="center" />
+        <image src="../../static/images/add.png" lazy-load="true" mode="aspectFit" bindtap="getChooseImg" />
     </view>
     <text class="imgtxt">图片上传（最多三张）</text>
-    <button class="sendBtn">发送</button>
+    <button class="sendBtn" bindtap="SendTopic">发送</button>
 </view>

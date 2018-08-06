@@ -74,6 +74,7 @@ App({
                         }
                     })
                 } else {
+                    return success();
                     wx.hideLoading();
                 }
             }

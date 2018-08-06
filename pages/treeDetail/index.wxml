@@ -1,4 +1,5 @@
 <import src="../seach-templ/index.wxml" />
+<import src="../loadmore-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}" />
     <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
@@ -9,7 +10,7 @@
                 <view class='Tree_bottom'>
                     <text class="time_text">{{d_content.create_time}}</text>
                     <view class="botton_right">
-                        <label class="live-box" bindtap='setLikes' data-is_liked="{{d_content.is_liked}}">
+                        <label class="live-box" bindtap='setLikes' data-is_liked="{{d_content.is_liked}}" data-tid="{{d_content.id}}" data-index="{{index}}">
                             <text class='iconfont icon-aixin  {{d_content.is_liked == 1 ? "selected" : ""}}'></text>
                             <text class='{{d_content.is_liked == 1 ? "selected" : ""}}'>{{d_content.likes}}</text>
                         </label>
@@ -17,10 +18,10 @@
                 </view>
             </view>
         </view>
+        <view class='Reply-tit'>
+            <text>树洞回复</text>
+        </view>
         <view wx:if="{{comm_detailList.length > 0}}">
-            <view class='Reply-tit'>
-                <text>树洞回复</text>
-            </view>
             <view class="Tree_List">
                 <view class="Tree_Item" wx:for="{{comm_detailList}}" wx:key="{{index}}">
                     <text class='content_text'>{{item.content}}</text>
@@ -28,24 +29,15 @@
                         <text class="time_text">{{item.create_time}}</text>
                         <view class="botton_right">
                             <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-isliked="{{item.is_liked}}">
-                                <text class='iconfont icon-aixin'></text>
-                                <text>{{item.likes}}</text>
+                                <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
+                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
                             </label>
                         </view>
                     </view>
                 </view>
             </view>
         </view>
-        <view class="spinner" wx:if="{{loadmore}}">
-            <view class="rect1"></view>
-            <view class="rect2"></view>
-            <view class="rect3"></view>
-            <view class="rect4"></view>
-            <view class="rect5"></view>
-        </view>
-        <view class="loadmore loadmore_line" wx:if="{{loadmore == false}}">
-            <text class="loadmore_tips">到底了~</text>
-        </view>
+        <template is="loadmoreBox" data="{{loadmore}}" />
     </scroll-view>
     <view class="comment-foot">
         <view class="comment-box">

@@ -57,6 +57,5 @@ Page({
                 searchList: res.data.data
             });
         });
-        
     }
 })

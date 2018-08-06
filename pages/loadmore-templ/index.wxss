@@ -1,0 +1,27 @@
+
+/* 底部加载 */
+.spinner{margin: 0 auto 20rpx auto;width: 50px;height: 60rpx;text-align: center;}
+.spinner > view{background-color: #ed711a;height: 100%;width: 6rpx;margin:0 3rpx;display: inline-block;-webkit-animation: stretchdelay 1.2s infinite ease-in-out;animation: stretchdelay 1.2s infinite ease-in-out;}
+.spinner .rect2{-webkit-animation-delay: -1.1s;animation-delay: -1.1s;}
+.spinner .rect3{-webkit-animation-delay: -1.0s;animation-delay: -1.0s;}
+.spinner .rect4{-webkit-animation-delay: -0.9s;animation-delay: -0.9s;}
+.spinner .rect5{-webkit-animation-delay: -0.8s;animation-delay: -0.8s;} 
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) } 
+  20% { -webkit-transform: scaleY(1.0) }
+}
+ 
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+.loadmore{width: 80%; margin: 0 auto; font-size: 14px; text-align: center;}
+.loadmore_line{border-top: 1px solid #E5E5E5;margin-top:1.25rem;}
+.loadmore_line .loadmore_tips{position: relative; top: -0.65rem; background-color: #FFFFFF; color: #808080;padding:0 0.65rem;}

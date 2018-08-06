@@ -4,13 +4,12 @@
         <input type="text" placeholder="请输入搜索领域…" bindinput="search_content"/>
         <icon type="search" size="26" bindtap='searchFunc' />
     </view>
-    <view class="fieldList" wx:if="{{searchList.length>0}}">
+    <view class="fieldList" wx:if="{{searchList.length > 0}}">
         <view class="item" wx:for="{{searchList}}">
             <text class="title">{{item.name}}</text>
-            <text class="number">{{item.t_likes}}</text>
         </view>
     </view>
-    <view class="fieldList" wx:if="{{MyFieldList.length>0}}">
+    <view class="fieldList" wx:if="{{MyFieldList.length > 0}}">
         <view class="mark-box">我关注的领域</view>
         <view class="item" wx:for="{{MyFieldList}}">
             <text class="title">{{item.name}}</text>

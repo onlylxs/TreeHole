@@ -155,7 +155,6 @@ Page({
         }
         param.data = {};
         param.data.token = wx.getStorageSync('token');
-        param.data.user_id = wx.getStorageSync('user_id');
         param.data.detail_id = tid;
         util.requests(param, res => {
             wx.showToast({
@@ -164,13 +163,13 @@ Page({
             });
             let tlist = this.data.comm_detailList;
             for (let i in tlist) { //遍历列表数据
-                if (i == index) { //根据下标找到目标
+                if (i == parseInt(index)) { //根据下标找到目标
                     if (tlist[i].is_liked == 0) { //如果是没点赞+1
                         tlist[i].is_liked = 1;
-                        tlist[i].likes = parseInt(tlist[i].likes) + 1
+                        tlist[i].likes = parseInt(tlist[i].likes) + 1;
                     } else {
                         tlist[i].is_liked = 0;
-                        tlist[i].likes = parseInt(tlist[i].likes) - 1
+                        tlist[i].likes = parseInt(tlist[i].likes) - 1;
                     }
                 }
             }

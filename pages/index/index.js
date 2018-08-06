@@ -47,13 +47,11 @@ Page({
             title: '加载中',
         });
 
-        if (wx.getStorageSync('token')) {
+        app.checkLogin(res => {
             this.getTopicList();
-        } else {
-            app.checkLogin(res => {
-                this.getTopicList();
-            });
-        }
+        }, res => {
+            this.getTopicList();
+        });
     },
     //跳转详情页面
     ToDetail: function(e) {
@@ -141,6 +139,7 @@ Page({
                 hots: hots_list,
                 topicList: list,
                 last_page: topic_list.last_page,
+                advert: res.data.data.ads,
                 wx_show: true
             });
             this.data.page++;
@@ -223,5 +222,21 @@ Page({
                 })
                 break;
         }
+    },
+    openprogram: function (e) {
+        let app_id = e.currentTarget.dataset.app_id,
+            adv_path = e.currentTarget.dataset.path;
+        wx.navigateToMiniProgram({
+            appId: app_id,
+            path: adv_path,
+            extraData: {
+                foo: 'bar'
+            },
+            envVersion: 'develop',
+            success(res) {
+                // 打开成功
+            }
+        })
+
     }
 })

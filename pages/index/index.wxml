@@ -1,4 +1,5 @@
 <import src="../seach-templ/index.wxml" />
+<import src="../loadmore-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
@@ -50,7 +51,9 @@
                     </view>
                 </view>
             </view>
-
+            <navigator target="miniProgram" open-type="navigate" app-id="{{advert.app_id}}" path="{{advert.page}}" extra-data="" version="release" wx:if="{{advert.app_id !=''}}">
+                <image src="{{advert.banner}}" class="adverp" ></image>
+            </navigator>
             <!-- 话题列表 -->
             <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                 <text class='content_text'>{{item.content}}</text>
@@ -72,16 +75,7 @@
                     </view>
                 </view>
             </view>
-            <view class="spinner" wx:if="{{loadmore}}">
-                <view class="rect1"></view>
-                <view class="rect2"></view>
-                <view class="rect3"></view>
-                <view class="rect4"></view>
-                <view class="rect5"></view>
-            </view>
-            <view class="loadmore loadmore_line" wx:if="{{loadmore == false}}">
-                <text class="loadmore_tips">到底了~</text>
-            </view>
+            <template is="loadmoreBox" data="{{loadmore}}" />
         </view>
     </scroll-view>
 </view>

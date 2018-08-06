@@ -1,0 +1,12 @@
+<template name="loadmoreBox">
+    <view class="spinner" wx:if="{{loadmore}}">
+        <view class="rect1"></view>
+        <view class="rect2"></view>
+        <view class="rect3"></view>
+        <view class="rect4"></view>
+        <view class="rect5"></view>
+    </view>
+    <view class="loadmore loadmore_line" wx:if="{{loadmore == false}}">
+        <text class="loadmore_tips">到底了~</text>
+    </view>
+</template>
