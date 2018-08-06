@@ -120,7 +120,7 @@ Page({
         param.data.content = this.data.sayContent;
         param.data.longt = this.data.longt;
         param.data.lat = this.data.lat;
-        param.data.position = this.data.arrayID[this.data.index];
+        param.data.category_id = this.data.arrayID[this.data.index];
         if (this.data.listid != '') {
             param.data.potos = this.data.listid.toString();
         }
