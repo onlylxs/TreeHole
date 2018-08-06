@@ -49,8 +49,11 @@ Page({
 
         app.checkLogin(res => {
             this.getTopicList();
+<<<<<<< HEAD
         }, res => {
             this.getTopicList();
+=======
+>>>>>>> 96759cf89b45d86c57e200bfccdd90c3cce938d8
         });
     },
     //跳转详情页面
