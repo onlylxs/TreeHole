@@ -149,7 +149,7 @@ Page({
             index = e.currentTarget.dataset.index,
             param = {};
         if (is_liked == 0) {
-            param.url = "we_topic_detail/vote";
+          param.url = "we_detail_likes/vote";
         } else {
             param.url = "we_detail_likes/cancelVote";
         }
