@@ -58,5 +58,11 @@ Page({
             });
             console.info(this.data.searchList)
         });
-    }
+    },
+    GOFieldList: function (e) {
+        let cid = e.currentTarget.dataset.cid;
+        wx.navigateTo({
+            url: '../field-list/index?cid=' + cid
+        })
+    },
 })

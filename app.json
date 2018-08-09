@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/field/index",
+    "pages/field-list/index",
+    "pages/index/index",
     "pages/saysome/index",
     "pages/message/index",
     "pages/user/index",

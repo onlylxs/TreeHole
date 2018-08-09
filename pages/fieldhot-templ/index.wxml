@@ -1,7 +1,7 @@
 <template name="fieldTemplBox">
     <view class="fieldList">
         <view class="mark-box">热门领域</view>
-        <view class="item" wx:for="{{FollowFieldList}}" wx:key="{{index}}" data-tid="{{item.id}}">
+        <view class="item" wx:for="{{FollowFieldList}}" wx:key="{{index}}" data-cid="{{item.id}}" bindtap="GOFieldList">
             <text class="title">{{item.name}}</text>
             <text class="number">{{item.t_likes}}</text>
         </view>
