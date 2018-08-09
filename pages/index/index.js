@@ -157,7 +157,10 @@ Page({
         }
     },
     //话题点赞
-    setLikes: function(e) {
+    setLikes: function (e) {
+        wx.showLoading({
+            title: '加载中',
+        });
         let tid = e.currentTarget.dataset.tid || '',
             index = e.currentTarget.dataset.index,
             Ttype = e.currentTarget.dataset.ttype,
@@ -178,6 +181,7 @@ Page({
                 title: res.data.msg,
                 icon: 'none',
             });
+            wx.hideLoading();
         });
     },
     //话题点赞
