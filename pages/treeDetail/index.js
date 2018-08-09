@@ -119,6 +119,9 @@ Page({
     },
     //发送评论
     SendComment: function () {
+        wx.showLoading({
+            title: '加载中',
+        })
         let param = {};
         param.url = "we_topic_detail/addDetail";
         param.data = {};
@@ -126,6 +129,7 @@ Page({
         param.data.topic_id = this.data.tid;
         param.data.content = this.data.comm_content;
         util.requests(param, res => {
+            wx.hideLoading();
             wx.showToast({
                 title: res.data.msg,
                 icon: 'none',

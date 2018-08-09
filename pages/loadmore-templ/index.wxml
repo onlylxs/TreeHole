@@ -7,6 +7,6 @@
         <view class="rect5"></view>
     </view>
     <view class="loadmore loadmore_line" wx:if="{{loadmore == false}}">
-        <text class="loadmore_tips">到底了~</text>
+        <text class="loadmore_tips">没有更多数据了~</text>
     </view>
 </template>

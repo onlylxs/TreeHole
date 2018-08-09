@@ -117,15 +117,15 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
-            let topic_list = res.data.data,
+            let topic_list = res.data.data.topic_list,
                 list = this.data.topicList,
                 today_list = [];
-            // today_list.push(res.data.data.today);
+            today_list.push(res.data.data.day);
             for (let i = 0; i < topic_list.data.length; i++) {
                 list.push(topic_list.data[i]);
             }
             this.setData({
-                // todays: today_list,
+                todays: today_list,
                 topicList: list,
                 last_page: topic_list.last_page,
                 wx_show: true

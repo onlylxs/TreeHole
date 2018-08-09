@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/field/index",
     "pages/field-list/index",
-    "pages/index/index",
     "pages/saysome/index",
     "pages/message/index",
     "pages/user/index",
@@ -32,7 +32,8 @@
       {
         "pagePath": "pages/saysome/index",
         "text": "说说",
-        "iconPath": "static/images/ico-saysome.png"
+        "iconPath": "static/images/ico-saysome.png",
+        "selectedIconPath": "static/images/ico-saysome_fill.png"
       },
       {
         "pagePath": "pages/message/index",
