@@ -34,8 +34,9 @@ Page({
         param.data.page = this.data.page;
         util.requests(param, res => {
             this.setData({
-                MyFieldList: res.data.data
+                MyFieldList: res.data.data.data
             });
+            console.info(this.data.MyFieldList)
             this.getHotFieldList();
         });
     },
@@ -51,7 +52,7 @@ Page({
         param.url = "we_category/search";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
-        param.data.keywords = this.data.keywords;
+        param.data.keywords = this.data.keywords || ' ';
         util.requests(param, res => {
             this.setData({
                 searchList: res.data.data

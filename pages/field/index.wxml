@@ -1,19 +1,20 @@
 <import src="../fieldhot-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
     <view class="field_seach">
-        <input type="text" placeholder="请输入搜索领域…" bindinput="search_content"/>
+        <input type="text" placeholder="请输入搜索领域…" value="{{keywords}}" bindinput="search_content"/>
         <icon type="search" size="26" bindtap='searchFunc' />
     </view>
     <!-- 搜索领域 -->
     <view class="fieldList" wx:if="{{searchList.length > 0}}">
-        <view class="item" wx:for="{{searchList}}">
+        <view class="item" wx:for="{{searchList}}" wx:key="{{index}}" data-cid="{{item.id}}" bindtap="GOFieldList">
             <text class="title">{{item.name}}</text>
         </view>
     </view>
+    <view class="mt"></view>
     <!-- 关注的领域 -->
     <view class="fieldList" wx:if="{{MyFieldList.length > 0}}">
         <view class="mark-box">我关注的领域</view>
-        <view class="item" wx:for="{{MyFieldList}}">
+        <view class="item" wx:for="{{MyFieldList}}" wx:key="{{index}}" data-cid="{{item.id}}" bindtap="GOFieldList">
             <text class="title">{{item.name}}</text>
             <text class="number">{{item.t_likes}}</text>
         </view>

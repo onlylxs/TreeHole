@@ -32,7 +32,8 @@ Page({
         sortIdx: 1, //排序编号
         wx_show: false,
         loadmore: true,
-        cid:''
+        cid:'',
+        FollowStatus:0,
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -217,9 +218,9 @@ Page({
     // 关注领域
     FollowField:function(){
         let param = {};
-        param.url = "likes/vote";
+        param.url = "we_user_category/focus";
         param.data = {};
-        param.data.id = cid;
+        param.data.category_id = this.data.cid;
         param.data.token = wx.getStorageSync('token');
         util.requests(param, res => {
             wx.showToast({
