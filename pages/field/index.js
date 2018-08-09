@@ -56,6 +56,7 @@ Page({
             this.setData({
                 searchList: res.data.data
             });
+            console.info(this.data.searchList)
         });
     }
 })

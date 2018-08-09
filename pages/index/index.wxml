@@ -11,6 +11,7 @@
                 <view class="mark-box">今日话题</view>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
+                    <text class='nike_name'>{{item.nike_name}}</text>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
                         <label class="photo-box" wx:if="{{item.photos.length>0}}">
@@ -56,6 +57,7 @@
             </navigator>
             <!-- 话题列表 -->
             <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
+                <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>

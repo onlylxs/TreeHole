@@ -15,17 +15,17 @@ Page({
         listpath: [],
         positionT: '请选择位置'
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         this.getHotFieldList()
     },
     //获取发布位置
-    bindPickerChange: function(e) {
+    bindPickerChange: function (e) {
         this.setData({
             index: e.detail.value
         })
     },
     //获取地址经纬度
-    getMap: function(e) {
+    getMap: function (e) {
         wx.chooseLocation({
             success: res => {
                 this.setData({
@@ -37,19 +37,19 @@ Page({
         })
     },
     //获取输入的内容
-    sayContent: function(e) {
+    sayContent: function (e) {
         this.setData({
             sayContent: e.detail.value
         });
     },
     //上传图片
-    getChooseImg: function() {
+    getChooseImg: function () {
         let ths = this;
         wx.chooseImage({
             count: 1,
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function(res) {
+            success: function (res) {
                 wx.showToast({
                     title: '正在上传...',
                     icon: 'loading',
@@ -58,7 +58,7 @@ Page({
                 })
                 let tempFilePaths = res.tempFilePaths;
                 wx.uploadFile({
-                    url: util.BASEURL + 'attachment/uploadImage', //仅为示例，非真实的接口地址
+                    url: util.BASEURL + 'attachment/uploadImage',
                     filePath: tempFilePaths[0],
                     name: 'file',
                     method: 'POST',
@@ -68,19 +68,19 @@ Page({
                     header: {
                         "Content-Type": "multipart/form-data"
                     },
-                    success: function(res) {
+                    success: function (res) {
                         wx.hideToast();
-                        let rdata = res.data,
+                        let rdata = JSON.parse(res.data),
                             list_id = ths.data.listid,
                             list_path = ths.data.listpath;
-                        list_id.push(rdata.id);
-                        list_path.push(rdata.path);
+                        list_id.push(rdata.data.id);
+                        list_path.push(rdata.data.path);
                         ths.setData({
                             listid: list_id,
                             listpath: list_path
                         });
                     },
-                    fail: function(res) {
+                    fail: function (res) {
                         wx.hideToast();
                         wx.showModal({
                             title: '错误提示',
@@ -93,7 +93,7 @@ Page({
         })
     },
     // 获取热门领域
-    getHotFieldList: function() {
+    getHotFieldList: function () {
         let param = {};
         param.url = "we_category/index";
         param.data = {};
@@ -112,7 +112,10 @@ Page({
         });
     },
     //发送
-    SendTopic: function() {
+    SendTopic: function () {
+        wx.showLoading({
+            title: '加载中',
+        });
         let param = {};
         param.url = "we_topic/addTopic";
         param.data = {};
@@ -127,6 +130,7 @@ Page({
         param.closeLoad = true;
         util.requests(param, res => {
             console.info(res);
+            wx.hideLoading();
         });
     }
 })

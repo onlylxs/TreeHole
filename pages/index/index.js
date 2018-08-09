@@ -142,12 +142,12 @@ Page({
                 advert: res.data.data.ads,
                 wx_show: true
             });
-            this.data.page++;
             if (topic_list.last_page <= this.data.page) {
                 this.setData({
                     loadmore: false
                 });
             }
+            this.data.page++;
         });
     },
     // 到达底部加载更多

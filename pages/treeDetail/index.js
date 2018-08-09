@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 const app = getApp()
 import util from '../../utils/util.js';
 
@@ -28,10 +26,11 @@ Page({
         d_content: '',
         comm_detailList: [],
         wx_show: false,
-        loadmore:true,
+        loadmore: true,
+        comm_content:'',
     },
     // 生命周期函数--监听页面加载
-    onLoad: function(options) {
+    onLoad: function (options) {
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
@@ -48,13 +47,13 @@ Page({
         this.topicDetail();
     },
     // 排序显示隐藏
-    ChangeSortTF: function(e) {
+    ChangeSortTF: function (e) {
         this.setData({
             SortTF: !this.data.SortTF
         })
     },
     // 排序显示隐藏
-    ChangeSortFunc: function(e) {
+    ChangeSortFunc: function (e) {
         let clsss = e.currentTarget.dataset.clss || '',
             sortTexts = e.currentTarget.dataset.text || '',
             sortIdx = e.currentTarget.dataset.idx;
@@ -74,7 +73,7 @@ Page({
         this.topicDetail();
     },
     //话题详情
-    topicDetail: function() {
+    topicDetail: function () {
         let param = {};
         param.url = "we_topic_detail/topicDetail";
         param.data = {};
@@ -86,7 +85,7 @@ Page({
         util.requests(param, res => {
             let cdetail = res.data.data.detail,
                 list = this.data.comm_detailList;
-            
+
             if (cdetail != '') {
                 for (let i = 0; i < cdetail.data.length; i++) {
                     list.push(cdetail.data[i]);
@@ -107,19 +106,19 @@ Page({
         });
     },
     // 到达底部加载更多
-    lower: function(e) {
+    lower: function (e) {
         if (this.data.last_page >= this.data.page) {
             this.topicDetail();
         }
     },
     //获取评论内容
-    comment_content: function(e) {
+    comment_content: function (e) {
         this.setData({
             comm_content: e.detail.value
         });
     },
     //发送评论
-    SendComment: function() {
+    SendComment: function () {
         let param = {};
         param.url = "we_topic_detail/addDetail";
         param.data = {};
@@ -135,21 +134,22 @@ Page({
                 commObj = {};
             commObj.content = this.data.comm_content;
             commObj.likes = 0;
-            commObj.create_time = util.formatTime(new Date(),true);
+            commObj.create_time = util.formatTime(new Date(), true);
             list.splice(0, 0, commObj);
             this.setData({
                 comm_detailList: list,
+                comm_content:'',
             });
         });
     },
     //评论点赞
-    setLikes: function(e) {
+    setLikes: function (e) {
         let tid = e.currentTarget.dataset.tid,
             is_liked = e.currentTarget.dataset.isliked,
             index = e.currentTarget.dataset.index,
             param = {};
         if (is_liked == 0) {
-          param.url = "we_detail_likes/vote";
+            param.url = "we_detail_likes/vote";
         } else {
             param.url = "we_detail_likes/cancelVote";
         }
