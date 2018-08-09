@@ -3,6 +3,7 @@
 <view class="container" wx:if="{{wx_show}}">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
+    <view class="FollowBtn" data-cid="{{cid}}" bindtap="FollowField">关注</view>
     <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
         <view class="Tree_List">
             <!-- 今日话题 -->

@@ -1,0 +1,2 @@
+.FollowBtn{position: fixed;top:22rpx;right:250rpx;z-index: 100000;font-size:24rpx;border: 1rpx solid #ed711a;padding:6rpx 14rpx;border-radius: 4rpx;}
+.FollowBtn.selected{background: #ed711a;color:#fff;}
