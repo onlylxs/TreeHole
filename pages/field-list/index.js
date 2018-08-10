@@ -45,7 +45,8 @@ Page({
             }
         });
         this.setData({
-            cid: options.cid
+            cid: options.cid,
+            FollowStatus: options.focus
         });
         wx.showLoading({
             title: '加载中',
@@ -218,7 +219,12 @@ Page({
     // 关注领域
     FollowField:function(){
         let param = {};
-        param.url = "we_user_category/focus";
+        console.info(this.data.FollowStatus)
+        if (this.data.FollowStatus == 1){
+            param.url = "we_user_category/cancelFocus";
+        }else{
+            param.url = "we_user_category/focus";
+        }
         param.data = {};
         param.data.category_id = this.data.cid;
         param.data.token = wx.getStorageSync('token');

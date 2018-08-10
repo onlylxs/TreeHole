@@ -21,7 +21,7 @@ Page({
         util.requests(param, res => {
             this.setData({
                 wx_show: true,
-                FollowFieldList: res.data.data
+                FollowFieldList: res.data.data.data
             })
         });
     },
@@ -36,7 +36,6 @@ Page({
             this.setData({
                 MyFieldList: res.data.data.data
             });
-            console.info(this.data.MyFieldList)
             this.getHotFieldList();
         });
     },
@@ -55,15 +54,15 @@ Page({
         param.data.keywords = this.data.keywords || ' ';
         util.requests(param, res => {
             this.setData({
-                searchList: res.data.data
+                searchList: res.data.data.data
             });
-            console.info(this.data.searchList)
         });
     },
     GOFieldList: function (e) {
-        let cid = e.currentTarget.dataset.cid;
+        let cid = e.currentTarget.dataset.cid,
+            focus = e.currentTarget.dataset.focus;
         wx.navigateTo({
-            url: '../field-list/index?cid=' + cid
+            url: '../field-list/index?cid=' + cid + '&focus=' + focus
         })
     },
 })
