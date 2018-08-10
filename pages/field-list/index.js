@@ -217,13 +217,18 @@ Page({
         })
     },
     // 关注领域
-    FollowField:function(){
+    FollowField: function () {
         let param = {};
-        console.info(this.data.FollowStatus)
-        if (this.data.FollowStatus == 1){
+        if (this.data.FollowStatus == 1) {
             param.url = "we_user_category/cancelFocus";
-        }else{
+            this.setData({
+                FollowStatus: 0
+            })
+        } else {
             param.url = "we_user_category/focus";
+            this.setData({
+                FollowStatus: 1
+            })
         }
         param.data = {};
         param.data.category_id = this.data.cid;

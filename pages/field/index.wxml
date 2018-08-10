@@ -14,7 +14,7 @@
     <!-- 关注的领域 -->
     <view class="fieldList" wx:if="{{MyFieldList.length > 0}}">
         <view class="mark-box">我关注的领域</view>
-        <view class="item" wx:for="{{MyFieldList}}" wx:key="{{index}}" data-cid="{{item.id}}" data-focus="{{item.is_focus}}" bindtap="GOFieldList">
+        <view class="item" wx:for="{{MyFieldList}}" wx:key="{{index}}" data-cid="{{item.id}}" data-focus="1" bindtap="GOFieldList">
             <text class="title">{{item.name}}</text>
             <text class="number">{{item.t_likes}}</text>
         </view>
