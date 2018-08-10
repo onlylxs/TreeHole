@@ -32,8 +32,8 @@ Page({
         sortIdx: 1, //排序编号
         wx_show: false,
         loadmore: true,
-        cid:'',
-        FollowStatus:0,
+        cid: '',
+        FollowStatus: 0,
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -147,7 +147,7 @@ Page({
         }
     },
     //话题点赞
-    setLikes: function (e) {
+    setLikes: function(e) {
         wx.showLoading({
             title: '加载中',
         });
@@ -217,18 +217,12 @@ Page({
         })
     },
     // 关注领域
-    FollowField: function () {
+    FollowField: function() {
         let param = {};
         if (this.data.FollowStatus == 1) {
             param.url = "we_user_category/cancelFocus";
-            this.setData({
-                FollowStatus: 0
-            })
         } else {
             param.url = "we_user_category/focus";
-            this.setData({
-                FollowStatus: 1
-            })
         }
         param.data = {};
         param.data.category_id = this.data.cid;
@@ -238,6 +232,9 @@ Page({
                 title: res.data.msg,
                 icon: 'none',
             });
+            this.setData({
+                FollowStatus: this.data.FollowStatus == 1 ? 0 : 1
+            })
         });
     }
 })

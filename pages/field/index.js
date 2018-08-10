@@ -9,7 +9,7 @@ Page({
         page:1,
         keywords:''
     },
-    onLoad: function(options) {
+    onShow: function(options) {
         this.getMyFieldList();
     },
     // 获取热门领域
