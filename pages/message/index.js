@@ -1,66 +1,63 @@
-// pages/message/index.js
+//index.js
+//获取应用实例
+const app = getApp();
+import util from '../../utils/util.js';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    data: {
+        height: '',
+        wx_show: true,
+        loadmore: true,
+        message_list:[],
+    },
+    // 生命周期函数--监听页面加载
+    onLoad: function (options) {
+        wx.getSystemInfo({
+            success: (res) => {
+                this.setData({
+                    height: res.windowHeight - 46
+                })
+            }
+        });
+        wx.showLoading({
+            title: '加载中',
+        });
+        this.getMessageList();
+    },
+    //获取消息通知列表
+    getMessageList: function () {
+        let param = {};
+        param.url = "user_center/index";
+        param.data = {};
+        param.data.order = this.data.sortIdx;
+        param.data.category_id = this.data.cid;
+        param.data.token = wx.getStorageSync('token');
+        param.data.start_time = Date.parse(this.data.startDate);
+        param.data.end_time = Date.parse(this.data.endDate);
+        param.data.page = this.data.page;
+        param.closeLoad = true;
+        util.requests(param, res => {
+            let arrlist = res.data.data.message_list,
+                mlist=this.data.message_list;
+            for (let i = 0; i < arrlist.data.length; i++) {
+                mlist.push(arrlist.data[i]);
+            }
+            this.setData({
+                message_list: mlist,
+                wx_show: true
+            });
+            if (arrlist.last_page <= this.data.page) {
+                this.setData({
+                    loadmore: false
+                });
+            }
+            this.data.page++;
+        });
+    },
+    // 到达底部加载更多
+    lower: function (e) {
+        if (this.data.last_page >= this.data.page) {
+            this.getMessageList();
+        }
+    },
 })

@@ -2,7 +2,6 @@
 const util = require('/utils/util.js');
 App({
     onLaunch: function () {
-        // this.checkLogin(res => {});
     },
     checkLogin: function (success) {
         wx.getSetting({ // 查看是否授权

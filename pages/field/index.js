@@ -3,11 +3,12 @@ import util from '../../utils/util.js';
 Page({
 
     data: {
-        MyFieldList: [],
+        MyFieldList: '',
         FollowFieldList: [],
         wx_show:false,
         page:1,
-        keywords:''
+        keywords:'',
+        isNotField:false,
     },
     onShow: function(options) {
         this.getMyFieldList();
@@ -33,9 +34,15 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.page = this.data.page;
         util.requests(param, res => {
-            this.setData({
-                MyFieldList: res.data.data.data
-            });
+            if (res.data.data.data != undefined && res.data.data.data.length>0){
+                this.setData({
+                    MyFieldList: res.data.data.data
+                });
+            }else{
+                this.setData({
+                    MyFieldList:[]
+                }); 
+            }
             this.getHotFieldList();
         });
     },
@@ -53,9 +60,17 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.keywords = this.data.keywords || ' ';
         util.requests(param, res => {
-            this.setData({
-                searchList: res.data.data.data
-            });
+            if (res.data.data.data.length > 0){
+                this.setData({
+                    searchList: res.data.data.data,
+                    isNotField: false
+                });
+            } else {
+                this.setData({
+                    searchList: [],
+                    isNotField: true
+                });
+            }
         });
     },
     GOFieldList: function (e) {

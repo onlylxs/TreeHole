@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/field/index",
     "pages/index/index",
+    "pages/field/index",
     "pages/field-list/index",
     "pages/saysome/index",
     "pages/message/index",

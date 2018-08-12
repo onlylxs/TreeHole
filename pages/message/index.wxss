@@ -1,1 +1,5 @@
 /* pages/message/index.wxss */
+.msg-list{padding:0 30rpx;}
+.msg-hd{color:#f58d34;font-size:28rpx;border-bottom: 1rpx solid #ccc;padding-bottom: 5rpx;margin:20rpx 0;}
+.msg-cont{font-size:26rpx;line-height:40rpx;border-bottom: 1rpx solid #ccc;padding-bottom: 8rpx;}
+.msg-cont .syname{color:#00aeff;}
