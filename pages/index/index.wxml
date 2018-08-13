@@ -1,9 +1,9 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
-<view class="container" wx:if="{{wx_show}}">
+<view class="container">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
-    <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+    <scroll-view wx:if="{{wx_show}}" scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
         <button open-type="getUserInfo"> 获取授权信息 </button>
         <view class="Tree_List">
             <!-- 今日话题 -->

@@ -10,7 +10,10 @@ Page({
         keywords:'',
         isNotField:false,
     },
-    onShow: function(options) {
+    onShow: function (options) {
+        wx.showLoading({
+            title: '加载中',
+        });
         this.getMyFieldList();
     },
     // 获取热门领域

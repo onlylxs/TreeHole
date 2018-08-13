@@ -1,16 +1,20 @@
+<import src="../loadmore-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
     <!--调用seachHD查询模版  -->
     <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
         <view class="msg-list">
-            <view class="msg-item">
-                <view class="msg-hd">
-                    15人赞了你的树洞"咴定位预估很丢一股哦就梵……"
+            <view class="msg-item" wx:for="{{message_list}}" wx:key="item.id">
+                <view class="msg-hd" wx:if="{{item.likes > 0}}">
+                    {{item.likes}}人赞了你的树洞" {{item.content}}"
                 </view>
-                <view class="msg-cont">
-                    <view><text class="syname">杯具、 </text> 回复了你的树洞“咴定位预估很丢一胡梵……” </view>
-                    <view>说：“会尽快回家交换空间艰苦户籍科就开会㖊……”</view>
+                <view class="msg-cont" wx:for="{{item.son}}" wx:key="{{index}}" wx:for-item="itemSon">
+                    <view>
+                        <text class="syname">{{itemSon.nick_name}}、 </text>回复了你的树洞“{{item.content}}”
+                    </view>
+                    <view>说：“{{itemSon.detail}}”</view>
                 </view>
             </view>
         </view>
+        <template is="loadmoreBox" data="{{loadmore}}" />
     </scroll-view>
 </view>

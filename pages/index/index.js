@@ -35,7 +35,7 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function(options) {
+    onShow: function(options) {
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
@@ -46,7 +46,7 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
-        if (wx.getStorageSync('token') == ''){
+        if (wx.getStorageSync('token') == '') {
             app.checkLogin(res => {
                 this.getTopicList();
             }, res => {
@@ -150,6 +150,7 @@ Page({
                     loadmore: false
                 });
             }
+            console.info(this.data.topicList)
             this.data.page++;
         });
     },

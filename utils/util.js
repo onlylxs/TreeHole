@@ -28,6 +28,7 @@ const requests = (param, success) => {
             'content-type': 'application/json'
         },
         success(res) {
+            wx.hideLoading();
             switch (res.data.code) {
                 case 1:
                     return success(res);
@@ -39,7 +40,6 @@ const requests = (param, success) => {
                     })
                     break;
                 default:
-                    wx.hideLoading();
                     wx.showModal({
                         title: '提示',
                         content: '程序异常，请稍后再试'
@@ -52,7 +52,7 @@ const requests = (param, success) => {
             wx.showModal({
                 title: '提示',
                 content: '获取数据失败，请稍后再试！'
-            });
+            })
         },
         complete(){
             if(param.closeLoad){

@@ -13,6 +13,9 @@ App({
                                 loginSignature = res.signature;
                             wx.login({ //登录
                                 success: res => {
+                                    wx.showLoading({
+                                        title: '123123123',
+                                    });
                                     if (res.code) {
                                         let loginCode = res.code,
                                             param = {};

@@ -9,9 +9,10 @@ Page({
         wx_show: true,
         loadmore: true,
         message_list:[],
+        page:1,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function (options) {
+    onShow: function (options) {
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
@@ -37,8 +38,8 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
-            let arrlist = res.data.data.data,
-                mlist=this.data.message_list;
+            let arrlist = res.data.data,
+                mlist = this.data.message_list;
             for (let i = 0; i < arrlist.length; i++) {
                 mlist.push(arrlist[i]);
             }
@@ -46,12 +47,12 @@ Page({
                 message_list: mlist,
                 wx_show: true
             });
+            this.data.page++;
             if (arrlist.last_page <= this.data.page) {
                 this.setData({
                     loadmore: false
                 });
             }
-            this.data.page++;
         });
     },
     // 到达底部加载更多
