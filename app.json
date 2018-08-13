@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/saysome/index",
     "pages/index/index",
     "pages/field/index",
     "pages/field-list/index",
     "pages/field-new/index",
+    "pages/saysome/index",
     "pages/message/index",
     "pages/user/index",
     "pages/treeDetail/index"

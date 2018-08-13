@@ -37,10 +37,10 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
-            let arrlist = res.data.data.message_list,
+            let arrlist = res.data.data.data,
                 mlist=this.data.message_list;
-            for (let i = 0; i < arrlist.data.length; i++) {
-                mlist.push(arrlist.data[i]);
+            for (let i = 0; i < arrlist.length; i++) {
+                mlist.push(arrlist[i]);
             }
             this.setData({
                 message_list: mlist,
