@@ -101,9 +101,9 @@ Page({
         util.requests(param, res => {
             let list = [],
                 listID = [];
-            for (let i = 0; i < res.data.data.length; i++) {
-                list.push(res.data.data[i].name);
-                listID.push(res.data.data[i].id);
+            for (let i = 0; i < res.data.data.data.length; i++) {
+                list.push(res.data.data.data[i].name);
+                listID.push(res.data.data.data[i].id);
             }
             this.setData({
                 array: list,

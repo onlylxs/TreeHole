@@ -13,14 +13,14 @@
         </view>
         <view class="notField">
             没有你要找的？
-            <navigator url="" hover-class="navigator-hover">点击创建新领域</navigator>
+            <navigator url="/pages/field-new/index" hover-class="navigator-hover">点击创建新领域</navigator>
         </view>
     </view>
     <view wx:if="{{isNotField == true}}">
         <view class="NotFoundField">未找到相关领域</view>
         <view class="notField">
             没有你要找的？
-            <navigator url="" hover-class="navigator-hover">点击创建新领域</navigator>
+            <navigator url="/pages/field-new/index" hover-class="navigator-hover">点击创建新领域</navigator>
         </view>
     </view>
     <view class="mt"></view>

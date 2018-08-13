@@ -1,0 +1,7 @@
+<import src="../fieldhot-templ/index.wxml" />
+<view class="container" wx:if="{{wx_show}}">
+    
+    <view class="mt"></view>
+    <!-- 热门领域 -->
+    <template is="fieldTemplBox" data="{{FollowFieldList}}" />
+</view>
