@@ -1,6 +1,13 @@
 <import src="../fieldhot-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
     
+    <view class="field_applyCate">
+        <input type="text" placeholder="请输入新领域名，最多15个汗字" value="{{ApplyCateVal}}" bindinput="getApplyCate" />
+        <view class="applyCateBtn">
+            <button bindtap="setApplyCate">申请</button>
+            <button bindtap="setReturn">取消</button>
+        </view>
+    </view>
     <view class="mt"></view>
     <!-- 热门领域 -->
     <template is="fieldTemplBox" data="{{FollowFieldList}}" />

@@ -3,7 +3,7 @@
     <!--调用seachHD查询模版  -->
     <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
         <view class="msg-list">
-            <view class="msg-item" wx:for="{{message_list}}" wx:key="item.id">
+            <view class="msg-item" wx:for="{{message_list}}" wx:key="item.id" wx:if="{{item.likes>0 || item.son.length>0}}">
                 <view class="msg-hd" wx:if="{{item.likes > 0}}">
                     {{item.likes}}人赞了你的树洞" {{item.content}}"
                 </view>

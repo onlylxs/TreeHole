@@ -8,6 +8,9 @@
                 <view class="mark-box" style="width:auto;padding:0 15rpx;">树洞主</view>
                 <text class='nick_name'>{{d_content.nick_name}}</text>
                 <text class='content_text No_Overflow'>{{d_content.content}}</text>
+                <view class="Tree_Photo">
+                    <image wx:for="{{d_content.photos}}" src="http://{{item}}" wx:key="{{index}}" lazy-load="true" mode="center" />
+                </view>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{d_content.create_time}}</text>
                     <view class="botton_right">
@@ -31,7 +34,7 @@
                         <view class="botton_right">
                             <label class="live-box" bindtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-isliked="{{item.is_liked}}">
                                 <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
-                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
+                                <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
                             </label>
                         </view>
                     </view>

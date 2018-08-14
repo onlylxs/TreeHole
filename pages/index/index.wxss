@@ -1,5 +1,8 @@
 /**index.wxss**/
-
+.adverp_nav{
+    background: #fff;
+    margin-bottom: 10rpx;
+}
 .adverp{
     width:100%;
     height:100px;

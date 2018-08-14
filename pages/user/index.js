@@ -120,10 +120,8 @@ Page({
         param.closeLoad = true;
         util.requests(param, res => {
             let topic_list = res.data.data,
-                list = this.data.userTopic;
-            for (let i = 0; i < topic_list.data.length; i++) {
-                list.push(topic_list.data[i]);
-            }
+                list = [];
+            list = list.concat(topic_list.data)
             this.setData({
                 userTopic: list,
                 last_page: topic_list.last_page,

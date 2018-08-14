@@ -35,7 +35,7 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onShow: function(options) {
+    onLoad: function(options) {
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
@@ -134,9 +134,7 @@ Page({
                 hots_list = [];
             today_list.push(res.data.data.today);
             hots_list.push(res.data.data.hot);
-            for (let i = 0; i < topic_list.data.length; i++) {
-                list.push(topic_list.data[i]);
-            }
+            list = list.concat(topic_list.data);
             this.setData({
                 todays: today_list,
                 hots: hots_list,
@@ -150,7 +148,6 @@ Page({
                     loadmore: false
                 });
             }
-            console.info(this.data.topicList)
             this.data.page++;
         });
     },

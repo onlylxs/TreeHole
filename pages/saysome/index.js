@@ -125,11 +125,13 @@ Page({
         param.data.lat = this.data.lat;
         param.data.category_id = this.data.arrayID[this.data.index];
         if (this.data.listid != '') {
-            param.data.potos = this.data.listid.toString();
+            param.data.photos = this.data.listid.toString();
         }
         param.closeLoad = true;
         util.requests(param, res => {
-            console.info(res);
+            wx.showLoading({
+                title: res.msg,
+            });
             wx.hideLoading();
         });
     }

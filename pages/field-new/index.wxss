@@ -1,7 +1,8 @@
 /* pages/field/index.wxss */
-.field_seach{display: flex;padding:20rpx 30rpx;margin-bottom: 40rpx;}
-.field_seach input{font-size:28rpx;padding:6rpx 10rpx;flex: 2;border:1rpx solid #cccccc;margin-right:20rpx;}
-.field_seach icon{margin-top: 4rpx;}
+.field_applyCate{width:70%;margin:160rpx auto;}
+.field_applyCate input{border: 1rpx solid #ccc;border-radius: 4rpx;font-size: 28rpx;padding:5rpx 10rpx;margin-bottom: 30rpx;}
+.field_applyCate .applyCateBtn{display: flex; }
+.field_applyCate .applyCateBtn button{font-size: 28rpx;width:130rpx;}
 .fieldList{margin:10rpx 30rpx 40rpx 30rpx;border:1rpx solid #cccccc;position: relative;}
 .fieldList .item{display: flex;padding:16rpx 0;border-bottom:1rpx solid #cccccc;margin:0 20rpx;}
 .fieldList .item:last-child{border-bottom:0;}
@@ -10,6 +11,3 @@
 .fieldList .item.more{color:#999;font-size:24rpx;border-bottom:0;}
 .fieldList .mark-box{width: 200rpx;height: 50rpx;line-height: 50rpx;position: absolute;top: -35rpx;left: 20rpx;border: 1rpx solid #ed711a;color: #ed711a;text-align: center;font-size: 26rpx;background: #fff;}
 .mt{margin-top:100rpx;}
-.notField{padding:30rpx 0;text-align: center;background: #eeeeee;font-size:28rpx;}
-.notField navigator{display: inline-block;color:#00aeff;}
-.NotFoundField{padding:0 30rpx 30rpx 30rpx;font-size:28rpx;}

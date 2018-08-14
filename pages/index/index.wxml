@@ -52,8 +52,8 @@
                     </view>
                 </view>
             </view>
-            <navigator target="miniProgram" open-type="navigate" app-id="{{advert.app_id}}" path="{{advert.page}}" extra-data="" version="release" wx:if="{{advert.app_id !=''}}">
-                <image src="{{advert.banner}}" class="adverp" ></image>
+            <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert.app_id}}" path="{{advert.page}}" extra-data="" version="release" wx:if="{{advert.app_id !=''}}" wx:if="{{advert!=''}}">
+                <image src="http://{{advert.banner}}" class="adverp"></image>
             </navigator>
             <!-- 话题列表 -->
             <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">

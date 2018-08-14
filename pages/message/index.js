@@ -16,6 +16,8 @@ Page({
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
+                    page: 1,
+                    message_list:[],
                     height: res.windowHeight - 46
                 })
             }
@@ -39,16 +41,14 @@ Page({
         param.closeLoad = true;
         util.requests(param, res => {
             let arrlist = res.data.data,
-                mlist = this.data.message_list;
-            for (let i = 0; i < arrlist.length; i++) {
-                mlist.push(arrlist[i]);
-            }
+                mlist = [];
+            mlist = mlist.concat(arrlist);
             this.setData({
                 message_list: mlist,
                 wx_show: true
             });
             this.data.page++;
-            if (arrlist.last_page <= this.data.page) {
+            if ((arrlist.last_page <= this.data.page) || arrlist.length <= 9) {
                 this.setData({
                     loadmore: false
                 });
