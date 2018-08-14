@@ -130,7 +130,7 @@ Page({
         param.closeLoad = true;
         util.requests(param, res => {
             wx.showLoading({
-                title: res.msg,
+                title: res.data.msg,
             });
             wx.hideLoading();
         });

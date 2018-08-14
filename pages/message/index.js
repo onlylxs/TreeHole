@@ -8,17 +8,18 @@ Page({
         height: '',
         wx_show: true,
         loadmore: true,
-        message_list:[],
-        page:1,
+        message_list: [],
+        scrollTop: 0,
+        page: 1,
     },
     // 生命周期函数--监听页面加载
-    onShow: function (options) {
+    onShow: function(options) {
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
                     page: 1,
-                    message_list:[],
-                    height: res.windowHeight - 46
+                    message_list: [],
+                    height: res.windowHeight
                 })
             }
         });
@@ -28,7 +29,7 @@ Page({
         this.getMessageList();
     },
     //获取消息通知列表
-    getMessageList: function () {
+    getMessageList: function() {
         let param = {};
         param.url = "user_center/index";
         param.data = {};
@@ -55,10 +56,13 @@ Page({
             }
         });
     },
+    // 下拉刷新
+    upper: function (e) {
+    },
     // 到达底部加载更多
-    lower: function (e) {
+    lower: function(e) {
         if (this.data.last_page >= this.data.page) {
             this.getMessageList();
         }
-    },
+    }
 })

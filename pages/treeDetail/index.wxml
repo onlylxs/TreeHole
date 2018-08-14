@@ -9,7 +9,7 @@
                 <text class='nick_name'>{{d_content.nick_name}}</text>
                 <text class='content_text No_Overflow'>{{d_content.content}}</text>
                 <view class="Tree_Photo">
-                    <image wx:for="{{d_content.photos}}" src="http://{{item}}" wx:key="{{index}}" lazy-load="true" mode="center" />
+                    <image wx:for="{{d_content.photos}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="center" />
                 </view>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{d_content.create_time}}</text>

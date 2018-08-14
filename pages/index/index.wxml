@@ -3,7 +3,7 @@
 <view class="container">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
-    <scroll-view wx:if="{{wx_show}}" scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+    <view wx:if="{{wx_show}}">
         <button open-type="getUserInfo"> 获取授权信息 </button>
         <view class="Tree_List">
             <!-- 今日话题 -->
@@ -53,7 +53,7 @@
                 </view>
             </view>
             <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert.app_id}}" path="{{advert.page}}" extra-data="" version="release" wx:if="{{advert.app_id !=''}}" wx:if="{{advert!=''}}">
-                <image src="http://{{advert.banner}}" class="adverp"></image>
+                <image src="{{advert.banner}}" class="adverp"></image>
             </navigator>
             <!-- 话题列表 -->
             <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
@@ -79,5 +79,5 @@
             </view>
             <template is="loadmoreBox" data="{{loadmore}}" />
         </view>
-    </scroll-view>
+    </view>
 </view>

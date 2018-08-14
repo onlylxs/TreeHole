@@ -14,7 +14,7 @@ App({
                             wx.login({ //登录
                                 success: res => {
                                     wx.showLoading({
-                                        title: '123123123',
+                                        title: '登录ing',
                                     });
                                     if (res.code) {
                                         let loginCode = res.code,

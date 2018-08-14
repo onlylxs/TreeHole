@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "公共树洞"
+    "navigationBarTitleText": "公共树洞",
+    "enablePullDownRefresh": true
 }

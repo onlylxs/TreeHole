@@ -1,53 +1,53 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/field/index",
-    "pages/field-list/index",
-    "pages/field-new/index",
-    "pages/saysome/index",
-    "pages/message/index",
-    "pages/user/index",
-    "pages/treeDetail/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "selectedColor": "#ed711a",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "公共树洞",
-        "iconPath": "static/images/ico-home.png",
-        "selectedIconPath": "static/images/ico-home_fill.png"
-      },
-      {
-        "pagePath": "pages/field/index",
-        "text": "树洞领域",
-        "iconPath": "static/images/ico-field.png",
-        "selectedIconPath": "static/images/ico-field_fill.png"
-      },
-      {
-        "pagePath": "pages/saysome/index",
-        "text": "说说",
-        "iconPath": "static/images/ico-saysome.png",
-        "selectedIconPath": "static/images/ico-saysome_fill.png"
-      },
-      {
-        "pagePath": "pages/message/index",
-        "text": "消息通知",
-        "iconPath": "static/images/ico-message.png",
-        "selectedIconPath": "static/images/ico-message_fill.png"
-      },
-      {
-        "pagePath": "pages/user/index",
-        "text": "我的树洞",
-        "iconPath": "static/images/ico-user.png",
-        "selectedIconPath": "static/images/ico-user_fill.png"
-      }
-    ]
-  }
+    "pages": [
+        "pages/index/index",
+        "pages/field/index",
+        "pages/field-list/index",
+        "pages/field-new/index",
+        "pages/saysome/index",
+        "pages/message/index",
+        "pages/user/index",
+        "pages/treeDetail/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "selectedColor": "#ed711a",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "公共树洞",
+                "iconPath": "static/images/ico-home.png",
+                "selectedIconPath": "static/images/ico-home_fill.png"
+            },
+            {
+                "pagePath": "pages/field/index",
+                "text": "树洞领域",
+                "iconPath": "static/images/ico-field.png",
+                "selectedIconPath": "static/images/ico-field_fill.png"
+            },
+            {
+                "pagePath": "pages/saysome/index",
+                "text": "说说",
+                "iconPath": "static/images/ico-saysome.png",
+                "selectedIconPath": "static/images/ico-saysome_fill.png"
+            },
+            {
+                "pagePath": "pages/message/index",
+                "text": "消息通知",
+                "iconPath": "static/images/ico-message.png",
+                "selectedIconPath": "static/images/ico-message_fill.png"
+            },
+            {
+                "pagePath": "pages/user/index",
+                "text": "我的树洞",
+                "iconPath": "static/images/ico-user.png",
+                "selectedIconPath": "static/images/ico-user_fill.png"
+            }
+        ]
+    }
 }

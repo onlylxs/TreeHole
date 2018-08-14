@@ -14,11 +14,11 @@ Page({
         });
         this.getHotFieldList();
     },
-    setReturn:function(){
+    setReturn: function() {
         wx.navigateBack();
     },
     // 获取热门领域
-    getHotFieldList: function () {
+    getHotFieldList: function() {
         let param = {};
         param.url = "we_category/index";
         param.data = {};
@@ -38,13 +38,22 @@ Page({
     },
     //领域申请
     setApplyCate: function() {
-        let param = {};
+        let ths=this, 
+        param = {};
         param.url = "we_category/applyCate";
         param.data = {};
-        param.data.keywords = this.data.ApplyCateVal;
+        param.data.name = this.data.ApplyCateVal;
         param.data.token = wx.getStorageSync('token');
         util.requests(param, res => {
-
+            wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                success: function(res) {
+                    if (res.confirm) {
+                        ths.getHotFieldList();
+                    }
+                }
+            })
         });
     }
 })

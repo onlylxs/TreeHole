@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "树洞领域"
+    "navigationBarTitleText": "树洞领域",
+    "enablePullDownRefresh": true
 }

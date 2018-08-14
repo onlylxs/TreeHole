@@ -35,16 +35,13 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function(options) {
+    onLoad: function (options) {
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
                     height: res.windowHeight - 46
                 })
             }
-        });
-        wx.showLoading({
-            title: '加载中',
         });
         if (wx.getStorageSync('token') == '') {
             app.checkLogin(res => {
@@ -55,6 +52,9 @@ Page({
         } else {
             this.getTopicList();
         }
+        wx.showLoading({
+            title: '加载中',
+        });
     },
     //跳转详情页面
     ToDetail: function(e) {
@@ -128,6 +128,11 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    topicList: [],
+                });
+            }
             let topic_list = res.data.data.topic_list,
                 list = this.data.topicList,
                 today_list = [],
@@ -141,7 +146,8 @@ Page({
                 topicList: list,
                 last_page: topic_list.last_page,
                 advert: res.data.data.ads,
-                wx_show: true
+                wx_show: true,
+                is_onPullDown:false
             });
             if (topic_list.last_page <= this.data.page) {
                 this.setData({
@@ -149,16 +155,11 @@ Page({
                 });
             }
             this.data.page++;
+            wx.stopPullDownRefresh();
         });
     },
-    // 到达底部加载更多
-    lower: function(e) {
-        if (this.data.last_page >= this.data.page) {
-            this.getTopicList();
-        }
-    },
     //话题点赞
-    setLikes: function (e) {
+    setLikes: function(e) {
         wx.showLoading({
             title: '加载中',
         });
@@ -228,7 +229,8 @@ Page({
                 break;
         }
     },
-    openprogram: function (e) {
+    // 跳转小程序
+    openprogram: function(e) {
         let app_id = e.currentTarget.dataset.app_id,
             adv_path = e.currentTarget.dataset.path;
         wx.navigateToMiniProgram({
@@ -242,6 +244,21 @@ Page({
                 // 打开成功
             }
         })
-
+    },
+    // 下拉刷新
+    onPullDownRefresh: function() {
+        this.setData({
+            page:1,
+            loadmore:true,
+            is_onPullDown: true
+        })
+        this.onLoad();
+    },
+    // 到达底部加载更多
+    onReachBottom: function () {
+        if (!this.data.loadmore) return;
+        if (this.data.last_page >= this.data.page) {
+            this.getTopicList();
+        }
     }
 })

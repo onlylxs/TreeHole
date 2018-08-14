@@ -5,19 +5,19 @@ Page({
     data: {
         MyFieldList: '',
         FollowFieldList: [],
-        wx_show:false,
-        page:1,
-        keywords:'',
-        isNotField:false,
+        wx_show: false,
+        page: 1,
+        keywords: '',
+        isNotField: false,
     },
-    onShow: function (options) {
+    onShow: function(options) {
         wx.showLoading({
             title: '加载中',
         });
         this.getMyFieldList();
     },
     // 获取热门领域
-    getHotFieldList: function () {
+    getHotFieldList: function() {
         let param = {};
         param.url = "we_category/index";
         param.data = {};
@@ -27,43 +27,45 @@ Page({
                 wx_show: true,
                 FollowFieldList: res.data.data.data
             })
+            wx.stopPullDownRefresh();
         });
+        wx.stopPullDownRefresh();
     },
     // 获取关注的领域
-    getMyFieldList: function () {
+    getMyFieldList: function() {
         let param = {};
         param.url = "we_user_category/index";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
         param.data.page = this.data.page;
         util.requests(param, res => {
-            if (res.data.data.data != undefined && res.data.data.data.length>0){
+            if (res.data.data.data != undefined && res.data.data.data.length > 0) {
                 this.setData({
                     MyFieldList: res.data.data.data
                 });
-            }else{
+            } else {
                 this.setData({
-                    MyFieldList:[]
-                }); 
+                    MyFieldList: []
+                });
             }
             this.getHotFieldList();
         });
     },
     //获取搜索内容
-    search_content: function (e) {
+    search_content: function(e) {
         this.setData({
             keywords: e.detail.value
         });
     },
     //查询搜索领域
-    searchFunc: function () {
+    searchFunc: function() {
         let param = {};
         param.url = "we_category/search";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
         param.data.keywords = this.data.keywords || ' ';
         util.requests(param, res => {
-            if (res.data.data.data.length > 0){
+            if (res.data.data.data.length > 0) {
                 this.setData({
                     searchList: res.data.data.data,
                     isNotField: false
@@ -76,11 +78,14 @@ Page({
             }
         });
     },
-    GOFieldList: function (e) {
+    GOFieldList: function(e) {
         let cid = e.currentTarget.dataset.cid,
             focus = e.currentTarget.dataset.focus;
         wx.navigateTo({
             url: '../field-list/index?cid=' + cid + '&focus=' + focus
         })
     },
+    onPullDownRefresh: function() {
+        this.onShow();
+    }
 })
