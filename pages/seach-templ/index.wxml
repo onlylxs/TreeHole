@@ -4,6 +4,7 @@
             <view class='choice__Left' wx:if='{{TimeCk}}'>
                 <Text class="choice__title" catchtap="ChangeTimeTF"><Text class='iconfont icon-time'></Text>按时间查看</Text>
                 <view class="TimeBox" wx:if="{{TimeTF}}">
+                    <view class="after"></view>
                     <view>只查看从</view>
                     <view class="startTBox">
                         <picker mode="date" value="{{startDate}}" bindchange="startDateFunc">{{startDate}}</picker>
@@ -21,6 +22,7 @@
             <view class='choice__Right'>
                 <Text class="choice__title titleR" catchtap="ChangeSortTF"><Text class='iconfont {{clss}}' ></Text>{{sortText}}</Text>
                 <view class="sort__box" wx:if="{{SortTF}}">
+                    <view class="after"></view>
                     <Text wx:for="{{sortList}}" wx:key="{{index}}" class="choice__title" catchtap="ChangeSortFunc" data-clss="{{item.clss}}" data-text="{{item.text}}" data-idx="{{item.idx}}"><Text class="iconfont {{item.clss}}"></Text>{{item.text}}</Text>
                 </view>
             </view>

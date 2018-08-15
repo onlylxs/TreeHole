@@ -58,14 +58,18 @@ Page({
     },
     // 获取开始时间
     startDateFunc: function(e) {
+        let times = e.detail.value;
         this.setData({
-            startDate: e.detail.value
+            startDate: times,
+            startDate2: util.formatTimeText(times)
         })
     },
     // 获取结束时间
-    endDateFunc: function(e) {
+    endDateFunc: function (e) {
+        let times = e.detail.value;
         this.setData({
-            endDate: e.detail.value
+            endDate: times,
+            endDate2: util.formatTimeText(times)
         })
     },
     // 按时间查看显示隐藏
@@ -79,7 +83,7 @@ Page({
         this.setData({
             TimeTF: !this.data.TimeTF,
             page: 1,
-            topicList: [],
+            is_onPullDown: true,
             loadmore: true
         });
         this.getTopicList();
@@ -106,7 +110,7 @@ Page({
             SortTF: !this.data.SortTF,
             sortIdx: sortIdx,
             page: 1,
-            topicList: [],
+            is_onPullDown: true,
             loadmore: true
         })
         this.getTopicList();

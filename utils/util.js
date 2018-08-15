@@ -14,6 +14,13 @@ const formatTime = (date, hhss) => {
     }
 }
 
+const formatTimeText = (times) => {
+    let _year = times.substr(0, 4),
+        _month = times.substr(5, 2),
+        _day = times.substr(8, 2);
+    return _year + "年" + _month + "月" + _day + "日";
+}
+
 const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
@@ -45,7 +52,7 @@ const requests = (param, success) => {
                     //     content: res.data.msg,
                     //     success: function (res) {
                     //         if (res.confirm) {
-                                
+
                     //         }
                     //     }
                     // })
@@ -79,6 +86,7 @@ const requests = (param, success) => {
 
 module.exports = {
     formatTime: formatTime,
+    formatTimeText: formatTimeText,
     BASEURL: BASEURL,
     requests: requests
 }
