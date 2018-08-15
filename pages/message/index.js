@@ -5,7 +5,6 @@ import util from '../../utils/util.js';
 
 Page({
     data: {
-        height: '',
         wx_show: true,
         loadmore: true,
         message_list: [],
@@ -14,15 +13,10 @@ Page({
     },
     // 生命周期函数--监听页面加载
     onShow: function(options) {
-        wx.getSystemInfo({
-            success: (res) => {
-                this.setData({
-                    page: 1,
-                    message_list: [],
-                    height: res.windowHeight
-                })
-            }
-        });
+        this.setData({
+            page: 1,
+            message_list: [],
+        })
         wx.showLoading({
             title: '加载中',
         });
@@ -41,12 +35,18 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    message_list: [],
+                });
+            }
             let arrlist = res.data.data,
-                mlist = [];
+                mlist = this.data.message_list;
             mlist = mlist.concat(arrlist);
             this.setData({
                 message_list: mlist,
-                wx_show: true
+                wx_show: true,
+                is_onPullDown:false
             });
             this.data.page++;
             if ((arrlist.last_page <= this.data.page) || arrlist.length <= 9) {
@@ -54,13 +54,22 @@ Page({
                     loadmore: false
                 });
             }
+            wx.stopPullDownRefresh();
         });
+        wx.stopPullDownRefresh();
     },
     // 下拉刷新
-    upper: function (e) {
+    onPullDownRefresh: function () {
+        this.setData({
+            page: 1,
+            loadmore: true,
+            is_onPullDown: true
+        });
+        this.getMessageList();
     },
     // 到达底部加载更多
-    lower: function(e) {
+    onReachBottom: function () {
+        if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
             this.getMessageList();
         }

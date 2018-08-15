@@ -1,15 +1,15 @@
 const BASEURL = "http://www.413club.cn/index.php/api/";
 
-const formatTime = (date,hhss) => {
+const formatTime = (date, hhss) => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
     const hour = date.getHours()
     const minute = date.getMinutes()
     const second = date.getSeconds()
-    if(hhss){
+    if (hhss) {
         return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-    }else{
+    } else {
         return [year, month, day].map(formatNumber).join('-');
     }
 }
@@ -39,6 +39,20 @@ const requests = (param, success) => {
                         content: res.data.msg
                     })
                     break;
+                case 10000:
+                    // wx.showModal({
+                    //     title: '提示',
+                    //     content: res.data.msg,
+                    //     success: function (res) {
+                    //         if (res.confirm) {
+                                
+                    //         }
+                    //     }
+                    // })
+                    wx.navigateTo({
+                        url: "/pages/authorize/index"
+                    })
+                    break;
                 default:
                     wx.showModal({
                         title: '提示',
@@ -55,8 +69,8 @@ const requests = (param, success) => {
                 content: JSON.stringify(res)
             })
         },
-        complete(){
-            if(param.closeLoad){
+        complete() {
+            if (param.closeLoad) {
                 wx.hideLoading();
             }
         }

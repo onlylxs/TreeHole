@@ -3,7 +3,8 @@
 <view class="container">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
-    <scroll-view scroll-y="true" wx:if="{{wx_show}}" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+
+    <view wx:if="{{wx_show}}">
         <view class="Tree_List">
             <!-- 话题列表 -->
             <view class="Tree_Item" wx:for="{{userTopic}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
@@ -15,9 +16,9 @@
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>
-                        <label class="live-box" catchtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="3" data-is_liked="{{item.is_liked}}">
-                            <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
-                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
+                        <label class="live-box">
+                            <text class='iconfont icon-aixin'></text>
+                            <text>{{item.likes}}</text>
                         </label>
                         <label class="mess-box">
                             <text class='iconfont icon-xiaoxi'></text>
@@ -28,5 +29,5 @@
             </view>
             <template is="loadmoreBox" data="{{loadmore}}" />
         </view>
-    </scroll-view>
+    </view>
 </view>

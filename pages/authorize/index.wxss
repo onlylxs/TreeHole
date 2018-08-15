@@ -1,0 +1,5 @@
+.authorize{margin-top:30vh;text-align: center;}
+.authorize text{display: block;}
+.authorize .aut_title{font-size:32rpx;}
+.authorize .aut_content{width:68%;margin:30rpx auto 40rpx auto;text-align: left;}
+.authorize .aut_but{background: #ff0;color:#fff;width:160rpx;margin:0 auto;box-shadow: -1rpx 2rpx 2rpx 3rpx #ccc;padding:16rpx 20rpx;font-size:26rpx;border-radius: 8rpx;line-height: inherit;}

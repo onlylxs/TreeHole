@@ -1,7 +1,6 @@
 <import src="../loadmore-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
-    <!--调用seachHD查询模版  -->
-    <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+    <view wx:if="{{wx_show}}">
         <view class="msg-list">
             <view class="msg-item" wx:for="{{message_list}}" wx:key="item.id" wx:if="{{item.likes>0 || item.son.length>0}}">
                 <view class="msg-hd" wx:if="{{item.likes > 0}}">
@@ -16,5 +15,5 @@
             </view>
         </view>
         <template is="loadmoreBox" data="{{loadmore}}" />
-    </scroll-view>
+    </view>
 </view>

@@ -33,18 +33,10 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function (options) {
-        wx.getSystemInfo({
-            success: (res) => {
-                this.setData({
-                    height: res.windowHeight - 46
-                })
-            }
-        });
+    onShow: function (options) {
         wx.showLoading({
             title: '加载中',
         });
-
         this.getUserTopic();
     },
     //跳转详情页面
@@ -119,68 +111,44 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    userTopic: [],
+                });
+            }
             let topic_list = res.data.data,
-                list = [];
+                list = this.data.userTopic;
             list = list.concat(topic_list.data)
             this.setData({
                 userTopic: list,
                 last_page: topic_list.last_page,
-                wx_show: true
+                wx_show: true,
+                is_onPullDown:false
             });
-            this.data.page++;
             if (topic_list.last_page <= this.data.page) {
                 this.setData({
                     loadmore: false
                 });
             }
+            this.data.page++;
+            wx.stopPullDownRefresh();
         });
+        wx.stopPullDownRefresh();
+    },
+    // 下拉刷新
+    onPullDownRefresh: function () {
+        this.setData({
+            page: 1,
+            loadmore: true,
+            is_onPullDown: true
+        });
+        this.getUserTopic();
     },
     // 到达底部加载更多
-    lower: function (e) {
+    onReachBottom: function () {
+        if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
             this.getUserTopic();
         }
-    },
-    //话题点赞
-    setLikes: function (e) {
-        let tid = e.currentTarget.dataset.tid || '',
-            index = e.currentTarget.dataset.index,
-            Ttype = e.currentTarget.dataset.ttype,
-            is_liked = e.currentTarget.dataset.is_liked,
-            param = {};
-        if (is_liked == 0) {
-            param.url = "likes/vote";
-        } else {
-            param.url = "likes/cancelVote";
-        }
-        param.data = {};
-        param.data.token = wx.getStorageSync('token');
-        param.data.topic_id = tid;
-        param.data.user_id = wx.getStorageSync('user_id');
-        util.requests(param, res => {
-            this.likesFunc(index);
-            wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
-            });
-        });
-    },
-    //话题点赞
-    likesFunc(index) {
-        let tlist = this.data.userTopic;
-        for (let i in tlist) { //遍历列表数据
-            if (i == index) { //根据下标找到目标
-                if (tlist[i].is_liked == 0) { //如果是没点赞+1
-                    tlist[i].is_liked = 1;
-                    tlist[i].likes = parseInt(tlist[i].likes) + 1
-                } else {
-                    tlist[i].is_liked = 0;
-                    tlist[i].likes = parseInt(tlist[i].likes) - 1
-                }
-            }
-        }
-        this.setData({
-            userTopic: tlist
-        })
     }
 })

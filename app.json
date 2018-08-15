@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/authorize/index",
         "pages/field/index",
         "pages/field-list/index",
         "pages/field-new/index",

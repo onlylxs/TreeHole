@@ -5,7 +5,6 @@ import util from '../../utils/util.js';
 
 Page({
     data: {
-        height: '',
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
@@ -36,22 +35,7 @@ Page({
     },
     // 生命周期函数--监听页面加载
     onLoad: function (options) {
-        wx.getSystemInfo({
-            success: (res) => {
-                this.setData({
-                    height: res.windowHeight - 46
-                })
-            }
-        });
-        if (wx.getStorageSync('token') == '') {
-            app.checkLogin(res => {
-                this.getTopicList();
-            }, res => {
-                this.getTopicList();
-            });
-        } else {
-            this.getTopicList();
-        }
+        this.getTopicList();
         wx.showLoading({
             title: '加载中',
         });
@@ -252,7 +236,7 @@ Page({
             loadmore:true,
             is_onPullDown: true
         })
-        this.onLoad();
+        this.getTopicList();
     },
     // 到达底部加载更多
     onReachBottom: function () {

@@ -113,9 +113,9 @@ Page({
     },
     //发送
     SendTopic: function () {
-        wx.showLoading({
-            title: '加载中',
-        });
+        // wx.showLoading({
+        //     title: '加载中',
+        // });
         let param = {};
         param.url = "we_topic/addTopic";
         param.data = {};
@@ -129,10 +129,11 @@ Page({
         }
         param.closeLoad = true;
         util.requests(param, res => {
-            wx.showLoading({
-                title: res.data.msg,
-            });
             wx.hideLoading();
+            wx.showModal({
+                title: '提示',
+                content: "操作成功"
+            })
         });
     }
 })
