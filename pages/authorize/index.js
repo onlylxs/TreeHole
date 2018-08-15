@@ -49,7 +49,11 @@ Page({
                             key: 'token',
                             data: res.data.data.token,
                         })
-                        wx.navigateBack()
+                        wx.setStorage({
+                            key: 'IsUpdate',
+                            data: true,
+                        })
+                        wx.navigateBack();
                     });
                 } else {
                     wx.showToast({

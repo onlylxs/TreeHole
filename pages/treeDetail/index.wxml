@@ -14,7 +14,7 @@
                 <view class='Tree_bottom'>
                     <text class="time_text">{{d_content.create_time}}</text>
                     <view class="botton_right">
-                        <label class="live-box" bindtap='setLikes' data-is_liked="{{d_content.is_liked}}" data-tid="{{d_content.id}}" data-index="{{index}}">
+                        <label class="live-box" bindtap='setLikesHT' data-isliked="{{d_content.is_liked}}" data-tid="{{d_content.id}}" data-index="{{index}}">
                             <text class='iconfont icon-aixin  {{d_content.is_liked == 1 ? "selected" : ""}}'></text>
                             <text class='{{d_content.is_liked == 1 ? "selected" : ""}}'>{{d_content.likes}}</text>
                         </label>

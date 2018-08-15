@@ -13,14 +13,19 @@ Page({
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
-        this.setData({
-            page: 1,
-            message_list: [],
-        })
         wx.showLoading({
             title: '加载中',
         });
         this.getMessageList();
+    },
+    onShow: function () {
+        if (wx.getStorageSync('IsUpdate') == true) {
+            wx.setStorage({
+                key: 'IsUpdate',
+                data: false,
+            })
+            this.onLoad();
+        }
     },
     //获取消息通知列表
     getMessageList: function() {
@@ -48,8 +53,10 @@ Page({
                 wx_show: true,
                 is_onPullDown:false
             });
+            console.info(arrlist)
             this.data.page++;
-            if ((arrlist.last_page <= this.data.page) || arrlist.length <= 9) {
+            let mlistLen = arrlist.length || 0;
+            if (arrlist.length <= 9) {
                 this.setData({
                     loadmore: false
                 });
@@ -70,8 +77,6 @@ Page({
     // 到达底部加载更多
     onReachBottom: function () {
         if (!this.data.loadmore) return;
-        if (this.data.last_page >= this.data.page) {
-            this.getMessageList();
-        }
+        this.getMessageList();
     }
 })

@@ -34,11 +34,20 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function (options) {
+    onLoad: function(options) {
         this.getTopicList();
         wx.showLoading({
             title: '加载中',
         });
+    },
+    onShow: function() {
+        if (wx.getStorageSync('IsUpdate') == true) {
+            wx.setStorage({
+                key: 'IsUpdate',
+                data: false,
+            })
+            this.onLoad();
+        }
     },
     //跳转详情页面
     ToDetail: function(e) {
@@ -133,7 +142,7 @@ Page({
                 last_page: topic_list.last_page,
                 advert: res.data.data.ads,
                 wx_show: true,
-                is_onPullDown:false
+                is_onPullDown: false
             });
             if (topic_list.last_page <= this.data.page) {
                 this.setData({
@@ -234,14 +243,14 @@ Page({
     // 下拉刷新
     onPullDownRefresh: function() {
         this.setData({
-            page:1,
-            loadmore:true,
+            page: 1,
+            loadmore: true,
             is_onPullDown: true
         })
         this.getTopicList();
     },
     // 到达底部加载更多
-    onReachBottom: function () {
+    onReachBottom: function() {
         if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
             this.getTopicList();

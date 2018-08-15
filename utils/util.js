@@ -1,4 +1,4 @@
-const BASEURL = "http://xiao.xinyuanhudong.com/index.php/api/";
+const BASEURL = "https://xiao.xinyuanhudong.com/index.php/api/";
 
 const formatTime = (date, hhss) => {
     const year = date.getFullYear()

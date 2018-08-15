@@ -33,11 +33,20 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onShow: function (options) {
+    onLoad: function (options) {
         wx.showLoading({
             title: '加载中',
         });
         this.getUserTopic();
+    },
+    onShow: function () {
+        if (wx.getStorageSync('IsUpdate') == true) {
+            wx.setStorage({
+                key: 'IsUpdate',
+                data: false,
+            })
+            this.onLoad();
+        }
     },
     //跳转详情页面
     ToDetail: function (e) {
