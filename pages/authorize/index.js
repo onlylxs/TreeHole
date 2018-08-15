@@ -27,16 +27,9 @@ Page({
             })
             this.ckLogin(rawData, e.detail.signature);
         } else {
-            wx.showModal({
-                title: '提示',
-                content: "您未授权登录，有些功能无法操作",
-                success: function(res) {
-                    if (res.confirm) {
-                        wx.reLaunch({
-                            url: "/pages/index/index"
-                        })
-                    }
-                }
+            wx.showToast({
+                title: '需要授权才能继续使用服务',
+                icon: "none"
             })
         }
     },
@@ -59,9 +52,9 @@ Page({
                         wx.navigateBack()
                     });
                 } else {
-                    wx.showModal({
-                        title: '提示',
-                        content: "登录失败，请重新授权"
+                    wx.showToast({
+                        title: '登录失败，请重新授权',
+                        icon:"none"
                     })
                 }
             }

@@ -2,7 +2,7 @@
 .choice__HD .choice__title .iconfont{margin-right: 8rpx;font-size: 38rpx;vertical-align: middle;}
 .choice__HD .choice__title{font-size: 30rpx;}
 .choice__HD .choice__Left{flex: 1;margin-left: 30rpx;}
-.choice__HD .choice__Left .TimeBox{width:350rpx;display: block;font-size:26rpx;position: fixed;background: #fff;padding:20rpx;border: 1rpx solid #ccc;box-shadow: 0 1px 1px 1px #ccc;margin-top:20rpx;border-radius: 8rpx;overflow: hidden;}
+.choice__HD .choice__Left .TimeBox{width:350rpx;display: block;font-size:26rpx;position: fixed;background: #fff;padding:20rpx;box-shadow: 0 3rpx 2rpx 3rpx #ccc;margin-top:20rpx;border-radius: 8rpx;overflow: hidden;}
 .choice__HD .choice__Left .TimeBox view{color:#666;}
 .choice__HD .choice__Left .TimeBox .startTBox,
 .choice__HD .choice__Left .TimeBox .endTBox{display: flex;}
@@ -10,6 +10,6 @@
 .choice__HD .choice__Left .TimeBoxBtn text{width: 390rpx;text-align:center;font-size:26rpx;margin:20rpx -20rpx -20rpx -20rpx;padding:10rpx 0;color:#fff;border-radius: 5rpx;background: #ffd101;display: block;}
 .choice__HD .choice__Right{flex: 1;text-align: right;margin-right: 30rpx;position: relative;}
 .choice__HD .choice__Right .choice__title{padding:10rpx 16rpx;}
-.choice__HD .sort__box{position: absolute;z-index:999;top:68rpx;right: 0rpx;text-align: left;border: 1rpx solid #ccc;box-shadow: 0 1px 1px 1px #ccc;border-radius: 6rpx;overflow: hidden;}
+.choice__HD .sort__box{position: absolute;z-index:999;top:68rpx;right: 0rpx;text-align: left;box-shadow: 0 3rpx 2rpx 3rpx #ccc;border-radius: 6rpx;overflow: hidden;}
 .choice__HD .sort__box text{display: block;background: #fff;}
 .choice__HD .sort__box text.iconfont{display: inline-block; }

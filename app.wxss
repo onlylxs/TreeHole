@@ -8,7 +8,7 @@ Text{font-family: Microsoft YaHei;font-size: 26rpx;}
 .TreeHole{background: #fff;}
 .mb__header{padding-bottom: 90rpx;}
 .Tree_List{padding: 0 30rpx 0 30rpx;clear: both;margin-top: 40rpx;}
-.Tree_List .Tree_Item{border: 1rpx solid #ccc;box-shadow: 0 1px 1px 1px #ccc;border-radius:6rpx; padding: 20rpx;margin-bottom: 20rpx;position: relative;}
+.Tree_List .Tree_Item{box-shadow: 0 3rpx 1px 3rpx #ccc;border-radius:6rpx; padding: 20rpx;margin-bottom: 20rpx;position: relative;}
 .Tree_List .Tree_Item.Tree_Item_Mark{margin: 70rpx 0 50rpx 0;}
 .Tree_List .Tree_Item .mark-box{width: 140rpx;height: 50rpx;line-height: 50rpx;position: absolute;top: -35rpx;left: 20rpx;border: 1rpx solid #ed711a;color: #ed711a;text-align: center;font-size: 26rpx;background: #fff;}
 .Tree_List .Tree_Item .content_text{max-height: 120rpx;line-height: 1.55;display: -webkit-box;-webkit-line-clamp: 3;overflow: hidden;-webkit-line-break: auto;-webkit-box-orient: vertical;}

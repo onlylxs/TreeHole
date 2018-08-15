@@ -1,4 +1,4 @@
-const BASEURL = "http://www.413club.cn/index.php/api/";
+const BASEURL = "http://xiao.xinyuanhudong.com/index.php/api/";
 
 const formatTime = (date, hhss) => {
     const year = date.getFullYear()

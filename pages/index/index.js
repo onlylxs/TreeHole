@@ -62,7 +62,8 @@ Page({
     // 按时间查看显示隐藏
     ChangeTimeTF: function() {
         this.setData({
-            TimeTF: !this.data.TimeTF
+            TimeTF: !this.data.TimeTF,
+            SortTF: false
         });
     },
     ChangeTimeFunc: function() {
@@ -77,6 +78,7 @@ Page({
     // 排序显示隐藏
     ChangeSortTF: function(e) {
         this.setData({
+            TimeTF: false,
             SortTF: !this.data.SortTF
         })
     },

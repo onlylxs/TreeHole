@@ -12,7 +12,7 @@ Page({
         page: 1,
     },
     // 生命周期函数--监听页面加载
-    onShow: function(options) {
+    onLoad: function(options) {
         this.setData({
             page: 1,
             message_list: [],
