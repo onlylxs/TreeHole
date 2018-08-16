@@ -37,6 +37,7 @@ Page({
         sortIdx: 1, //排序编号
         wx_show: false,
         loadmore: true,
+        checkTo: true
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -64,7 +65,7 @@ Page({
         }
     },
     // 长按删除
-    deleteTopic: function (e) {
+    deleteTopic: function(e) {
         let tpid = e.currentTarget.dataset.tpid,
             param = {};
         this.setData({

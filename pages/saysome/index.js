@@ -139,6 +139,12 @@ Page({
                 title: '提示',
                 content: "操作成功"
             })
+            this.setData({
+                content:'',
+                array: [],
+                arrayID: [],
+                positionT: '请选择位置'
+            })
         });
     }
 })
