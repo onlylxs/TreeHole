@@ -39,7 +39,7 @@ Page({
     //获取输入的内容
     sayContent: function (e) {
         this.setData({
-            sayContent: e.detail.value
+            sayContent: e.detail.value || ''
         });
     },
     //上传图片
@@ -113,14 +113,19 @@ Page({
     },
     //发送
     SendTopic: function () {
-        // wx.showLoading({
-        //     title: '加载中',
-        // });
+        let content=this.data.sayContent || '';
+        if (content == ''){
+            wx.showToast({
+                title: '请输入话题内容',
+                icon:"none"
+            })
+            return false;
+        }
         let param = {};
         param.url = "we_topic/addTopic";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
-        param.data.content = this.data.sayContent;
+        param.data.content = content;
         param.data.longt = this.data.longt;
         param.data.lat = this.data.lat;
         param.data.category_id = this.data.arrayID[this.data.index];
