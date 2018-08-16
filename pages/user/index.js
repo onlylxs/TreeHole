@@ -39,13 +39,13 @@ Page({
         loadmore: true,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function (options) {
+    onLoad: function(options) {
         wx.showLoading({
             title: '加载中',
         });
         this.getUserTopic();
     },
-    onShow: function () {
+    onShow: function() {
         if (wx.getStorageSync('IsUpdate') == true) {
             wx.setStorage({
                 key: 'IsUpdate',
@@ -55,14 +55,54 @@ Page({
         }
     },
     //跳转详情页面
-    ToDetail: function (e) {
+    ToDetail: function(e) {
         let tpid = e.currentTarget.dataset.tpid;
-        wx.navigateTo({
-            url: '../treeDetail/index?tid=' + tpid
+        if (this.data.checkTo) {
+            wx.navigateTo({
+                url: '../treeDetail/index?tid=' + tpid
+            });
+        }
+    },
+    // 长按删除
+    deleteTopic: function (e) {
+        let tpid = e.currentTarget.dataset.tpid,
+            param = {};
+        this.setData({
+            checkTo: false
+        })
+        wx.showModal({
+            title: '提示',
+            content: "您确定要删除该话题吗？",
+            success: (res) => {
+                if (res.confirm) {
+                    param.url = "we_topic/deleteTopic";
+                    param.data = {};
+                    param.data.id = tpid;
+                    param.data.token = wx.getStorageSync('token');
+                    param.closeLoad = true;
+                    util.requests(param, res => {
+                        wx.showToast({
+                            title: "删除成功"
+                        });
+                        let ulist = this.data.userTopic
+                        for (let i = 0; i < ulist.length; i++) {
+                            if (ulist[i].id == tpid) {
+                                ulist.splice(i, 1); //删除下标为i的元素
+                            }
+                        }
+                        this.setData({
+                            userTopic: ulist
+                        });
+                    });
+                }
+                this.setData({
+                    checkTo: true
+                });
+            }
         })
     },
     // 获取开始时间
-    startDateFunc: function (e) {
+    startDateFunc: function(e) {
         let times = e.detail.value,
             obj = {};
         obj.value = times;
@@ -72,7 +112,7 @@ Page({
         })
     },
     // 获取结束时间
-    endDateFunc: function (e) {
+    endDateFunc: function(e) {
         let times = e.detail.value,
             obj = {};
         obj.value = times;
@@ -82,13 +122,13 @@ Page({
         })
     },
     // 按时间查看显示隐藏
-    ChangeTimeTF: function () {
+    ChangeTimeTF: function() {
         this.setData({
-            SortTF:false,
+            SortTF: false,
             TimeTF: !this.data.TimeTF
         });
     },
-    ChangeTimeFunc: function () {
+    ChangeTimeFunc: function() {
         this.setData({
             TimeTF: !this.data.TimeTF,
             page: 1,
@@ -98,14 +138,14 @@ Page({
         this.getUserTopic();
     },
     // 排序显示隐藏
-    ChangeSortTF: function (e) {
+    ChangeSortTF: function(e) {
         this.setData({
             TimeTF: false,
             SortTF: !this.data.SortTF
         })
     },
     // 排序显示隐藏
-    ChangeSortFunc: function (e) {
+    ChangeSortFunc: function(e) {
         let clsss = e.currentTarget.dataset.clss || '',
             sortTexts = e.currentTarget.dataset.text || '',
             sortIdx = e.currentTarget.dataset.idx;
@@ -125,15 +165,13 @@ Page({
         this.getUserTopic();
     },
     //获取话题列表
-    getUserTopic: function () {
+    getUserTopic: function() {
         let param = {};
         param.url = "we_topic/userTopic";
         param.data = {};
         param.data.order = this.data.sortIdx;
-        param.data.token = wx.getStorageSync('token');
-        param.data.start_time = Date.parse((this.data.startDate.value).replace(/-/g, "/")) / 1000;
-        param.data.end_time = Date.parse((this.data.endDate.value).replace(/-/g, "/")) / 1000;
         param.data.page = this.data.page;
+        param.data.token = wx.getStorageSync('token');
         param.closeLoad = true;
         util.requests(param, res => {
             if (this.data.is_onPullDown) {
@@ -148,7 +186,7 @@ Page({
                 userTopic: list,
                 last_page: topic_list.last_page,
                 wx_show: true,
-                is_onPullDown:false
+                is_onPullDown: false
             });
             if (topic_list.last_page <= this.data.page) {
                 this.setData({
@@ -161,7 +199,7 @@ Page({
         wx.stopPullDownRefresh();
     },
     // 下拉刷新
-    onPullDownRefresh: function () {
+    onPullDownRefresh: function() {
         this.setData({
             page: 1,
             loadmore: true,
@@ -170,7 +208,7 @@ Page({
         this.getUserTopic();
     },
     // 到达底部加载更多
-    onReachBottom: function () {
+    onReachBottom: function() {
         if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
             this.getUserTopic();

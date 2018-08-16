@@ -53,7 +53,6 @@ Page({
                 wx_show: true,
                 is_onPullDown:false
             });
-            console.info(arrlist)
             this.data.page++;
             let mlistLen = arrlist.length || 0;
             if (arrlist.length <= 9) {
