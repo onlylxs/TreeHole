@@ -38,20 +38,21 @@ Page({
     },
     //领域申请
     setApplyCate: function() {
-        let ths=this, 
-        param = {};
+        let ths = this,
+            param = {};
         param.url = "we_category/applyCate";
         param.data = {};
         param.data.name = this.data.ApplyCateVal;
         param.data.token = wx.getStorageSync('token');
         util.requests(param, res => {
-            wx.showModal({
-                title: '提示',
-                content: res.data.msg,
-                success: function(res) {
-                    if (res.confirm) {
-                        ths.getHotFieldList();
-                    }
+            wx.showToast({
+                title: res.data.msg,
+                icon: "none",
+                duration: 1500,
+                success: function () {
+                    setTimeout(() => {
+                        wx.navigateBack();
+                    }, 1500)
                 }
             })
         });

@@ -7,11 +7,11 @@
                     <view class="after"></view>
                     <view>只查看从</view>
                     <view class="startTBox">
-                        <picker mode="date" value="{{startDate}}" bindchange="startDateFunc">{{startDate}}</picker>
+                        <picker mode="date" value="{{startDate.value}}" bindchange="startDateFunc">{{startDate.text}}</picker>
                     </view>
                     <view>到</view>
                     <view class="endTBox">
-                        <picker mode="date" value="{{endDate}}" bindchange="endDateFunc">{{endDate}}</picker>
+                        <picker mode="date" value="{{endDate.value}}" bindchange="endDateFunc">{{endDate.text}}</picker>
                     </view>
                     <view>的内容</view>
                     <view class="TimeBoxBtn">

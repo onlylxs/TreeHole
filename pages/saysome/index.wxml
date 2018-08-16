@@ -12,7 +12,7 @@
         <text class="iconfont icon-dizhi"></text><text>{{positionT}}</text>
     </view>
     <view class="images_box">
-        <image wx:for="{{listpath}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="center" />
+        <image wx:for="{{listpath}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="aspectFill" />
         <image src="../../static/images/add.png" lazy-load="true" mode="aspectFit" bindtap="getChooseImg" />
     </view>
     <text class="imgtxt">图片上传（最多三张）</text>

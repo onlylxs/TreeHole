@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "树洞详情"
+    "navigationBarTitleText": "树洞详情",
+    "enablePullDownRefresh": true
 }

@@ -1,14 +1,14 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/authorize/index",
         "pages/field/index",
         "pages/field-list/index",
         "pages/field-new/index",
         "pages/saysome/index",
         "pages/message/index",
         "pages/user/index",
-        "pages/treeDetail/index"
+        "pages/treeDetail/index",
+        "pages/authorize/index"
     ],
     "window": {
         "backgroundTextStyle": "dark",

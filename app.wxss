@@ -4,7 +4,7 @@
 @import "pages/loadmore-templ/index.wxss";
 /**app.wxss**/
 .container{padding-bottom: 5rpx;}
-Text{font-family: Microsoft YaHei;font-size: 26rpx;}
+Text{font-family: Microsoft YaHei;font-size: 24rpx;}
 .TreeHole{background: #fff;}
 .mb__header{padding-bottom: 90rpx;}
 .Tree_List{padding: 0 30rpx 0 30rpx;clear: both;margin-top: 40rpx;}

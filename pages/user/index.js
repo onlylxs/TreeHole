@@ -9,8 +9,14 @@ Page({
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
-        startDate: util.formatTime(new Date()),
-        endDate: util.formatTime(new Date()),
+        startDate: {
+            value: util.formatTime(new Date()),
+            text: util.formatTimeText(util.formatTime(new Date())),
+        },
+        endDate: {
+            value: util.formatTime(new Date()),
+            text: util.formatTimeText(util.formatTime(new Date())),
+        },
         clss: 'icon-paixu',
         sortText: '时间顺序',
         page: 1,
@@ -57,14 +63,22 @@ Page({
     },
     // 获取开始时间
     startDateFunc: function (e) {
+        let times = e.detail.value,
+            obj = {};
+        obj.value = times;
+        obj.text = util.formatTimeText(times);
         this.setData({
-            startDate: e.detail.value
+            startDate: obj
         })
     },
     // 获取结束时间
     endDateFunc: function (e) {
+        let times = e.detail.value,
+            obj = {};
+        obj.value = times;
+        obj.text = util.formatTimeText(times);
         this.setData({
-            endDate: e.detail.value
+            endDate: obj
         })
     },
     // 按时间查看显示隐藏
@@ -78,7 +92,7 @@ Page({
         this.setData({
             TimeTF: !this.data.TimeTF,
             page: 1,
-            userTopic: [],
+            is_onPullDown: true,
             loadmore: true
         });
         this.getUserTopic();
@@ -105,7 +119,7 @@ Page({
             SortTF: !this.data.SortTF,
             sortIdx: sortIdx,
             page: 1,
-            userTopic: [],
+            is_onPullDown: true,
             loadmore: true
         })
         this.getUserTopic();
@@ -117,8 +131,8 @@ Page({
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = Date.parse(this.data.startDate);
-        param.data.end_time = Date.parse(this.data.endDate);
+        param.data.start_time = Date.parse((this.data.startDate.value).replace(/-/g, "/")) / 1000;
+        param.data.end_time = Date.parse((this.data.endDate.value).replace(/-/g, "/")) / 1000;
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {

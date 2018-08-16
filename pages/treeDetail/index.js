@@ -67,7 +67,7 @@ Page({
             SortTF: !this.data.SortTF,
             sortIdx: sortIdx,
             page: 1,
-            comm_detailList: [],
+            is_onPullDown: true,
             loadmore: true
         })
         this.topicDetail();
@@ -83,13 +83,16 @@ Page({
         param.data.order = this.data.sortIdx;
         param.closeLoad = true;
         util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    comm_detailList: []
+                });
+            }
             let cdetail = res.data.data.detail,
                 list = this.data.comm_detailList;
 
             if (cdetail != '') {
-                for (let i = 0; i < cdetail.data.length; i++) {
-                    list.push(cdetail.data[i]);
-                }
+                list = list.concat(cdetail.data);
             }
             this.setData({
                 d_content: res.data.data,
@@ -129,14 +132,17 @@ Page({
                 icon: 'none',
             });
             let list = this.data.comm_detailList,
-                commObj = {};
-            commObj.content = this.data.comm_content;
+                commObj = {},
+                rdata = res.data.data;
+            commObj.id = rdata.id;
+            commObj.content = rdata.content;
             commObj.likes = 0;
+            commObj.is_liked = 0;
             commObj.create_time = util.formatTime(new Date(), true);
             list.splice(0, 0, commObj);
             this.setData({
                 comm_detailList: list,
-                comm_content: '',
+                comm_content: ''
             });
         });
     },
@@ -195,10 +201,10 @@ Page({
             let dcon = this.data.d_content;
             if (dcon.is_liked == 1) {
                 dcon.is_liked = 0;
-                dcon.likes --;
+                dcon.likes--;
             } else {
                 dcon.is_liked = 1;
-                dcon.likes ++;
+                dcon.likes++;
             }
             this.setData({
                 d_content: dcon
@@ -209,5 +215,21 @@ Page({
             });
         });
     },
+    // 下拉刷新
+    onPullDownRefresh: function() {
+        this.setData({
+            page: 1,
+            loadmore: true,
+            is_onPullDown: true
+        })
+        this.topicDetail();
+    },
+    // 到达底部加载更多
+    onReachBottom: function() {
+        if (!this.data.loadmore) return;
+        if (this.data.last_page >= this.data.page) {
+            this.topicDetail();
+        }
+    }
 
 })

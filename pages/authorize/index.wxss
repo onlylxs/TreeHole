@@ -1,5 +1,6 @@
-.authorize{margin-top:30vh;text-align: center;}
+.authorize{margin-top:30vh;text-align: center;position: relative;}
+.authorize image{position: absolute;top:15rpx;left:0;z-index: -1;display: flex;width: 100%;}
 .authorize text{display: block;}
-.authorize .aut_title{font-size:32rpx;}
-.authorize .aut_content{width:68%;margin:30rpx auto 40rpx auto;text-align: left;}
-.authorize .aut_but{background: #ff0;color:#fff;width:160rpx;margin:0 auto;box-shadow: -1rpx 2rpx 2rpx 3rpx #ccc;padding:16rpx 20rpx;font-size:26rpx;border-radius: 8rpx;line-height: inherit;}
+.authorize .aut_title{font-size:30rpx;}
+.authorize .aut_content{width:62%;margin:30rpx auto;text-align: left;line-height: 1.8;}
+.authorize .aut_but{background: #ffd101;color:#fff;width:160rpx;margin:0 auto;box-shadow: -1rpx 2rpx 2rpx 3rpx #ccc;padding:16rpx 20rpx;font-size:26rpx;border-radius: 8rpx;line-height: inherit;}

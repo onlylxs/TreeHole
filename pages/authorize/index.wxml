@@ -3,6 +3,6 @@
         <text class="aut_title">需要微信授权登录</text>
         <text class="aut_content">微信授权会获取您的头像和昵称信息。仅用于绑定匿名账号，方便查看自己过往发过的树洞，以及提供交互通知给您。不会向外展示您的信息。</text>
         <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="aut_but" bindtap="authCheck"> 授权登录 </button>
-        <!-- <image src="../../static/images/"></image> -->
+        <image src="../../static/images/authorize.png"></image>
     </view>
 </view>

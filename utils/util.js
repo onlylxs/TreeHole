@@ -14,16 +14,16 @@ const formatTime = (date, hhss) => {
     }
 }
 
+const formatNumber = n => {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+}
+
 const formatTimeText = (times) => {
     let _year = times.substr(0, 4),
         _month = times.substr(5, 2),
         _day = times.substr(8, 2);
     return _year + "年" + _month + "月" + _day + "日";
-}
-
-const formatNumber = n => {
-    n = n.toString()
-    return n[1] ? n : '0' + n
 }
 
 const requests = (param, success) => {
@@ -47,15 +47,6 @@ const requests = (param, success) => {
                     })
                     break;
                 case 10000:
-                    // wx.showModal({
-                    //     title: '提示',
-                    //     content: res.data.msg,
-                    //     success: function (res) {
-                    //         if (res.confirm) {
-
-                    //         }
-                    //     }
-                    // })
                     wx.navigateTo({
                         url: "/pages/authorize/index"
                     })

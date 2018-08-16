@@ -1,15 +1,15 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
-<view class="container" wx:if="{{wx_show}}">
+<view class="container">
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}" />
-    <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+    <view wx:if="{{wx_show}}" style='padding-bottom:90rpx;'>
         <view class="Tree_List">
             <view class="Tree_Item Tree_Item_Mark">
                 <view class="mark-box" style="width:auto;padding:0 15rpx;">树洞主</view>
                 <text class='nick_name'>{{d_content.nick_name}}</text>
                 <text class='content_text No_Overflow'>{{d_content.content}}</text>
                 <view class="Tree_Photo">
-                    <image wx:for="{{d_content.photos}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="center" />
+                    <image wx:for="{{d_content.photos}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="aspectFill" />
                 </view>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{d_content.create_time}}</text>
@@ -42,7 +42,7 @@
             </view>
         </view>
         <template is="loadmoreBox" data="{{loadmore}}" />
-    </scroll-view>
+    </view>
     <view class="comment-foot">
         <view class="comment-box">
             <input type="text" placeholder="请输入评论..." value="{{comm_content}}" bindinput="comment_content" />

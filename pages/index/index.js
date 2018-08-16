@@ -8,8 +8,14 @@ Page({
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
-        startDate: util.formatTime(new Date()),
-        endDate: util.formatTime(new Date()),
+        startDate: {
+            value: util.formatTime(new Date()),
+            text: util.formatTimeText(util.formatTime(new Date())),
+        },
+        endDate: {
+            value: util.formatTime(new Date()),
+            text: util.formatTimeText(util.formatTime(new Date())),
+        },
         clss: 'icon-paixu',
         sortText: '时间顺序',
         page: 1,
@@ -58,18 +64,22 @@ Page({
     },
     // 获取开始时间
     startDateFunc: function(e) {
-        let times = e.detail.value;
+        let times = e.detail.value,
+            obj = {};
+        obj.value = times;
+        obj.text = util.formatTimeText(times);
         this.setData({
-            startDate: times,
-            startDate2: util.formatTimeText(times)
+            startDate: obj
         })
     },
     // 获取结束时间
-    endDateFunc: function (e) {
-        let times = e.detail.value;
+    endDateFunc: function(e) {
+        let times = e.detail.value,
+            obj = {};
+        obj.value = times;
+        obj.text = util.formatTimeText(times);
         this.setData({
-            endDate: times,
-            endDate2: util.formatTimeText(times)
+            endDate: obj
         })
     },
     // 按时间查看显示隐藏
@@ -113,7 +123,12 @@ Page({
             is_onPullDown: true,
             loadmore: true
         })
-        this.getTopicList();
+        if (sortIdx == 3) {
+            this.theHot();
+        } else {
+            this.getTopicList();
+        }
+
     },
     //获取话题列表
     getTopicList: function() {
@@ -122,8 +137,8 @@ Page({
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = Date.parse(this.data.startDate);
-        param.data.end_time = Date.parse(this.data.endDate);
+        param.data.start_time = Date.parse((this.data.startDate.value).replace(/-/g, "/")) /1000;
+        param.data.end_time = Date.parse((this.data.endDate.value).replace(/-/g, "/")) / 1000;
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
@@ -228,6 +243,38 @@ Page({
                 break;
         }
     },
+    // 最热门
+    theHot: function() {
+        let param = {};
+        param.url = "we_topic/theHot";
+        param.data = {};
+        param.data.order = this.data.sortIdx;
+        param.data.token = wx.getStorageSync('token');
+        param.data.page = this.data.page;
+        param.closeLoad = true;
+        util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    topicList: [],
+                });
+            }
+            let topic_list = res.data.data,
+                list = this.data.topicList;
+            list = list.concat(topic_list.data);
+            this.setData({
+                topicList: list,
+                last_page: topic_list.last_page,
+                is_onPullDown: false
+            });
+            if (topic_list.last_page <= this.data.page) {
+                this.setData({
+                    loadmore: false
+                });
+            }
+            this.data.page++;
+            wx.stopPullDownRefresh();
+        });
+    },
     // 跳转小程序
     openprogram: function(e) {
         let app_id = e.currentTarget.dataset.app_id,
@@ -251,13 +298,21 @@ Page({
             loadmore: true,
             is_onPullDown: true
         })
-        this.getTopicList();
+        if (this.data.sortIdx == 3) {
+            this.theHot();
+        } else {
+            this.getTopicList();
+        }
     },
     // 到达底部加载更多
     onReachBottom: function() {
         if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
-            this.getTopicList();
+            if (this.data.sortIdx == 3) {
+                this.theHot();
+            } else {
+                this.getTopicList();
+            }
         }
     }
 })
