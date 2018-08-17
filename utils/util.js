@@ -105,9 +105,9 @@ const GetDateParse = (types, date) => {
         day = date.day[date.dayIndex],
         unitedate = '';
     if (types == 'start') {
-        unitedate = year + "/" + month + "/" + day + "/" + " 00:00:00";
+        unitedate = year + "/" + month + "/" + day + " 00:00:00";
     } else {
-        unitedate = year + "/" + month + "/" + day + "/" + " 23:59:59";
+        unitedate = year + "/" + month + "/" + day + " 23:59:59";
     }
     return Date.parse(unitedate) / 1000;
 }
