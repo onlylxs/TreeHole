@@ -49,10 +49,7 @@ Page({
                             key: 'token',
                             data: res.data.data.token,
                         })
-                        wx.setStorage({
-                            key: 'IsUpdate',
-                            data: true,
-                        })
+                        util.setStorageAll();
                         wx.navigateBack();
                     });
                 } else {

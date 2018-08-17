@@ -18,13 +18,18 @@ Page({
         });
         this.getMessageList();
     },
-    onShow: function () {
-        if (wx.getStorageSync('IsUpdate') == true) {
+    onShow: function() {
+        if (wx.getStorageSync('IsUpdateMsg') == true) {
             wx.setStorage({
-                key: 'IsUpdate',
+                key: 'IsUpdateMsg',
                 data: false,
             })
-            this.onLoad();
+            this.setData({
+                page: 1,
+                is_onPullDown: true,
+                loadmore: true
+            })
+            this.getMessageList();
         }
     },
     //获取消息通知列表
@@ -51,7 +56,7 @@ Page({
             this.setData({
                 message_list: mlist,
                 wx_show: true,
-                is_onPullDown:false
+                is_onPullDown: false
             });
             this.data.page++;
             let mlistLen = arrlist.length || 0;
@@ -65,7 +70,7 @@ Page({
         wx.stopPullDownRefresh();
     },
     // 下拉刷新
-    onPullDownRefresh: function () {
+    onPullDownRefresh: function() {
         this.setData({
             page: 1,
             loadmore: true,
@@ -74,7 +79,7 @@ Page({
         this.getMessageList();
     },
     // 到达底部加载更多
-    onReachBottom: function () {
+    onReachBottom: function() {
         if (!this.data.loadmore) return;
         this.getMessageList();
     }

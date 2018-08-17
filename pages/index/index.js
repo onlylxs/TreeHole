@@ -51,8 +51,13 @@ Page({
             wx.setStorage({
                 key: 'IsUpdate',
                 data: false,
+            });
+            this.setData({
+                page: 1,
+                is_onPullDown: true,
+                loadmore: true
             })
-            this.onLoad();
+            this.getTopicList();
         }
     },
     //跳转详情页面
@@ -137,8 +142,8 @@ Page({
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = Date.parse((this.data.startDate.value).replace(/-/g, "/")) /1000;
-        param.data.end_time = Date.parse((this.data.endDate.value).replace(/-/g, "/")) / 1000;
+        param.data.start_time = Date.parse((this.data.startDate.value).replace(/-/g, "/") + " 00:00:00") /1000;
+        param.data.end_time = Date.parse((this.data.endDate.value).replace(/-/g, "/") + " 23:59:59") / 1000;
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {

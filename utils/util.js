@@ -25,6 +25,21 @@ const formatTimeText = (times) => {
         _day = times.substr(8, 2);
     return _year + "年" + _month + "月" + _day + "日";
 }
+const setStorageAll = () =>{
+    wx.setStorage({
+        key: 'IsUpdate',
+        data: true,
+    })
+    wx.setStorage({
+        key: 'IsUpdateMsg',
+        data: true,
+    })
+    wx.setStorage({
+        key: 'IsUpdateUser',
+        data: true,
+    })
+}
+
 
 const requests = (param, success) => {
     wx.request({
@@ -78,6 +93,7 @@ const requests = (param, success) => {
 module.exports = {
     formatTime: formatTime,
     formatTimeText: formatTimeText,
+    setStorageAll: setStorageAll,
     BASEURL: BASEURL,
     requests: requests
 }

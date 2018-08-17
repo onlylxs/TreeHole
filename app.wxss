@@ -17,7 +17,7 @@ Text{font-family: Microsoft YaHei;font-size: 24rpx;}
 .Tree_bottom .time_text{color: #999;width: 300rpx;}
 .Tree_bottom .botton_right{flex: 1;text-align: right;display: flex;justify-content: flex-end}
 .Tree_bottom .botton_right label{margin-left: 20rpx;}
-.Tree_bottom .botton_right .photo-box{background: #ed711a;border-radius: 2px;padding: 0 6rpx;height: 38rpx;line-height: 38rpx;margin-top:8rpx;}
+.Tree_bottom .botton_right .photo-box{background: #ed711a;border-radius: 2px;padding: 0 6rpx;height: 36rpx;line-height: 34rpx;margin-top:6rpx;}
 .Tree_bottom .botton_right .photo-box text{color: #fff;font-size:24rpx;}
 .Tree_bottom .botton_right .photo-box text.iconfont{color: #fff;font-size:30rpx;}
 .Tree_bottom .botton_right text{font-size: 26rpx;color: #787878;}

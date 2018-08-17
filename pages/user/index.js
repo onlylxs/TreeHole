@@ -47,12 +47,17 @@ Page({
         this.getUserTopic();
     },
     onShow: function() {
-        if (wx.getStorageSync('IsUpdate') == true) {
+        if (wx.getStorageSync('IsUpdateUser') == true) {
             wx.setStorage({
-                key: 'IsUpdate',
+                key: 'IsUpdateUser',
                 data: false,
             })
-            this.onLoad();
+            this.setData({
+                page: 1,
+                is_onPullDown: true,
+                loadmore: true
+            })
+            this.getUserTopic();
         }
     },
     //跳转详情页面
