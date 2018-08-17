@@ -158,7 +158,7 @@ const requests = (param, success) => {
                 default:
                     wx.showModal({
                         title: '提示',
-                        content: res.data.msg
+                        content: res.data.msg || '程序异常，稍后再试。'
                     })
                     break;
             }
@@ -167,8 +167,7 @@ const requests = (param, success) => {
             wx.hideLoading();
             wx.showModal({
                 title: '提示',
-                // content: '获取数据失败，请稍后再试！'
-                content: JSON.stringify(res)
+                content: '获取数据失败，请稍后再试！'
             })
         },
         complete() {

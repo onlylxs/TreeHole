@@ -70,6 +70,14 @@ Page({
                     },
                     success: function(res) {
                         wx.hideToast();
+                        if (res.statusCode == 413) {
+                            wx.showModal({
+                                title: '提示',
+                                content: '上传图片过大',
+                                showCancel: false
+                            })
+                            return false;
+                        }
                         let rdata = JSON.parse(res.data),
                             list_id = ths.data.listid,
                             list_path = ths.data.listpath;
@@ -90,6 +98,15 @@ Page({
                     }
                 })
             }
+        })
+    },
+    // 图片预览
+    imgYu: function(event) {
+        var src = event.currentTarget.dataset.src; //获取data-src
+        var imgList = event.currentTarget.dataset.list; //获取data-list
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: imgList // 需要预览的图片http链接列表
         })
     },
     // 获取热门领域

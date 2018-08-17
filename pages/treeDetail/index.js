@@ -7,15 +7,16 @@ Page({
         TimeCk: false,
         SortTF: false,
         clss: 'icon-paixu',
-        sortText: '时间顺序',
+        sortText: '时间倒序',
+        page: 1,
         sortList: [{
             'idx': 1,
             'clss': 'icon-paixu',
-            'text': '时间顺序'
+            'text': '时间倒序'
         }, {
             'idx': 2,
             'clss': 'icon-shengxu',
-            'text': '时间倒序'
+            'text': '时间顺序'
         }, {
             'idx': 3,
             'clss': 'icon-remen',
@@ -97,7 +98,7 @@ Page({
                 d_content: res.data.data,
                 comm_detailList: list,
                 last_page: cdetail.last_page || 0,
-                is_onPullDown:false,
+                is_onPullDown: false,
                 wx_show: true
             });
             if (this.data.last_page <= this.data.page) {
@@ -107,6 +108,15 @@ Page({
             }
             this.data.page++;
         });
+    },
+    // 图片预览
+    imgYu: function(event) {
+        var src = event.currentTarget.dataset.src; //获取data-src
+        var imgList = event.currentTarget.dataset.list; //获取data-list
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: imgList // 需要预览的图片http链接列表
+        })
     },
     //获取评论内容
     comment_content: function(e) {
@@ -231,5 +241,4 @@ Page({
             this.topicDetail();
         }
     }
-
 })
