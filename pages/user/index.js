@@ -9,14 +9,8 @@ Page({
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
-        startDate: {
-            value: util.formatTime(new Date()),
-            text: util.formatTimeText(util.formatTime(new Date())),
-        },
-        endDate: {
-            value: util.formatTime(new Date()),
-            text: util.formatTimeText(util.formatTime(new Date())),
-        },
+        startDate: util.GetFilterDate('start'),
+        endDate: util.GetFilterDate('end'),
         clss: 'icon-paixu',
         sortText: '时间顺序',
         page: 1,
@@ -107,24 +101,26 @@ Page({
             }
         })
     },
-    // 获取开始时间
-    startDateFunc: function(e) {
-        let times = e.detail.value,
-            obj = {};
-        obj.value = times;
-        obj.text = util.formatTimeText(times);
+    // 切换开始时间
+    ChangeStartDate: function(e) {
+        let param = {};
+        param.date = this.data.startDate;
+        param.type = e.currentTarget.dataset.typei;
+        param.index = e.detail.value;
+        param.monthText = this.data.startDate.month[e.detail.value];
         this.setData({
-            startDate: obj
+            startDate: util.ChangeTimes(param)
         })
     },
-    // 获取结束时间
-    endDateFunc: function(e) {
-        let times = e.detail.value,
-            obj = {};
-        obj.value = times;
-        obj.text = util.formatTimeText(times);
+    // 切换结束时间
+    ChangeEndDate: function(e) {
+        let param = {};
+        param.date = this.data.endDate;
+        param.type = e.currentTarget.dataset.typei;
+        param.index = e.detail.value;
+        param.monthText = this.data.endDate.month[e.detail.value];
         this.setData({
-            endDate: obj
+            endDate: util.ChangeTimes(param)
         })
     },
     // 按时间查看显示隐藏

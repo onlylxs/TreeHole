@@ -8,14 +8,8 @@ Page({
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
-        startDate: {
-            value: util.formatTime(new Date()),
-            text: util.formatTimeText(util.formatTime(new Date())),
-        },
-        endDate: {
-            value: util.formatTime(new Date()),
-            text: util.formatTimeText(util.formatTime(new Date())),
-        },
+        startDate: util.GetFilterDate('start'),
+        endDate: util.GetFilterDate('end'),
         clss: 'icon-paixu',
         sortText: '时间顺序',
         page: 1,
@@ -42,9 +36,9 @@ Page({
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
         this.getTopicList();
-        wx.showLoading({
-            title: '加载中',
-        });
+        // wx.showLoading({
+        //     title: '加载中',
+        // });
     },
     onShow: function() {
         if (wx.getStorageSync('IsUpdate') == true) {
@@ -67,24 +61,26 @@ Page({
             url: '../treeDetail/index?tid=' + tpid
         })
     },
-    // 获取开始时间
-    startDateFunc: function(e) {
-        let times = e.detail.value,
-            obj = {};
-        obj.value = times;
-        obj.text = util.formatTimeText(times);
+    // 切换开始时间
+    ChangeStartDate: function(e) {
+        let param = {};
+        param.date = this.data.startDate;
+        param.type = e.currentTarget.dataset.typei;
+        param.index = e.detail.value;
+        param.monthText = this.data.startDate.month[e.detail.value];
         this.setData({
-            startDate: obj
+            startDate: util.ChangeTimes(param)
         })
     },
-    // 获取结束时间
-    endDateFunc: function(e) {
-        let times = e.detail.value,
-            obj = {};
-        obj.value = times;
-        obj.text = util.formatTimeText(times);
+    // 切换结束时间
+    ChangeEndDate: function(e) {
+        let param = {};
+        param.date = this.data.endDate;
+        param.type = e.currentTarget.dataset.typei;
+        param.index = e.detail.value;
+        param.monthText = this.data.endDate.month[e.detail.value];
         this.setData({
-            endDate: obj
+            endDate: util.ChangeTimes(param)
         })
     },
     // 按时间查看显示隐藏
@@ -94,6 +90,7 @@ Page({
             SortTF: false
         });
     },
+    // 确定切换时间
     ChangeTimeFunc: function() {
         this.setData({
             TimeTF: !this.data.TimeTF,
@@ -142,8 +139,8 @@ Page({
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = Date.parse((this.data.startDate.value).replace(/-/g, "/") + " 00:00:00") /1000;
-        param.data.end_time = Date.parse((this.data.endDate.value).replace(/-/g, "/") + " 23:59:59") / 1000;
+        param.data.start_time = util.GetDateParse('start', this.data.startDate);
+        param.data.end_time = util.GetDateParse('end', this.data.endDate);
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {

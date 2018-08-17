@@ -90,7 +90,6 @@ Page({
             }
             let cdetail = res.data.data.detail,
                 list = this.data.comm_detailList;
-
             if (cdetail != '') {
                 list = list.concat(cdetail.data);
             }
@@ -98,6 +97,7 @@ Page({
                 d_content: res.data.data,
                 comm_detailList: list,
                 last_page: cdetail.last_page || 0,
+                is_onPullDown:false,
                 wx_show: true
             });
             if (this.data.last_page <= this.data.page) {

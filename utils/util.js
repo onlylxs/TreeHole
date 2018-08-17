@@ -19,13 +19,102 @@ const formatNumber = n => {
     return n[1] ? n : '0' + n
 }
 
-const formatTimeText = (times) => {
-    let _year = times.substr(0, 4),
-        _month = times.substr(5, 2),
-        _day = times.substr(8, 2);
-    return _year + "年" + _month + "月" + _day + "日";
+// 获取筛选时间
+const GetFilterDate = (ttypes, param) => {
+    let year = new Date().getFullYear(),
+        month = new Date().getMonth(),
+        day = new Date().getDate(),
+        sindex = (month + 2) - 3, //月开始时间
+        dayIndex = day - 1, //日下标
+        monthIndex = 0, //月下标
+        yearIndex = 1; //年下标
+
+    let monthArr = MonthFormat(sindex, month + 1);
+    monthIndex = monthArr.length - 1;
+    if (ttypes == 'start') {
+        dayIndex = day - 8;
+        if (day <= 7) { //如果当天日期小于一周（7天）
+            let mm = month - 1;
+            dayIndex = day - 8;
+            if (mm == 1) {
+                day = 28;
+            } else {
+                day = mm % 2 == 0 ? 30 : 31;
+            }
+            dayIndex = dayIndex < 0 ? (day + dayIndex) : dayIndex;
+            monthIndex--;
+        }
+    }
+
+    let date = {
+        year: [year - 1, year, year + 1, ],
+        yearIndex: yearIndex,
+        month: monthArr,
+        monthIndex: monthIndex,
+        day: DayFormat(day),
+        dayIndex: dayIndex
+    }
+    return date;
 }
-const setStorageAll = () =>{
+
+// 格式化月份
+const MonthFormat = (sindex, eindex) => {
+    var arr = [];
+    for (var i = sindex; i <= eindex; i++) {
+        arr.push(i);
+    }
+    return arr;
+}
+
+// 格式化日
+const DayFormat = date => {
+    var arr = [];
+    for (var i = 1; i <= date; i++) {
+        arr.push(i);
+    }
+    return arr;
+}
+// 切换时间
+const ChangeTimes = param => {
+    let timesArr = param.date;
+    timesArr[param.type] = param.index;
+    if (param.type == "monthIndex") {
+        let monthText = param.monthText,
+            day = 1;
+        if (monthText == 2) {
+            day = 28;
+        } else {
+            day = monthText % 2 == 0 ? 31 : 30;
+        }
+        let dayArr = DayFormat(day);
+        timesArr.day = dayArr;
+        if (monthText == (new Date().getMonth() + 1)) { //等于当前月
+            day = new Date().getDate();
+            dayArr = DayFormat(day);
+            timesArr.day = dayArr;
+            timesArr.dayIndex = dayArr.length - 1;
+        }
+    }
+    return timesArr;
+}
+
+// 获取时间戳
+const GetDateParse = (types, date) => {
+    let year = date.year[date.yearIndex],
+        month = date.month[date.monthIndex],
+        day = date.day[date.dayIndex],
+        unitedate = '';
+    if (types == 'start') {
+        unitedate = year + "/" + month + "/" + day + "/" + " 00:00:00";
+    } else {
+        unitedate = year + "/" + month + "/" + day + "/" + " 23:59:59";
+    }
+    return Date.parse(unitedate) / 1000;
+}
+
+
+// 那些页面需要刷新
+const setStorageAll = () => {
     wx.setStorage({
         key: 'IsUpdate',
         data: true,
@@ -92,8 +181,10 @@ const requests = (param, success) => {
 
 module.exports = {
     formatTime: formatTime,
-    formatTimeText: formatTimeText,
+    GetFilterDate: GetFilterDate,
     setStorageAll: setStorageAll,
+    ChangeTimes: ChangeTimes,
+    GetDateParse: GetDateParse,
     BASEURL: BASEURL,
     requests: requests
 }

@@ -7,11 +7,34 @@
                     <view class="after"></view>
                     <view>只查看从</view>
                     <view class="startTBox">
-                        <picker mode="date" value="{{startDate.value}}" bindchange="startDateFunc">{{startDate.text}}</picker>
+                        <!-- <picker mode="date" value="{{startDate.value}}" bindchange="startDateFunc">{{startDate.text}}</picker> -->
+                        <picker bindchange="ChangeStartDate" data-typei="yearIndex" value="{{startDate.yearIndex}}" range="{{startDate.year}}">
+                            {{startDate.year[startDate.yearIndex]}}
+                        </picker>
+                        <text>年</text>
+                        <picker bindchange="ChangeStartDate" data-typei="monthIndex" value="{{startDate.monthIndex}}" range="{{startDate.month}}">
+                            {{startDate.month[startDate.monthIndex]}}
+                        </picker>
+                        <text>月</text>
+                        <picker bindchange="ChangeStartDate" data-typei="dayIndex" value="{{startDate.dayIndex}}" range="{{startDate.day}}">
+                            {{startDate.day[startDate.dayIndex]}}
+                        </picker>
+                        <text>日</text>
                     </view>
                     <view>到</view>
                     <view class="endTBox">
-                        <picker mode="date" value="{{endDate.value}}" bindchange="endDateFunc">{{endDate.text}}</picker>
+                        <picker bindchange="ChangeEndDate" data-typei="yearIndex" value="{{endDate.yearIndex}}" range="{{endDate.year}}">
+                            {{endDate.year[endDate.yearIndex]}}
+                        </picker>
+                        <text>年</text>
+                        <picker bindchange="ChangeEndDate" data-typei="monthIndex" value="{{endDate.monthIndex}}" range="{{endDate.month}}">
+                            {{endDate.month[endDate.monthIndex]}}
+                        </picker>
+                        <text>月</text>
+                        <picker bindchange="ChangeEndDate" data-typei="dayIndex" value="{{endDate.dayIndex}}" range="{{endDate.day}}">
+                            {{endDate.day[endDate.dayIndex]}}
+                        </picker>
+                        <text>日</text>
                     </view>
                     <view>的内容</view>
                     <view class="TimeBoxBtn">

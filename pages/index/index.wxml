@@ -8,9 +8,9 @@
             <!-- 今日话题 -->
             <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
                 <view class="mark-box">今日话题</view>
+                <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
-                    <text class='nike_name'>{{item.nike_name}}</text>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
                         <label class="photo-box" wx:if="{{item.photos.length>0}}">
@@ -32,6 +32,7 @@
             <!-- 热话榜 -->
             <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{item.id >=0}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                 <view class="mark-box">热话榜</view>
+                <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
