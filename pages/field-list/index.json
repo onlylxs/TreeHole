@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "某领域"
+    "navigationBarTitleText": "某领域",
+    "enablePullDownRefresh": true
 }

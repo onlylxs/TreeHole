@@ -33,7 +33,7 @@
             },
             {
                 "pagePath": "pages/saysome/index",
-                "text": "说说",
+                "text": "发布树洞",
                 "iconPath": "static/images/ico-saysome.png",
                 "selectedIconPath": "static/images/ico-saysome_fill.png"
             },

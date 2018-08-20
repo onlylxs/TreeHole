@@ -56,6 +56,7 @@ Page({
         this.setData({
             keywords: e.detail.value
         });
+        this.searchFunc();
     },
     //查询搜索领域
     searchFunc: function() {

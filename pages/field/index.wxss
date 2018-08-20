@@ -1,6 +1,6 @@
 /* pages/field/index.wxss */
 .field_seach{display: flex;padding:20rpx 30rpx;margin-bottom: 40rpx;}
-.field_seach input{font-size:28rpx;padding:6rpx 10rpx;flex: 2;border:1rpx solid #cccccc;margin-right:20rpx;}
+.field_seach input{font-size:28rpx;padding:6rpx 10rpx;flex: 2;border:1rpx solid #cccccc;}
 .field_seach icon{margin-top: 4rpx;}
 .fieldList{margin:10rpx 30rpx 40rpx 30rpx;border:1rpx solid #cccccc;position: relative;}
 .fieldList .item{display: flex;padding:16rpx 0;border-bottom:1rpx solid #cccccc;margin:0 20rpx;}

@@ -13,7 +13,8 @@ Page({
         arrayID: [],
         listid: [],
         listpath: [],
-        positionT: '请选择位置'
+        positionT: '请选择位置',
+        imageArray: []
     },
     onLoad: function(options) {
         this.getHotFieldList()
@@ -42,11 +43,12 @@ Page({
             sayContent: e.detail.value || ''
         });
     },
+
     //上传图片
     getChooseImg: function() {
         let ths = this;
         wx.chooseImage({
-            count: 1,
+            count: 3,
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function(res) {
@@ -57,46 +59,48 @@ Page({
                     duration: 10000
                 })
                 let tempFilePaths = res.tempFilePaths;
-                wx.uploadFile({
-                    url: util.BASEURL + 'attachment/uploadImage',
-                    filePath: tempFilePaths[0],
-                    name: 'file',
-                    method: 'POST',
-                    formData: {
-                        'token': wx.getStorageSync('token')
-                    },
-                    header: {
-                        "Content-Type": "multipart/form-data"
-                    },
-                    success: function(res) {
-                        wx.hideToast();
-                        if (res.statusCode == 413) {
+                for (let i = 0; i < tempFilePaths.length; i++) {
+                    wx.uploadFile({
+                        url: util.BASEURL + 'attachment/uploadImage',
+                        filePath: tempFilePaths[i],
+                        name: 'file',
+                        method: 'POST',
+                        formData: {
+                            'token': wx.getStorageSync('token')
+                        },
+                        header: {
+                            "Content-Type": "multipart/form-data"
+                        },
+                        success: function(res) {
+                            wx.hideToast();
+                            if (res.statusCode == 413) {
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '上传图片过大',
+                                    showCancel: false
+                                })
+                                return false;
+                            }
+                            let rdata = JSON.parse(res.data),
+                                list_id = ths.data.listid,
+                                list_path = ths.data.listpath;
+                            list_id.push(rdata.data.id);
+                            list_path.push(rdata.data.path);
+                            ths.setData({
+                                listid: list_id,
+                                listpath: list_path
+                            });
+                        },
+                        fail: function(res) {
+                            wx.hideToast();
                             wx.showModal({
-                                title: '提示',
-                                content: '上传图片过大',
+                                title: '错误提示',
+                                content: '上传图片失败',
                                 showCancel: false
-                            })
-                            return false;
+                            });
                         }
-                        let rdata = JSON.parse(res.data),
-                            list_id = ths.data.listid,
-                            list_path = ths.data.listpath;
-                        list_id.push(rdata.data.id);
-                        list_path.push(rdata.data.path);
-                        ths.setData({
-                            listid: list_id,
-                            listpath: list_path
-                        });
-                    },
-                    fail: function(res) {
-                        wx.hideToast();
-                        wx.showModal({
-                            title: '错误提示',
-                            content: '上传图片失败',
-                            showCancel: false
-                        });
-                    }
-                })
+                    })
+                }
             }
         })
     },
@@ -109,10 +113,10 @@ Page({
             urls: imgList // 需要预览的图片http链接列表
         })
     },
-    // 获取热门领域
+    // 获取关注的领域
     getHotFieldList: function() {
         let param = {};
-        param.url = "we_category/index";
+        param.url = "we_user_category/index";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
         util.requests(param, res => {

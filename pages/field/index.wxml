@@ -2,7 +2,7 @@
 <view class="container" wx:if="{{wx_show}}">
     <view class="field_seach">
         <input type="text" placeholder="请输入搜索领域…" value="{{keywords}}" bindinput="search_content" />
-        <icon type="search" size="26" bindtap='searchFunc' />
+        <!-- <icon type="search" size="26" bindtap='searchFunc' /> -->
     </view>
     <!-- 搜索领域 -->
     <view class="fieldSeachBox" wx:if="{{searchList.length > 0}}">
@@ -16,7 +16,7 @@
             <navigator url="/pages/field-new/index" hover-class="navigator-hover">点击创建新领域</navigator>
         </view>
     </view>
-    <view wx:if="{{isNotField == true}}">
+    <view wx:if="{{isNotField == true && keywords !=''}}">
         <view class="NotFoundField">未找到相关领域</view>
         <view class="notField">
             没有你要找的？
