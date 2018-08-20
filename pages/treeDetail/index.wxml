@@ -1,24 +1,15 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
-<view class="container">
+<view class="container" bindtouchmove="handletouchmove">
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}" />
     <view wx:if="{{wx_show}}" style='padding-bottom:90rpx;'>
         <view class="Tree_List">
-            <view class="Tree_Item Tree_Item_Mark">
+            <view class="Tree_Item Tree_Item_Mark" style="margin-bottom:10rpx;">
                 <view class="mark-box" style="width:auto;padding:0 15rpx;">树洞主</view>
                 <text class='nick_name'>{{d_content.nick_name}}</text>
                 <text class='content_text No_Overflow'>{{d_content.content}}</text>
                 <view class="Tree_Photo">
-                    <image 
-                    wx:for="{{d_content.photos}}" 
-                    src="{{item}}" 
-                    wx:key="{{index}}" 
-                    lazy-load="true" 
-                    mode="aspectFill" 
-                    bindtap="imgYu"
-                    data-list="{{d_content.photos}}" 
-                    data-src="{{item}}"
-                      />
+                    <image wx:for="{{d_content.photos}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="aspectFill" bindtap="imgYu" data-list="{{d_content.photos}}" data-src="{{item}}" />
                 </view>
                 <view class='Tree_bottom'>
                     <text class="time_text">{{d_content.create_time}}</text>
@@ -29,6 +20,10 @@
                         </label>
                     </view>
                 </view>
+            </view>
+            <view class="addre_box" wx:if="location!=''">
+                <text class="iconfont icon-dizhi"></text>
+                <text>{{location}}</text>
             </view>
         </view>
         <view class='Reply-tit'>

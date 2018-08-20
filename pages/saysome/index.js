@@ -138,13 +138,15 @@ Page({
             })
             return false;
         }
-        let param = {};
+        let param = {},
+            location = this.data.positionT == "请选择位置" ? '' : this.data.positionT;
         param.url = "we_topic/addTopic";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
         param.data.content = content;
         param.data.longt = this.data.longt;
         param.data.lat = this.data.lat;
+        param.data.location = location;
         param.data.category_id = this.data.arrayID[this.data.index];
         if (this.data.listid != '') {
             param.data.photos = this.data.listid.toString();

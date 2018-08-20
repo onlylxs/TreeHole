@@ -1,6 +1,6 @@
 .choice__HD{display: flex;padding: 20rpx 0;background: #fff;top: 0;left: 0;z-index: 99;position: fixed;width: 100%;}
 .choice__HD .choice__title .iconfont{margin-right: 8rpx;font-size: 38rpx;vertical-align: middle;}
-.choice__HD .choice__title{font-size: 30rpx;}
+.choice__HD .choice__title{font-size: 30rpx;color:#454545;}
 .choice__HD .choice__Left{flex: 1;margin-left: 30rpx;}
 .choice__HD .choice__Left .TimeBox{width:350rpx;display: block;font-size:26rpx;position: fixed;background: #fff;padding:20rpx;box-shadow: 0 3rpx 2rpx 3rpx #ccc;margin-top:20rpx;border-radius: 8rpx;}
 .choice__HD .choice__Left .TimeBox view{color:#666;}

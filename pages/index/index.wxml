@@ -1,12 +1,13 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
-<view class="container">
+<view class="container" bindtouchmove="handletouchmove">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
+    <view class="QueryAll" bindtap="QueryAllTap">查看全部</view>
     <view wx:if="{{wx_show}}">
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" data-location="{{item.location}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
                 <view class="mark-box">今日话题</view>
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
@@ -30,7 +31,7 @@
             </view>
 
             <!-- 热话榜 -->
-            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{item.id >=0}}" bindtap='ToDetail' data-tpid="{{item.id}}">
+            <view class="Tree_Item" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{item.id >=0}}" data-location="{{item.location}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                 <view class="mark-box">热话榜</view>
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
@@ -56,7 +57,7 @@
                 <image src="{{advert.banner}}" class="adverp"></image>
             </navigator>
             <!-- 话题列表 -->
-            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
+            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" data-location="{{item.location}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>

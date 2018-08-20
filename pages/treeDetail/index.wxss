@@ -11,3 +11,5 @@
 .Reply-tit text{width: 140rpx;height: 50rpx;line-height: 50rpx;position: absolute;top: -30rpx;left: 50rpx;border: 1rpx solid #ed711a;color: #ed711a;text-align: center;font-size: 26rpx;background: #fff;}
 .Tree_Photo{display: flex;justify-content:flex-start;margin:0 -10rpx;}
 .Tree_Photo image{margin:15rpx 10rpx 0 10rpx;height:33vw;max-width: 33vw;}
+.addre_box{float:right;color:#999;}
+.addre_box .iconfont{font-size:50rpx;vertical-align: middle;}

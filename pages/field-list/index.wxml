@@ -1,10 +1,10 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
-<view class="container" wx:if="{{wx_show}}">
+<view class="container" wx:if="{{wx_show}}" bindtouchmove="handletouchmove">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
     <view class="FollowBtn {{FollowStatus == 1 ? 'selected' : ''}}" data-cid="{{cid}}" bindtap="FollowField">{{FollowStatus == 1 ? '已关注' :'关注'}}</view>
-    <scroll-view scroll-y="true" lower-threshold="50" style="height: {{height}}px;" bindscrolltolower="lower">
+    <view>
         <view class="Tree_List">
             <!-- 今日话题 -->
             <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
@@ -55,5 +55,5 @@
             </view>
             <template is="loadmoreBox" data="{{loadmore}}" />
         </view>
-    </scroll-view>
+    </view>
 </view>

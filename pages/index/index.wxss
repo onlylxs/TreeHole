@@ -1,9 +1,26 @@
 /**index.wxss**/
-.adverp_nav{
+
+.adverp_nav {
     background: #fff;
     margin-bottom: 10rpx;
 }
-.adverp{
-    width:100%;
-    height:100px;
+
+.adverp {
+    width: 100%;
+    height: 100px;
+}
+
+.QueryAll {
+    width: 140rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    border: 1rpx solid #454545;
+    border-radius: 2px;
+    text-align: center;
+    color: #454545;
+    position: fixed;
+    top: 24rpx;
+    z-index: 999;
+    left:250rpx;
 }

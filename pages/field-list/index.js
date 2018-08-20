@@ -9,8 +9,8 @@ Page({
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
-        startDate: util.formatTime(new Date()),
-        endDate: util.formatTime(new Date()),
+        startDate: util.GetFilterDate('start'),
+        endDate: util.GetFilterDate('end'),
         clss: 'icon-paixu',
         sortText: '时间顺序',
         page: 1,
@@ -34,6 +34,7 @@ Page({
         loadmore: true,
         cid: '',
         FollowStatus: 0,
+        lastY: 0, //滑动开始y轴位置
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -53,16 +54,26 @@ Page({
         });
         this.getTopicList();
     },
-    // 获取开始时间
-    startDateFunc: function(e) {
+    // 切换开始时间
+    ChangeStartDate: function(e) {
+        let param = {};
+        param.date = this.data.startDate;
+        param.type = e.currentTarget.dataset.typei;
+        param.index = e.detail.value;
+        param.monthText = this.data.startDate.month[e.detail.value];
         this.setData({
-            startDate: e.detail.value
+            startDate: util.ChangeTimes(param)
         })
     },
-    // 获取结束时间
-    endDateFunc: function(e) {
+    // 切换结束时间
+    ChangeEndDate: function(e) {
+        let param = {};
+        param.date = this.data.endDate;
+        param.type = e.currentTarget.dataset.typei;
+        param.index = e.detail.value;
+        param.monthText = this.data.endDate.month[e.detail.value];
         this.setData({
-            endDate: e.detail.value
+            endDate: util.ChangeTimes(param)
         })
     },
     // 按时间查看显示隐藏
@@ -108,17 +119,23 @@ Page({
     },
     //获取话题列表
     getTopicList: function() {
-        let param = {};
+        let param = {},
+            startData = '';
         param.url = "we_category/topicList";
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.category_id = this.data.cid;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = Date.parse(this.data.startDate);
-        param.data.end_time = Date.parse(this.data.endDate);
+        param.data.start_time = util.GetDateParse('start', this.data.startDate);
+        param.data.end_time = util.GetDateParse('end', this.data.endDate);
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    topicList: [],
+                });
+            }
             let topic_list = res.data.data.topic_list,
                 list = this.data.topicList,
                 today_list = [];
@@ -130,7 +147,8 @@ Page({
                 todays: today_list,
                 topicList: list,
                 last_page: topic_list.last_page,
-                wx_show: true
+                wx_show: true,
+                is_onPullDown: false
             });
             if (topic_list.last_page <= this.data.page) {
                 this.setData({
@@ -140,8 +158,18 @@ Page({
             this.data.page++;
         });
     },
+    // 下拉刷新
+    onPullDownRefresh: function() {
+        this.setData({
+            page: 1,
+            loadmore: true,
+            is_onPullDown: true
+        })
+        this.getTopicList();
+    },
     // 到达底部加载更多
-    lower: function(e) {
+    onReachBottom: function() {
+        if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
             this.getTopicList();
         }
@@ -236,5 +264,17 @@ Page({
                 FollowStatus: this.data.FollowStatus == 1 ? 0 : 1
             })
         });
-    }
+    },
+    handletouchmove: function(event) {
+        var currentY = event.touches[0].pageY
+        var ty = currentY - this.data.lastY
+        if (ty < 10 || ty > 10) {
+            this.setData({
+                SortTF: false,
+                TimeTF: false
+            });
+        }
+        //将当前坐标进行保存以进行下一次计算
+        this.data.lastY = currentY
+    },
 })

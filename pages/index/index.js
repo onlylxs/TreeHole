@@ -32,9 +32,13 @@ Page({
         sortIdx: 1, //排序编号
         wx_show: false,
         loadmore: true,
+        lastY: 0, //滑动开始y轴位置
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
+        this.setData({
+            QueryAll: true,
+        })
         this.getTopicList();
         wx.showLoading({
             title: '加载中',
@@ -56,9 +60,10 @@ Page({
     },
     //跳转详情页面
     ToDetail: function(e) {
-        let tpid = e.currentTarget.dataset.tpid;
+        let tpid = e.currentTarget.dataset.tpid,
+            location = e.currentTarget.dataset.location;
         wx.navigateTo({
-            url: '../treeDetail/index?tid=' + tpid
+            url: '../treeDetail/index?tid=' + tpid + '&location=' + location
         })
     },
     // 切换开始时间
@@ -96,7 +101,8 @@ Page({
             TimeTF: !this.data.TimeTF,
             page: 1,
             is_onPullDown: true,
-            loadmore: true
+            loadmore: true,
+            QueryAll: false,
         });
         this.getTopicList();
     },
@@ -132,14 +138,30 @@ Page({
         }
 
     },
+    // 查看全部
+    QueryAllTap: function() {
+        this.setData({
+            page: 1,
+            is_onPullDown: true,
+            loadmore: true,
+            QueryAll: true,
+            SortTF: false,
+            TimeTF: false
+        });
+        this.getTopicList();
+    },
     //获取话题列表
     getTopicList: function() {
-        let param = {};
+        let param = {},
+            startData = '';
+        if (!this.data.QueryAll) {
+            startData = util.GetDateParse('start', this.data.startDate)
+        }
         param.url = "we_topic/index";
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = util.GetDateParse('start', this.data.startDate);
+        param.data.start_time = startData;
         param.data.end_time = util.GetDateParse('end', this.data.endDate);
         param.data.page = this.data.page;
         param.closeLoad = true;
@@ -316,5 +338,17 @@ Page({
                 this.getTopicList();
             }
         }
-    }
+    },
+    handletouchmove: function(event) {
+        var currentY = event.touches[0].pageY
+        var ty = currentY - this.data.lastY
+        if (ty < 10 || ty > 10) {
+            this.setData({
+                SortTF: false,
+                TimeTF: false
+            });
+        }
+        //将当前坐标进行保存以进行下一次计算
+        this.data.lastY = currentY
+    },
 })

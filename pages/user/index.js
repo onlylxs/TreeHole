@@ -31,7 +31,8 @@ Page({
         sortIdx: 1, //排序编号
         wx_show: false,
         loadmore: true,
-        checkTo: true
+        checkTo: true,
+        lastY: 0, //滑动开始y轴位置
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -215,5 +216,18 @@ Page({
         if (this.data.last_page >= this.data.page) {
             this.getUserTopic();
         }
-    }
+    },
+    handletouchmove: function(event) {
+        var currentY = event.touches[0].pageY
+        var ty = currentY - this.data.lastY
+        console.info(ty)
+        if (ty < 10 || ty > 10) {
+            this.setData({
+                SortTF: false,
+                TimeTF: false
+            });
+        }
+        //将当前坐标进行保存以进行下一次计算
+        this.data.lastY = currentY
+    },
 })
