@@ -42,7 +42,7 @@ Page({
         });
         this.setData({
             tid: options.tid,
-            location: options.location
+            location: options.location || ''
         });
         wx.showLoading({
             title: '加载中',

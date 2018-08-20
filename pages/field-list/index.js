@@ -258,9 +258,10 @@ Page({
     },
     //跳转详情页面
     ToDetail: function(e) {
-        let tpid = e.currentTarget.dataset.tpid;
+        let tpid = e.currentTarget.dataset.tpid,
+            location = e.currentTarget.dataset.location;
         wx.navigateTo({
-            url: '../treeDetail/index?tid=' + tpid
+            url: '../treeDetail/index?tid=' + tpid + '&location=' + location
         })
     },
     // 关注领域
@@ -279,6 +280,10 @@ Page({
                 title: res.data.msg,
                 icon: 'none',
             });
+            wx.setStorage({
+                key: 'isUpdateField',
+                data: true,
+            })
             this.setData({
                 FollowStatus: this.data.FollowStatus == 1 ? 0 : 1
             })

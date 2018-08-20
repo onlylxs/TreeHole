@@ -19,6 +19,11 @@ Page({
     onLoad: function(options) {
         this.getHotFieldList()
     },
+    onShow: function() {
+        if (wx.getStorageSync('isUpdateField') == true) {
+            this.getHotFieldList()
+        }
+    },
     //获取发布位置
     bindPickerChange: function(e) {
         this.setData({
@@ -119,16 +124,29 @@ Page({
         param.url = "we_user_category/index";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
+        param.data.flag = 1;
         util.requests(param, res => {
             let list = [],
-                listID = [];
-            for (let i = 0; i < res.data.data.data.length; i++) {
-                list.push(res.data.data.data[i].name);
-                listID.push(res.data.data.data[i].id);
+                listID = [],
+                res_data = res.data.data;
+            for (let i = 0; i < res_data.length; i++) {
+                list.push(res_data[i].name);
+                listID.push(res_data[i].id);
+            }
+            if (wx.getStorageSync('isUpdateField') == true) {
+                this.setData({
+                    array: [],
+                    arrayID: [],
+                    index: 0,
+                })
             }
             this.setData({
                 array: list,
-                arrayID: listID
+                arrayID: listID,
+            })
+            wx.setStorage({
+                key: 'isUpdateField',
+                data: false,
             })
         });
     },

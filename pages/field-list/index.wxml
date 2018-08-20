@@ -8,7 +8,7 @@
     <view>
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" data-location="{{item.location}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
                 <view class="mark-box">今日话题</view>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>
@@ -31,9 +31,8 @@
                 </view>
             </view>
 
-
             <!-- 话题列表 -->
-            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
+            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" data-location="{{item.location}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>

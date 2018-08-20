@@ -31,7 +31,7 @@
             <text class="title">{{item.name}}</text>
             <text class="number">{{item.t_likes}}</text>
         </view>
-        <view class="item more">
+        <view class="item more" wx:if="{{page>last_page}}">
             <text>载入更多</text>
         </view>
     </view>

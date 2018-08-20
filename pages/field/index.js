@@ -39,9 +39,11 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.page = this.data.page;
         util.requests(param, res => {
-            if (res.data.data.data != undefined && res.data.data.data.length > 0) {
+            let res_data = res.data.data.data;
+            if (res_data != undefined && res_data.length > 0) {
                 this.setData({
-                    MyFieldList: res.data.data.data
+                    MyFieldList: res_data,
+                    last_page: res.data.data.last_page
                 });
             } else {
                 this.setData({

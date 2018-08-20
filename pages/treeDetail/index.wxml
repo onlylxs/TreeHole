@@ -21,7 +21,7 @@
                     </view>
                 </view>
             </view>
-            <view class="addre_box" wx:if="location!=''">
+            <view class="addre_box" wx:if="{{location!=''}}">
                 <text class="iconfont icon-dizhi"></text>
                 <text>{{location}}</text>
             </view>
@@ -32,6 +32,7 @@
         <view wx:if="{{comm_detailList.length > 0}}">
             <view class="Tree_List">
                 <view class="Tree_Item" wx:for="{{comm_detailList}}" wx:key="{{index}}">
+                    <text class='nick_name'>{{item.nick_name}}</text>
                     <text class='content_text'>{{item.content}}</text>
                     <view class='Tree_bottom'>
                         <text class="time_text">{{item.create_time}}</text>
