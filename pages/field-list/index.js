@@ -38,6 +38,9 @@ Page({
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
+        this.setData({
+            QueryAll: true,
+        })
         wx.getSystemInfo({
             success: (res) => {
                 this.setData({
@@ -87,7 +90,8 @@ Page({
             TimeTF: !this.data.TimeTF,
             page: 1,
             topicList: [],
-            loadmore: true
+            loadmore: true,
+            QueryAll: false
         });
         this.getTopicList();
     },
@@ -117,16 +121,31 @@ Page({
         })
         this.getTopicList();
     },
+    // 查看全部
+    QueryAllTap: function() {
+        this.setData({
+            page: 1,
+            is_onPullDown: true,
+            loadmore: true,
+            QueryAll: true,
+            SortTF: false,
+            TimeTF: false
+        });
+        this.getTopicList();
+    },
     //获取话题列表
     getTopicList: function() {
         let param = {},
             startData = '';
+        if (!this.data.QueryAll) {
+            startData = util.GetDateParse('start', this.data.startDate)
+        }
         param.url = "we_category/topicList";
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.category_id = this.data.cid;
         param.data.token = wx.getStorageSync('token');
-        param.data.start_time = util.GetDateParse('start', this.data.startDate);
+        param.data.start_time = startData;
         param.data.end_time = util.GetDateParse('end', this.data.endDate);
         param.data.page = this.data.page;
         param.closeLoad = true;

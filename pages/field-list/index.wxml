@@ -3,6 +3,7 @@
 <view class="container" wx:if="{{wx_show}}" bindtouchmove="handletouchmove">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
+    <view class="QueryAll" bindtap="QueryAllTap">查看全部</view>
     <view class="FollowBtn {{FollowStatus == 1 ? 'selected' : ''}}" data-cid="{{cid}}" bindtap="FollowField">{{FollowStatus == 1 ? '已关注' :'关注'}}</view>
     <view>
         <view class="Tree_List">
