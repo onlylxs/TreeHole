@@ -36,6 +36,9 @@ Page({
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
+        this.setData({
+            QueryAll: true,
+        })
         wx.showLoading({
             title: '加载中',
         });
@@ -136,6 +139,7 @@ Page({
             TimeTF: !this.data.TimeTF,
             page: 1,
             is_onPullDown: true,
+            QueryAll: false,
             loadmore: true
         });
         this.getUserTopic();
@@ -167,14 +171,32 @@ Page({
         })
         this.getUserTopic();
     },
+    // 查看全部
+    QueryAllTap: function() {
+        this.setData({
+            page: 1,
+            is_onPullDown: true,
+            loadmore: true,
+            QueryAll: true,
+            SortTF: false,
+            TimeTF: false
+        });
+        this.getUserTopic();
+    },
     //获取话题列表
     getUserTopic: function() {
-        let param = {};
+        let param = {},
+            startData = '';
+        if (!this.data.QueryAll) {
+            startData = util.GetDateParse('start', this.data.startDate)
+        }
         param.url = "we_topic/userTopic";
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.page = this.data.page;
         param.data.token = wx.getStorageSync('token');
+        param.data.start_time = startData;
+        param.data.end_time = util.GetDateParse('end', this.data.endDate);
         param.closeLoad = true;
         util.requests(param, res => {
             if (this.data.is_onPullDown) {

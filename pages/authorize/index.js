@@ -34,31 +34,33 @@ Page({
         }
     },
     ckLogin: function(loginrawData, loginSignature) {
-        wx.login({ //登录
-            success: res => {
-                if (res.code) {
-                    let loginCode = res.code,
-                        param = {};
-                    param.url = "login/signIn";
-                    param.data = {};
-                    param.data.code = loginCode;
-                    param.data.raw_data = loginrawData;
-                    param.data.signature = loginSignature;
-                    util.requests(param, res => {
-                        wx.setStorage({
-                            key: 'token',
-                            data: res.data.data.token,
+        setTimeout(() => {
+            wx.login({ //登录
+                success: res => {
+                    if (res.code) {
+                        let loginCode = res.code,
+                            param = {};
+                        param.url = "login/signIn";
+                        param.data = {};
+                        param.data.code = loginCode;
+                        param.data.raw_data = loginrawData;
+                        param.data.signature = loginSignature;
+                        util.requests(param, res => {
+                            wx.setStorage({
+                                key: 'token',
+                                data: res.data.data.token,
+                            })
+                            util.setStorageAll();
+                            wx.navigateBack();
+                        });
+                    } else {
+                        wx.showToast({
+                            title: '登录失败，请重新授权',
+                            icon: "none"
                         })
-                        util.setStorageAll();
-                        wx.navigateBack();
-                    });
-                } else {
-                    wx.showToast({
-                        title: '登录失败，请重新授权',
-                        icon:"none"
-                    })
+                    }
                 }
-            }
-        });
+            });
+        }, 800)
     }
 })
