@@ -1,5 +1,20 @@
-.FollowBtn{position: fixed;top:22rpx;right:250rpx;z-index: 100000;font-size:24rpx;border: 1rpx solid #ed711a;padding:6rpx 14rpx;border-radius: 4rpx;}
-.FollowBtn.selected{background: #ed711a;color:#fff;}
+.FollowBtn {
+    position: fixed;
+    top: 24rpx;
+    right: 240rpx;
+    z-index: 100000;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    border: 1rpx solid #ed711a;
+    padding: 0 14rpx;
+    border-radius: 4rpx;
+}
+
+.FollowBtn.selected {
+    background: #ed711a;
+    color: #fff;
+}
 
 .QueryAll {
     width: 140rpx;
@@ -13,5 +28,5 @@
     position: fixed;
     top: 24rpx;
     z-index: 999;
-    left:250rpx;
+    left: 250rpx;
 }

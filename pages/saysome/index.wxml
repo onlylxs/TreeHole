@@ -10,6 +10,7 @@
     </view>
     <view class="addre_box" bindtap="getMap">
         <text class="iconfont icon-dizhi"></text><text>{{positionT}}</text>
+        <!-- <button open-type="openSetting" class="openSettingBtn"></button> -->
     </view>
     <view class="images_box">
         <image 

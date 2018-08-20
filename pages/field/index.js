@@ -83,9 +83,10 @@ Page({
     },
     GOFieldList: function(e) {
         let cid = e.currentTarget.dataset.cid,
-            focus = e.currentTarget.dataset.focus;
+            focus = e.currentTarget.dataset.focus,
+            tit = e.currentTarget.dataset.tit;
         wx.navigateTo({
-            url: '../field-list/index?cid=' + cid + '&focus=' + focus
+            url: '../field-list/index?cid=' + cid + '&focus=' + focus + '&tit=' + tit
         })
     },
     onPullDownRefresh: function() {

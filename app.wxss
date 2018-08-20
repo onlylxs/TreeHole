@@ -26,3 +26,4 @@ Text{font-family: Microsoft YaHei;font-size: 24rpx;}
 .Tree_bottom .botton_right text.selected{color:red !important;}
 .choice__HD::after, .Tree_List::after,choice__HD .choice__Left .TimeBoxBtn:after{content: '';display: block;clear: both;}
 .nick_name{color:#00aeff;}
+.NotTopic{padding:1rem 0;text-align:center;font-size:28rpx;color:#999;}

@@ -37,7 +37,10 @@ Page({
         lastY: 0, //滑动开始y轴位置
     },
     // 生命周期函数--监听页面加载
-    onLoad: function(options) {
+    onLoad: function (options) {
+        wx.setNavigationBarTitle({
+            title: options.tit
+        })
         this.setData({
             QueryAll: true,
         })
