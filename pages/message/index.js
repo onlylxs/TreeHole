@@ -16,9 +16,13 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
+        wx.setStorage({
+            key: 'IsUpdateMsg',
+            data: false,
+        })
         this.getMessageList();
     },
-    onShow: function() {
+    onShow: function () {
         if (wx.getStorageSync('IsUpdateMsg') == true) {
             wx.setStorage({
                 key: 'IsUpdateMsg',
@@ -68,6 +72,13 @@ Page({
             wx.stopPullDownRefresh();
         });
         wx.stopPullDownRefresh();
+    },
+    //跳转详情页面
+    ToDetail: function (e) {
+        let tpid = e.currentTarget.dataset.tpid;
+        wx.navigateTo({
+            url: '../treeDetail/index?tid=' + tpid
+        })
     },
     // 下拉刷新
     onPullDownRefresh: function() {

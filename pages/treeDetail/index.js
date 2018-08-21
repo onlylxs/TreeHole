@@ -41,8 +41,7 @@ Page({
             }
         });
         this.setData({
-            tid: options.tid,
-            location: options.location || ''
+            tid: options.tid
         });
         wx.showLoading({
             title: '加载中',
@@ -99,6 +98,7 @@ Page({
             this.setData({
                 d_content: res.data.data,
                 comm_detailList: list,
+                location: res.data.data.location,
                 last_page: cdetail.last_page || 0,
                 is_onPullDown: false,
                 wx_show: true

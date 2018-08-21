@@ -12,7 +12,7 @@
         <text class="iconfont icon-dizhi"></text>
         <text>{{positionT}}</text>
     </view>
-    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation}}">
+    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation == true}}">
         <button open-type="openSetting" bindopensetting="openSettingFunc" class="openSettingBtn">
             <text class="iconfont icon-dizhi"></text>
             <text>{{positionT}}</text>

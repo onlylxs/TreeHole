@@ -122,7 +122,11 @@ Page({
             topicList: [],
             loadmore: true
         })
-        this.getTopicList();
+        if (sortIdx == 3) {
+            this.theHot();
+        } else {
+            this.getTopicList();
+        }
     },
     // 查看全部
     QueryAllTap: function() {
@@ -181,6 +185,39 @@ Page({
             wx.stopPullDownRefresh();
         });
     },
+    // 最热门
+    theHot: function () {
+        let param = {};
+        param.url = "we_topic/theHot";
+        param.data = {};
+        param.data.category_id = this.data.cid;
+        param.data.order = this.data.sortIdx;
+        param.data.token = wx.getStorageSync('token');
+        param.data.page = this.data.page;
+        param.closeLoad = true;
+        util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    topicList: [],
+                });
+            }
+            let topic_list = res.data.data,
+                list = this.data.topicList;
+            list = list.concat(topic_list.data);
+            this.setData({
+                topicList: list,
+                last_page: topic_list.last_page,
+                is_onPullDown: false
+            });
+            if (topic_list.last_page <= this.data.page) {
+                this.setData({
+                    loadmore: false
+                });
+            }
+            this.data.page++;
+            wx.stopPullDownRefresh();
+        });
+    },
     // 下拉刷新
     onPullDownRefresh: function() {
         this.setData({
@@ -188,13 +225,21 @@ Page({
             loadmore: true,
             is_onPullDown: true
         })
-        this.getTopicList();
+        if (this.data.sortIdx == 3) {
+            this.theHot();
+        } else {
+            this.getTopicList();
+        }
     },
     // 到达底部加载更多
     onReachBottom: function() {
         if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
-            this.getTopicList();
+            if (this.data.sortIdx == 3) {
+                this.theHot();
+            } else {
+                this.getTopicList();
+            }
         }
     },
     //话题点赞

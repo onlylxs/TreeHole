@@ -35,14 +35,18 @@ Page({
         lastY: 0, //滑动开始y轴位置
     },
     // 生命周期函数--监听页面加载
-    onLoad: function(options) {
-        this.setData({
-            QueryAll: true,
-        })
-        this.getTopicList();
+    onLoad: function (options) {
         wx.showLoading({
             title: '加载中',
         });
+        this.setData({
+            QueryAll: true,
+        })
+        wx.setStorage({
+            key: 'IsUpdate',
+            data: false,
+        });
+        this.getTopicList();
     },
     onShow: function() {
         if (wx.getStorageSync('IsUpdate') == true) {
@@ -60,10 +64,9 @@ Page({
     },
     //跳转详情页面
     ToDetail: function(e) {
-        let tpid = e.currentTarget.dataset.tpid,
-            location = e.currentTarget.dataset.location;
+        let tpid = e.currentTarget.dataset.tpid;
         wx.navigateTo({
-            url: '../treeDetail/index?tid=' + tpid + '&location=' + location
+            url: '../treeDetail/index?tid=' + tpid
         })
     },
     // 切换开始时间

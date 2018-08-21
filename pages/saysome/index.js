@@ -62,10 +62,12 @@ Page({
                 });
             },
             fail: res => {
-                this.setData({
-                    isOpenLocation: true,
-                    positionT: '未授权位置，点击授权'
-                });
+                if (res.errMsg == 'chooseLocation:fail auth deny') {
+                    this.setData({
+                        isOpenLocation: true,
+                        positionT: '未授权位置，点击授权'
+                    });
+                }
             }
         })
     },
@@ -212,8 +214,8 @@ Page({
                 content: "操作成功",
                 showCancel: false,
                 success: res => {
-                    wx.switchTab({
-                        url: '/pages/index/index',
+                    wx.navigateTo({
+                        url: '/pages/field-list/index?cid=' + this.data.arrayID[this.data.index] + '&focus=1' + '&tit=' + this.data.array[this.data.index]
                     })
                     this.setData({
                         sayContent: '',

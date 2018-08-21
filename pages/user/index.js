@@ -35,13 +35,17 @@ Page({
         lastY: 0, //滑动开始y轴位置
     },
     // 生命周期函数--监听页面加载
-    onLoad: function(options) {
-        this.setData({
-            QueryAll: true,
-        })
+    onLoad: function (options) {
         wx.showLoading({
             title: '加载中',
         });
+        this.setData({
+            QueryAll: true,
+        })
+        wx.setStorage({
+            key: 'IsUpdateUser',
+            data: false,
+        })
         this.getUserTopic();
     },
     onShow: function() {
