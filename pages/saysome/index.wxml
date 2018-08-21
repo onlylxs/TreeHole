@@ -8,21 +8,19 @@
     <view class="say_textarea">
         <textarea placeholder="请输入内容..." bindinput="sayContent" value="{{sayContent}}"></textarea>
     </view>
-    <view class="addre_box" bindtap="getMap">
-        <text class="iconfont icon-dizhi"></text><text>{{positionT}}</text>
-        <!-- <button open-type="openSetting" class="openSettingBtn"></button> -->
+    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation == false}}">
+        <text class="iconfont icon-dizhi"></text>
+        <text>{{positionT}}</text>
     </view>
+    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation}}">
+        <button open-type="openSetting" bindopensetting="openSettingFunc" class="openSettingBtn">
+            <text class="iconfont icon-dizhi"></text>
+            <text>{{positionT}}</text>
+        </button>
+    </view>
+    
     <view class="images_box">
-        <image 
-        wx:for="{{listpath}}" 
-        src="{{item}}" 
-        wx:key="{{index}}" 
-        lazy-load="true"
-        mode="aspectFill"
-        bindtap="imgYu"
-        data-list="{{listpath}}" 
-        data-src="{{item}}"
-         />
+        <image wx:for="{{listpath}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="aspectFill" bindtap="imgYu" data-list="{{listpath}}" data-src="{{item}}" />
         <image src="../../static/images/add.png" lazy-load="true" mode="aspectFit" bindtap="getChooseImg" wx:if="{{listpath.length<3}}" />
     </view>
     <text class="imgtxt">图片上传（最多三张）</text>

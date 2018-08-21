@@ -14,10 +14,21 @@ Page({
         listid: [],
         listpath: [],
         positionT: '请选择位置',
-        imageArray: []
+        imageArray: [],
+        isOpenLocation: false
     },
     onLoad: function(options) {
-        this.getHotFieldList()
+        this.getHotFieldList();
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+                    this.setData({
+                        isOpenLocation: true,
+                        positionT: '未授权位置，点击授权'
+                    })
+                }
+            }
+        })
     },
     onShow: function() {
         if (wx.getStorageSync('isUpdateField') == true) {
@@ -30,6 +41,16 @@ Page({
             index: e.detail.value
         })
     },
+    // 打开授权回调函数
+    openSettingFunc: function(res) {
+        if (res.detail.authSetting['scope.userLocation'] == true) {
+            this.setData({
+                isOpenLocation: false,
+                positionT: '请选择位置'
+            });
+            this.getMap();
+        }
+    },
     //获取地址经纬度
     getMap: function(e) {
         wx.chooseLocation({
@@ -41,22 +62,10 @@ Page({
                 });
             },
             fail: res => {
-                wx.getSetting({
-                    success: res => {
-                        let ths = this;
-                        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
-                            wx.showModal({
-                                title: '是否授权当前位置',
-                                content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
-                                success: function(res) {
-                                    if (res.confirm) {
-                                        
-                                    }
-                                }
-                            })
-                        }
-                    }
-                })
+                this.setData({
+                    isOpenLocation: true,
+                    positionT: '未授权位置，点击授权'
+                });
             }
         })
     },
@@ -179,7 +188,10 @@ Page({
             return false;
         }
         let param = {},
-            location = this.data.positionT == "请选择位置" ? '' : this.data.positionT;
+            location = '';
+        if (this.data.longt != undefined && this.data.longt != '') {
+            location = this.data.positionT;
+        }
         param.url = "we_topic/addTopic";
         param.data = {};
         param.data.token = wx.getStorageSync('token');

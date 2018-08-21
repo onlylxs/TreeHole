@@ -178,6 +178,7 @@ Page({
                 });
             }
             this.data.page++;
+            wx.stopPullDownRefresh();
         });
     },
     // 下拉刷新
