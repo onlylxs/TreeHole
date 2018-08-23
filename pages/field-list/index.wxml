@@ -4,11 +4,18 @@
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
     <view class="QueryAll" bindtap="QueryAllTap">查看全部</view>
-    <view class="FollowBtn {{FollowStatus == 1 ? 'selected' : ''}}" data-cid="{{cid}}" bindtap="FollowField">{{FollowStatus == 1 ? '已关注' :'关注'}}</view>
+    <view class="FollowBtn {{FollowStatus == 1 ? 'selected' : ''}}" data-cid="{{cid}}" bindtap="FollowField" wx:if="{{field_tit != '公共树洞'}}">
+        {{FollowStatus == 1 ? '已关注' :'关注'}}
+    </view>
     <view>
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" data-location="{{item.location}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{item.id >=0}}">
+            <!-- 今日话题 -->
+            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}">
+                <view class="mark-box">今日话题</view>
+                <view class="NotTopic">虚位以待</view>
+            </view>
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{todays != ''}}">
                 <view class="mark-box">今日话题</view>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>

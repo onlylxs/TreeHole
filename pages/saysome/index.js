@@ -18,6 +18,10 @@ Page({
         isOpenLocation: false
     },
     onLoad: function(options) {
+        wx.setStorage({
+            key: 'isUpdateField',
+            data: false,
+        })
         this.getHotFieldList();
         wx.getSetting({
             success: res => {
@@ -32,6 +36,10 @@ Page({
     },
     onShow: function() {
         if (wx.getStorageSync('isUpdateField') == true) {
+            wx.setStorage({
+                key: 'isUpdateField',
+                data: false,
+            })
             this.getHotFieldList()
         }
     },

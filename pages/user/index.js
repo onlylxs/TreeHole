@@ -201,6 +201,9 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.start_time = startData;
         param.data.end_time = util.GetDateParse('end', this.data.endDate);
+        if (this.data.sortIdx == 3) {
+            param.data.hot = 1;
+        }
         param.closeLoad = true;
         util.requests(param, res => {
             if (this.data.is_onPullDown) {

@@ -53,7 +53,8 @@ Page({
         });
         this.setData({
             cid: options.cid,
-            FollowStatus: options.focus
+            FollowStatus: options.focus,
+            field_tit: options.tit
         });
         wx.showLoading({
             title: '加载中',

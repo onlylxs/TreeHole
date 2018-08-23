@@ -127,6 +127,10 @@ const setStorageAll = () => {
         key: 'IsUpdateUser',
         data: true,
     })
+    wx.setStorage({
+        key: 'isUpdateField',
+        data: true,
+    })
 }
 
 
