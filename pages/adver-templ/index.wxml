@@ -1,0 +1,18 @@
+<template name="adverBox">
+    <view class="advert_across" 
+    wx:if="{{(index+1)%per_page == 0 && advert[(index+1)/per_page].type == 1 && IsAdvertClose[(index+1)/per_page].idx == (index+1) && IsAdvertClose[(index+1)/per_page].checkShow == true}}"
+    >
+        <image src="{{advert[(index+1)/per_page].banner}}" class="adverp" bindtap="openWebView" data-weburl="{{advert[(index+1)/per_page].page}}"></image>
+        <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" data-index="{{(index+1)}}" />
+        <view class="adver_text">广告</view>
+    </view>
+    <view class="advert_across" 
+    wx:if="{{(index+1)%per_page == 0 && advert[(index+1)/per_page].type == 2 && IsAdvertClose[(index+1)/per_page].idx == (index+1) && IsAdvertClose[(index+1)/per_page].checkShow == true}}"
+    >
+        <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert[(index+1)/per_page].app_id}}" path="{{advert[(index+1)/per_page].page}}" extra-data="" version="release" wx:if="{{advert[(index+1)/per_page].app_id !=''}}" wx:if="{{advert[(index+1)/per_page]!=''}}">
+            <image src="{{advert[(index+1)/per_page].banner}}" class="adverp"></image>
+        </navigator>
+        <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" data-index="{{(index+1)}}" />
+        <view class="adver_text">广告</view>
+    </view>
+</template>

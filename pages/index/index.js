@@ -33,9 +33,10 @@ Page({
         wx_show: false,
         loadmore: true,
         lastY: 0, //滑动开始y轴位置
+        isShowAdver: true,
     },
     // 生命周期函数--监听页面加载
-    onLoad: function (options) {
+    onLoad: function(options) {
         wx.showLoading({
             title: '加载中',
         });
@@ -169,25 +170,52 @@ Page({
         param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
+            let result = res.data.data;
             if (this.data.is_onPullDown) {
                 this.setData({
                     topicList: [],
+                    IsAdvertClose: []
                 });
             }
-            let topic_list = res.data.data.topic_list,
+            let topic_list = result.topic_list,
                 list = this.data.topicList,
                 today_list = [],
-                hots_list = [];
-            today_list.push(res.data.data.today);
-            hots_list.push(res.data.data.hot);
+                hots_list = [],
+                advert_list = this.data.advert || [],
+                advert_fiexd = '',
+                IsAdvertClose = this.data.IsAdvertClose || [],
+                per_page = topic_list.per_page;
+            if (IsAdvertClose == '') {
+                for (var i = 0; i < topic_list.total; i++) {
+                    if (i % per_page == 0) {
+                        var obj = {}
+                        obj.idx = i;
+                        obj.checkShow = true;
+                        IsAdvertClose.push(obj)
+                    }
+                }
+            }
+
+            today_list.push(result.today);
+            hots_list.push(result.hot);
             list = list.concat(topic_list.data);
+            for (var key in result.ads) {
+                if (key != 'top_ad') {
+                    advert_list.push(result.ads[key]);
+                } else {
+                    advert_fiexd = result.ads[key];
+                }
+            }
             this.setData({
                 todays: today_list,
                 hots: hots_list,
                 topicList: list,
                 last_page: topic_list.last_page,
-                advert: res.data.data.ads,
                 wx_show: true,
+                advert: advert_list,
+                advert_fiexd: advert_fiexd,
+                per_page: per_page,
+                IsAdvertClose: IsAdvertClose,
                 is_onPullDown: false
             });
             if (topic_list.last_page <= this.data.page) {
@@ -277,7 +305,6 @@ Page({
         param.data = {};
         param.data.order = this.data.sortIdx;
         param.data.token = wx.getStorageSync('token');
-        param.data.page = this.data.page;
         param.closeLoad = true;
         util.requests(param, res => {
             if (this.data.is_onPullDown) {
@@ -354,4 +381,29 @@ Page({
         //将当前坐标进行保存以进行下一次计算
         this.data.lastY = currentY
     },
+    // 打开网页
+    openWebView: function(e) {
+        let weburl = e.currentTarget.dataset.weburl;
+        wx.navigateTo({
+            url: '/pages/web-view/index?weburl=' + weburl
+        })
+    },
+    // 关闭广告
+    CloseAdver: function() {
+        this.setData({
+            isShowAdver: false,
+        });
+    },
+    CloseAdverAcross: function(e) {
+        let idx = e.currentTarget.dataset.index,
+            IsAdvertClose = this.data.IsAdvertClose;
+        for (var i = 0; i < IsAdvertClose.length; i++) {
+            if (IsAdvertClose[i].idx == idx) {
+                IsAdvertClose[i].checkShow = false;
+            }
+        }
+        this.setData({
+            IsAdvertClose: IsAdvertClose
+        })
+    }
 })

@@ -8,7 +8,8 @@
         "pages/message/index",
         "pages/user/index",
         "pages/treeDetail/index",
-        "pages/authorize/index"
+        "pages/authorize/index",
+        "pages/web-view/index"
     ],
     "window": {
         "backgroundTextStyle": "dark",

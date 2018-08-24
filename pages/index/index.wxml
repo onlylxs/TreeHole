@@ -1,5 +1,7 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
+<import src="../adver-templ/index.wxml" />
+<import src="../adverfiexd-templ/index.wxml" />
 <view class="container" bindtouchmove="handletouchmove">
     <!--调用seachHD查询模版  -->
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
@@ -11,7 +13,7 @@
                 <view class="mark-box">今日话题</view>
                 <view class="NotTopic">虚位以待</view>
             </view>
-            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}"  wx:if="{{todays != ''}}">
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{todays != ''}}">
                 <view class="mark-box">今日话题</view>
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
@@ -33,7 +35,6 @@
                     </view>
                 </view>
             </view>
-
             <!-- 热话题 -->
             <view class="Tree_Item Tree_Item_Mark" wx:if="{{hots == ''}}">
                 <view class="mark-box">热话题</view>
@@ -61,32 +62,36 @@
                     </view>
                 </view>
             </view>
-            <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert.app_id}}" path="{{advert.page}}" extra-data="" version="release" wx:if="{{advert.app_id !=''}}" wx:if="{{advert!=''}}">
-                <image src="{{advert.banner}}" class="adverp"></image>
-            </navigator>
+
             <!-- 话题列表 -->
-            <view class="Tree_Item" wx:for="{{topicList}}" wx:key="{{index}}" bindtap='ToDetail' data-tpid="{{item.id}}">
-                <text class='nick_name'>{{item.nick_name}}</text>
-                <text class='content_text'>{{item.content}}</text>
-                <view class='Tree_bottom'>
-                    <text class="time_text">{{item.create_time}}</text>
-                    <view class="botton_right">
-                        <label class="photo-box" wx:if="{{item.photos.length>0}}">
-                            <text class='iconfont icon-picture'></text>
-                            <text>{{item.photos.length}}</text>
-                        </label>
-                        <label class="live-box" catchtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="3" data-is_liked="{{item.is_liked}}">
-                            <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
-                            <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
-                        </label>
-                        <label class="mess-box">
-                            <text class='iconfont icon-xiaoxi'></text>
-                            <text>{{item.details}}</text>
-                        </label>
+            <template is="adverBox" data="{{advert,index:-1,per_page,IsAdvertClose}}" />
+            <view wx:for="{{topicList}}" wx:key="{{index}}">
+                <view class="Tree_Item" bindtap='ToDetail' data-tpid="{{item.id}}">
+                    <text class='nick_name'>{{item.nick_name}}</text>
+                    <text class='content_text'>{{item.content}}</text>
+                    <view class='Tree_bottom'>
+                        <text class="time_text">{{item.create_time}}</text>
+                        <view class="botton_right">
+                            <label class="photo-box" wx:if="{{item.photos.length>0}}">
+                                <text class='iconfont icon-picture'></text>
+                                <text>{{item.photos.length}}</text>
+                            </label>
+                            <label class="live-box" catchtap='setLikes' data-tid="{{item.id}}" data-index="{{index}}" data-ttype="3" data-is_liked="{{item.is_liked}}">
+                                <text class='iconfont icon-aixin  {{item.is_liked == 1 ? "selected" : ""}}'></text>
+                                <text class='{{item.is_liked == 1 ? "selected" : ""}}'>{{item.likes}}</text>
+                            </label>
+                            <label class="mess-box">
+                                <text class='iconfont icon-xiaoxi'></text>
+                                <text>{{item.details}}</text>
+                            </label>
+                        </view>
                     </view>
                 </view>
+                <template is="adverBox" data="{{advert,index,per_page,IsAdvertClose}}" />
             </view>
             <template is="loadmoreBox" data="{{loadmore}}" />
         </view>
     </view>
+    <!-- 漂浮广告 -->
+    <template is="adverfiexdBox" data="{{advert_fiexd,isShowAdver}}" />
 </view>

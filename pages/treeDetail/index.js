@@ -30,6 +30,8 @@ Page({
         loadmore: true,
         comm_content: '',
         lastY: 0, //滑动开始y轴位置
+        indexArr: [-1, 6, 13, 20, 27, 34, 41, 48, 55, 62],
+        isShowAdver:true
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -85,22 +87,36 @@ Page({
         param.data.order = this.data.sortIdx;
         param.closeLoad = true;
         util.requests(param, res => {
+            let result = res.data.data;
             if (this.data.is_onPullDown) {
                 this.setData({
                     comm_detailList: []
                 });
             }
-            let cdetail = res.data.data.detail,
-                list = this.data.comm_detailList;
+            let cdetail = result.detail,
+                list = this.data.comm_detailList,
+                advert_list = [],
+                advert_fiexd = '';
             if (cdetail != '') {
                 list = list.concat(cdetail.data);
             }
+            for (var key in result.ads) {
+                if (key != 'top_ad') {
+                    advert_list.push(result.ads[key]);
+                } else {
+                    advert_fiexd = result.ads[key];
+                }
+            }
+            let mathNumber = Math.floor(Math.random() * (advert_list.length));
             this.setData({
-                d_content: res.data.data,
+                d_content: result,
                 comm_detailList: list,
-                location: res.data.data.location,
+                location: result.location,
                 last_page: cdetail.last_page || 0,
                 is_onPullDown: false,
+                advert: advert_list,
+                advert_fiexd: advert_fiexd,
+                index: mathNumber,
                 wx_show: true
             });
             if (this.data.last_page <= this.data.page) {
@@ -146,10 +162,12 @@ Page({
             let list = this.data.comm_detailList,
                 commObj = {},
                 rdata = res.data.data;
+            console.info(res)
             commObj.id = rdata.id;
             commObj.content = rdata.content;
             commObj.likes = 0;
             commObj.is_liked = 0;
+            commObj.nick_name = wx.getStorageSync('nick_name');
             commObj.create_time = util.formatTime(new Date(), true);
             list.splice(0, 0, commObj);
             this.setData({
@@ -243,7 +261,7 @@ Page({
             this.topicDetail();
         }
     },
-    handletouchmove: function (event) {
+    handletouchmove: function(event) {
         var currentY = event.touches[0].pageY
         var ty = currentY - this.data.lastY
         console.info(ty)
@@ -256,4 +274,9 @@ Page({
         //将当前坐标进行保存以进行下一次计算
         this.data.lastY = currentY
     },
+    CloseAdverAcross:function(){
+        this.setData({
+            isShowAdver:false
+        })
+    }
 })

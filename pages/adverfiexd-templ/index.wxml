@@ -1,0 +1,14 @@
+<template name="adverfiexdBox">
+    <view class="advert_fiexd" wx:if="{{isShowAdver && advert_fiexd!=''}}">
+        <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdver" />
+        <view class="adver_text">广告</view>
+        <view wx:if="{{advert_fiexd.type == 1}}">
+            <image src="{{advert_fiexd.banner}}" class="adverp" bindtap="openWebView" data-weburl="{{advert_fiexd.page}}"></image>
+        </view>
+        <view wx:if="{{advert_fiexd.type == 2}}">
+            <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert_fiexd.app_id}}" path="{{advert_fiexd.page}}" extra-data="" version="release" wx:if="{{advert_fiexd.app_id !=''}}" wx:if="{{advert_fiexd!=''}}">
+                <image src="{{advert_fiexd.banner}}" class="adverp"></image>
+            </navigator>
+        </view>
+    </view>
+</template>

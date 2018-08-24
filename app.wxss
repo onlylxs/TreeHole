@@ -27,3 +27,13 @@ Text{font-family: Microsoft YaHei;font-size: 24rpx;}
 .choice__HD::after, .Tree_List::after,choice__HD .choice__Left .TimeBoxBtn:after{content: '';display: block;clear: both;}
 .nick_name{color:#00aeff;}
 .NotTopic{padding:1rem 0;text-align:center;font-size:28rpx;color:#999;}
+.adverp_nav {background: #fff;margin-bottom: 10rpx;}
+.adverp {width: 100%;height: 200rpx;margin-bottom: 5rpx;}
+.advert_fiexd{position: fixed;bottom:10rpx;right:20rpx;}
+.advert_fiexd .adverp_nav{background: none;}
+.advert_fiexd image{width:200rpx;height:200rpx;border-radius: 15rpx;}
+.advert_fiexd image.closeImageBtn{width:30rpx;height:30rpx;position: absolute;right:0;top:0;}
+.advert_across image.closeImageBtn{width:30rpx;height:30rpx;position: absolute;right:0;top:0;}
+.advert_across{position: relative;}
+.adver_text{width:60rpx;height:30rpx;line-height:30rox;font-size:22rpx;border: 1rpx solid #fff;position: absolute;right:0;bottom:27rpx;text-align: center;color:#fff;}
+.advert_across .adver_text{bottom:14rpx;}

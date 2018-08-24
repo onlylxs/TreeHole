@@ -9,7 +9,7 @@
 .choice__HD .choice__Left .TimeBox picker{width:100%;display: inline-block;padding:4rpx 8rpx;border-radius: 4rpx;margin:10rpx 10rpx 10rpx 0;color:#333;text-align: center; box-shadow: 1rpx 0 2rpx 2rpx rgba(0,186,255,0.45);}
 .choice__HD .choice__Left .TimeBox text{margin-right: 10rpx;}
 .choice__HD .choice__Left .TimeBoxBtn text{width: 390rpx;text-align:center;font-size:26rpx;margin:20rpx -20rpx -20rpx -20rpx;padding:10rpx 0;color:#fff;border-radius: 5rpx;background: #ffd101;display: block;}
-.choice__HD .choice__Right{flex: 1;text-align: right;margin-right: 30rpx;position: relative;}
+.choice__HD .choice__Right{flex: 1;text-align: right;position: relative;}
 .choice__HD .choice__Right .choice__title{padding:14rpx 32rpx;}
 .choice__HD .sort__box{position: absolute;z-index:999;padding:8rpx 0;background: #fff;top:68rpx;right: 0rpx;text-align: left;box-shadow: 0 3rpx 2rpx 3rpx #ccc;border-radius: 6rpx;}
 .choice__HD .sort__box text{display: block;}

@@ -9,6 +9,7 @@ Page({
         page: 1,
         keywords: '',
         isNotField: false,
+        isShowAdver: true,
     },
     onShow: function(options) {
         wx.showLoading({
@@ -23,9 +24,21 @@ Page({
         param.data = {};
         param.data.token = wx.getStorageSync('token');
         util.requests(param, res => {
+            let result = res.data.data,
+                advert_list = [],
+                advert_fiexd = '';
+            for (var key in result.ads) {
+                if (key != 'top_ad') {
+                    advert_list.push(result.ads[key]);
+                } else {
+                    advert_fiexd = result.ads[key];
+                }
+            }
             this.setData({
                 wx_show: true,
-                FollowFieldList: res.data.data.data
+                advert: advert_list,
+                advert_fiexd: advert_fiexd,
+                FollowFieldList: result.data
             })
             wx.stopPullDownRefresh();
         });
@@ -91,5 +104,11 @@ Page({
     },
     onPullDownRefresh: function() {
         this.onShow();
+    },
+    // 关闭广告
+    CloseAdver: function () {
+        this.setData({
+            isShowAdver: false,
+        });
     }
 })

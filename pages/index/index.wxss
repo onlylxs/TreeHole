@@ -1,15 +1,5 @@
 /**index.wxss**/
 
-.adverp_nav {
-    background: #fff;
-    margin-bottom: 10rpx;
-}
-
-.adverp {
-    width: 100%;
-    height: 200rpx;
-}
-
 .QueryAll {
     width: 140rpx;
     height: 40rpx;

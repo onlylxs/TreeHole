@@ -1,5 +1,6 @@
 <import src="../seach-templ/index.wxml" />
 <import src="../loadmore-templ/index.wxml" />
+<import src="../adver-templ/index.wxml" />
 <view class="container" bindtouchmove="handletouchmove">
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}" />
     <view wx:if="{{wx_show}}" style='padding-bottom:90rpx;'>
@@ -26,6 +27,21 @@
                 <text>{{location}}</text>
             </view>
         </view>
+        <!-- 广告开始 -->
+        <view class="advert_across" wx:if="{{advert[index].type == 1 && isShowAdver == true}}">
+            <image src="{{advert[index].banner}}" class="adverp" bindtap="openWebView" data-weburl="{{advert[index].page}}"></image>
+            <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
+            <view class="adver_text">广告</view>
+        </view>
+        <view class="advert_across" wx:if="{{advert[index].type == 2 && isShowAdver == true}}">
+            <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert[index].app_id}}" path="{{advert[index].page}}" extra-data="" version="release" wx:if="{{advert[index].app_id !=''}}" wx:if="{{advert[index]!=''}}">
+                <image src="{{advert[index].banner}}" class="adverp"></image>
+            </navigator>
+            <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
+            <view class="adver_text">广告</view>
+        </view>
+        <!-- 广告结束 -->
+
         <view class='Reply-tit'>
             <text>树洞回复</text>
         </view>

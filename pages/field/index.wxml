@@ -1,4 +1,5 @@
 <import src="../fieldhot-templ/index.wxml" />
+<import src="../adverfiexd-templ/index.wxml" />
 <view class="container" wx:if="{{wx_show}}">
     <view class="field_seach">
         <input type="text" placeholder="请输入搜索领域…" value="{{keywords}}" bindinput="search_content" />
@@ -38,4 +39,6 @@
     <view class="mt"></view>
     <!-- 热门领域 -->
     <template is="fieldTemplBox" data="{{FollowFieldList}}" />
+    <!-- 漂浮广告 -->
+    <template is="adverfiexdBox" data="{{advert_fiexd,isShowAdver}}" />
 </view>

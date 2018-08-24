@@ -50,6 +50,10 @@ Page({
                                 key: 'token',
                                 data: res.data.data.token,
                             })
+                            wx.setStorage({
+                                key: 'nick_name',
+                                data: res.data.data.nick_name,
+                            })
                             util.setStorageAll();
                             wx.navigateBack();
                         });
