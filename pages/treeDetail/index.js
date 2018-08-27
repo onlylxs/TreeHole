@@ -274,6 +274,13 @@ Page({
         //将当前坐标进行保存以进行下一次计算
         this.data.lastY = currentY
     },
+    // 打开网页
+    openWebView: function (e) {
+        let weburl = e.currentTarget.dataset.weburl;
+        wx.navigateTo({
+            url: '/pages/web-view/index?weburl=' + weburl
+        })
+    },
     CloseAdverAcross:function(){
         this.setData({
             isShowAdver:false
