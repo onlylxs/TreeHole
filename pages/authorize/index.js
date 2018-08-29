@@ -6,8 +6,10 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+    },
     onLoad() {},
+
     authCheck: function(success) {
         wx.showLoading({
             title: '加载中',
@@ -65,6 +67,6 @@ Page({
                     }
                 }
             });
-        }, 1500)
+        }, 2000)
     }
 })

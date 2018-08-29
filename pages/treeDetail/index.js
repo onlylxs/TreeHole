@@ -162,7 +162,6 @@ Page({
             let list = this.data.comm_detailList,
                 commObj = {},
                 rdata = res.data.data;
-            console.info(res)
             commObj.id = rdata.id;
             commObj.content = rdata.content;
             commObj.likes = 0;
@@ -264,7 +263,6 @@ Page({
     handletouchmove: function(event) {
         var currentY = event.touches[0].pageY
         var ty = currentY - this.data.lastY
-        console.info(ty)
         if (ty < 10 || ty > 10) {
             this.setData({
                 SortTF: false,

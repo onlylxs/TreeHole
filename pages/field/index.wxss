@@ -3,7 +3,7 @@
 .field_seach input{font-size:28rpx;padding:6rpx 10rpx;flex: 2;border:1rpx solid #cccccc;}
 .field_seach icon{margin-top: 4rpx;}
 .fieldList{margin:10rpx 30rpx 40rpx 30rpx;border:1rpx solid #cccccc;position: relative;}
-.fieldList .item{display: flex;padding:16rpx 0;border-bottom:1rpx solid #cccccc;margin:0 20rpx;}
+.fieldList .item{display: flex;padding:20rpx 0;border-bottom:1rpx solid #cccccc;margin:0 20rpx;}
 .fieldList .item:last-child{border-bottom:0;}
 .fieldList .item .title{flex:2;font-size:28rpx;}
 .fieldList .item .number{font-size:28rpx;}

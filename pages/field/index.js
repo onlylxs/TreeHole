@@ -3,7 +3,7 @@ import util from '../../utils/util.js';
 Page({
 
     data: {
-        MyFieldList: '',
+        MyFieldList: [],
         FollowFieldList: [],
         wx_show: false,
         page: 1,
@@ -52,17 +52,20 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.page = this.data.page;
         util.requests(param, res => {
-            let res_data = res.data.data.data;
+            let res_data = this.data.MyFieldList;
+                res_data = res_data.concat(res.data.data.data);
             if (res_data != undefined && res_data.length > 0) {
                 this.setData({
                     MyFieldList: res_data,
-                    last_page: res.data.data.last_page
+                    last_page: res.data.data.last_page,
+                    page:this.data.page
                 });
             } else {
                 this.setData({
                     MyFieldList: []
                 });
             }
+            this.data.page++;
             this.getHotFieldList();
         });
     },
@@ -106,7 +109,7 @@ Page({
         this.onShow();
     },
     // 关闭广告
-    CloseAdver: function () {
+    CloseAdver: function() {
         this.setData({
             isShowAdver: false,
         });
