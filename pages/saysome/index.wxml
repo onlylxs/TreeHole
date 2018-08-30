@@ -20,7 +20,10 @@
     </view>
     
     <view class="images_box">
-        <image wx:for="{{listpath}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="aspectFill" bindtap="imgYu" data-list="{{listpath}}" data-src="{{item}}" />
+        <view wx:for="{{listpath}}" wx:key="{{index}}" class="image_view">
+            <image src="{{item}}" lazy-load="true" mode="aspectFill" bindtap="imgYu" data-list="{{listpath}}" data-src="{{item}}" />
+            <view class="closeImage" bindtap="delImage" data-idx="{{index}}">x</view>
+        </view>
         <image src="../../static/images/add.png" lazy-load="true" mode="aspectFit" bindtap="getChooseImg" wx:if="{{listpath.length<3}}" />
     </view>
     <text class="imgtxt">图片上传（最多三张）</text>

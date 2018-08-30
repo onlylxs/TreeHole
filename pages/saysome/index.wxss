@@ -10,6 +10,8 @@
 .addre_box .iconfont{font-size:50rpx;vertical-align: middle;}
 .images_box{margin:20rpx 0 0 30rpx;}
 .images_box image{width: 212rpx;height:212rpx;border: 1rpx solid #cccccc;margin-right:20rpx;}
+.image_view{display: inline-block;position: relative;}
+.image_view .closeImage{width:30rpx;height:30rpx;line-height: 28rpx;color:#fff;font-size:24rpx;position: absolute;top:-15rpx;right:15rpx;background: red;border-radius: 50%;text-align: center;}
 .imgtxt{font-size:24rpx;color:#787878;margin-left:30rpx;}
 button.sendBtn{background: red;color:#fff;border-radius: 8rpx;padding:10rpx 0;text-align: center;font-size:30rpx;border:0;font-weight: 400;margin:20rpx 30rpx;box-sizing:inherit;}
 button[class="sendBtn"]::after {border: 0;} 

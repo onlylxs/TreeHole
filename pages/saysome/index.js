@@ -187,6 +187,17 @@ Page({
             })
         });
     },
+    delImage: function (e) {
+        let eidx = e.target.dataset.idx,
+            list_id = this.data.listid,
+            list_path = this.data.listpath;
+        list_id.remove(eidx);
+        list_path.remove(eidx);
+        this.setData({
+            listid: list_id,
+            listpath: list_path
+        });
+    },
     //发送
     SendTopic: function() {
         let content = this.data.sayContent || '';
