@@ -6,8 +6,7 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
-    },
+    data: {},
     onLoad() {},
 
     authCheck: function(success) {
@@ -36,17 +35,17 @@ Page({
         }
     },
     ckLogin: function(loginrawData, loginSignature) {
-        setTimeout(() => {
-            wx.login({ //登录
-                success: res => {
-                    if (res.code) {
-                        let loginCode = res.code,
-                            param = {};
-                        param.url = "login/signIn";
-                        param.data = {};
-                        param.data.code = loginCode;
-                        param.data.raw_data = loginrawData;
-                        param.data.signature = loginSignature;
+        wx.login({ //登录
+            success: res => {
+                if (res.code) {
+                    let loginCode = res.code,
+                        param = {};
+                    param.url = "login/signIn";
+                    param.data = {};
+                    param.data.code = loginCode;
+                    param.data.raw_data = loginrawData;
+                    param.data.signature = loginSignature;
+                    setTimeout(() => {
                         util.requests(param, res => {
                             wx.setStorage({
                                 key: 'token',
@@ -59,14 +58,14 @@ Page({
                             util.setStorageAll();
                             wx.navigateBack();
                         });
-                    } else {
-                        wx.showToast({
-                            title: '登录失败，请重新授权',
-                            icon: "none"
-                        })
-                    }
+                    }, 1000)
+                } else {
+                    wx.showToast({
+                        title: '登录失败，请重新授权',
+                        icon: "none"
+                    })
                 }
-            });
-        }, 2000)
+            }
+        });
     }
 })

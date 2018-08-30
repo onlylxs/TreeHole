@@ -11,7 +11,7 @@ Page({
         isNotField: false,
         isShowAdver: true,
     },
-    onShow: function(options) {
+    onLoad: function(options) {
         wx.showLoading({
             title: '加载中',
         });
@@ -52,17 +52,24 @@ Page({
         param.data.token = wx.getStorageSync('token');
         param.data.page = this.data.page;
         util.requests(param, res => {
+            if (this.data.is_onPullDown) {
+                this.setData({
+                    MyFieldList: [],
+                });
+            }
             let res_data = this.data.MyFieldList;
-                res_data = res_data.concat(res.data.data.data);
+            res_data = res_data.concat(res.data.data.data);
             if (res_data != undefined && res_data.length > 0) {
                 this.setData({
                     MyFieldList: res_data,
                     last_page: res.data.data.last_page,
-                    page:this.data.page
+                    page: this.data.page,
+                    is_onPullDown: false
                 });
             } else {
                 this.setData({
-                    MyFieldList: []
+                    MyFieldList: [],
+                    is_onPullDown: false
                 });
             }
             this.data.page++;
@@ -105,8 +112,13 @@ Page({
             url: '../field-list/index?cid=' + cid + '&focus=' + focus + '&tit=' + tit
         })
     },
-    onPullDownRefresh: function() {
-        this.onShow();
+    onPullDownRefresh: function () {
+        this.setData({
+            page: 1,
+            loadmore: true,
+            is_onPullDown: true
+        })
+        this.getMyFieldList();
     },
     // 关闭广告
     CloseAdver: function() {
