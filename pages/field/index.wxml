@@ -30,7 +30,7 @@
         <view class="mark-box">我关注的领域</view>
         <view class="item" wx:for="{{MyFieldList}}" wx:key="{{index}}" data-cid="{{item.id}}" data-focus="1" data-tit="{{item.name}}" bindtap="GOFieldList">
             <text class="title">{{item.name}}</text>
-            <text class="number">{{item.t_likes}}</text>
+            <text class="number">{{item.num}}</text>
         </view>
         <view class="item more" wx:if="{{page<last_page}}" bindtap="getMyFieldList">
             <text>载入更多</text>

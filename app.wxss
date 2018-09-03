@@ -35,5 +35,5 @@ Text{font-family: Microsoft YaHei;font-size: 24rpx;}
 .advert_fiexd image.closeImageBtn{width:30rpx;height:30rpx;position: absolute;right:0;top:0;}
 .advert_across image.closeImageBtn{width:30rpx;height:30rpx;position: absolute;right:0;top:0;}
 .advert_across{position: relative;}
-.adver_text{width:60rpx;height:30rpx;line-height:30rox;font-size:22rpx;border: 1rpx solid #fff;position: absolute;right:0;bottom:27rpx;text-align: center;color:#fff;}
-.advert_across .adver_text{bottom:14rpx;}
+.adver_text{width:60rpx;height:30rpx;line-height:30rox;font-size:22rpx;border: 1rpx solid #fff;position: absolute;right:0;bottom:17rpx;text-align: center;color:#fff;}
+.advert_across .adver_text{bottom:17rpx;}

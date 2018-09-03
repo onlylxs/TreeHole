@@ -3,7 +3,7 @@
         <view class="mark-box">热门领域</view>
         <view class="item" wx:for="{{FollowFieldList}}" wx:key="{{index}}" data-cid="{{item.id}}" data-focus="{{item.is_focus}}" data-tit="{{item.name}}" bindtap="GOFieldList">
             <text class="title">{{item.name}}</text>
-            <text class="number">{{item.t_likes}}</text>
+            <text class="number">{{item.num}}</text>
         </view>
     </view>
 </template>
