@@ -15,12 +15,12 @@ Page({
         page: 1,
         sortList: [{
             'idx': 1,
-            'clss': 'icon-shengxu',
-            'text': '时间顺序'
-        }, {
-            'idx': 2,
             'clss': 'icon-paixu',
             'text': '时间倒序'
+        }, {
+            'idx': 2,
+            'clss': 'icon-shengxu',
+            'text': '时间顺序'
         }, {
             'idx': 3,
             'clss': 'icon-remen',

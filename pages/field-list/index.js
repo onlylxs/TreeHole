@@ -11,17 +11,17 @@ Page({
         SortTF: false,
         startDate: util.GetFilterDate('start'),
         endDate: util.GetFilterDate('end'),
-        clss: 'icon-shengxu',
-        sortText: '时间顺序',
+        clss: 'icon-paixu',
+        sortText: '时间倒序',
         page: 1,
         sortList: [{
             'idx': 1,
-            'clss': 'icon-shengxu',
-            'text': '时间顺序'
-        }, {
-            'idx': 2,
             'clss': 'icon-paixu',
             'text': '时间倒序'
+        }, {
+            'idx': 2,
+            'clss': 'icon-shengxu',
+            'text': '时间顺序'
         }, {
             'idx': 3,
             'clss': 'icon-remen',

@@ -28,7 +28,7 @@
             </view>
         </view>
         <!-- 广告开始 -->
-        <view class="advert_across" wx:if="{{advert[index].type == 1 && isShowAdver == true}}">
+        <view class="advert_across" wx:if="{{advert[index].type == 1 && isShowAdver == true}}" style="padding:0 30rpx;margin-top:20rpx;">
             <image src="{{advert[index].banner}}" class="adverp" bindtap="openWebView" data-weburl="{{advert[index].page}}"></image>
             <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
             <view class="adver_text">广告</view>

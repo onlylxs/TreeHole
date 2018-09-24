@@ -20,6 +20,7 @@ Page({
             }
         })
     },
+    // 点击确定后回调函数
     onGotUserInfo: function(e) {
         let rawData = e.detail.rawData || '';
         if (rawData) {
