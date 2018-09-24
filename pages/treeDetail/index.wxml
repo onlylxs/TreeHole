@@ -29,16 +29,20 @@
         </view>
         <!-- 广告开始 -->
         <view class="advert_across" wx:if="{{advert[index].type == 1 && isShowAdver == true}}" style="padding:0 30rpx;margin-top:20rpx;">
-            <image src="{{advert[index].banner}}" class="adverp" bindtap="openWebView" data-weburl="{{advert[index].page}}"></image>
-            <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
-            <view class="adver_text">广告</view>
+            <view class="advert_across2">
+                <image src="{{advert[index].banner}}" class="adverp" bindtap="openWebView" data-weburl="{{advert[index].page}}"></image>
+                <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
+                <view class="adver_text">广告</view>
+            </view>
         </view>
-        <view class="advert_across" wx:if="{{advert[index].type == 2 && isShowAdver == true}}">
-            <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert[index].app_id}}" path="{{advert[index].page}}" extra-data="" version="release" wx:if="{{advert[index].app_id !=''}}" wx:if="{{advert[index]!=''}}">
-                <image src="{{advert[index].banner}}" class="adverp"></image>
-            </navigator>
-            <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
-            <view class="adver_text">广告</view>
+        <view class="advert_across" wx:if="{{advert[index].type == 2 && isShowAdver == true}}" style="padding:0 30rpx;margin-top:20rpx;">
+            <view class="advert_across2">
+                <navigator class="adverp_nav" target="miniProgram" open-type="navigate" app-id="{{advert[index].app_id}}" path="{{advert[index].page}}" extra-data="" version="release" wx:if="{{advert[index].app_id !=''}}" wx:if="{{advert[index]!=''}}">
+                    <image src="{{advert[index].banner}}" class="adverp"></image>
+                </navigator>
+                <image class="closeImageBtn" src="../../static/images/close.png" lazy-load="true" mode="aspectFit" bindtap="CloseAdverAcross" />
+                <view class="adver_text">广告</view>
+            </view>
         </view>
         <!-- 广告结束 -->
 
@@ -47,7 +51,7 @@
         </view>
         <view wx:if="{{comm_detailList.length > 0}}">
             <view class="Tree_List">
-                <view class="Tree_Item" wx:for="{{comm_detailList}}" wx:key="{{index}}">
+                <view class="Tree_Item item{{index%7+1}}" wx:for="{{comm_detailList}}" wx:key="{{index}}">
                     <text class='nick_name'>{{item.nick_name}}</text>
                     <text class='content_text'>{{item.content}}</text>
                     <view class='Tree_bottom'>

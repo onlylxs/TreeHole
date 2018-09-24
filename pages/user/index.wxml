@@ -5,7 +5,7 @@
     <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
     <view class="QueryAll" bindtap="QueryAllTap">查看全部</view>
     <view wx:if="{{wx_show}}">
-        <view class="Tree_List">
+        <view class="User_Tree_List Tree_List">
             <!-- 话题列表 -->
             <view class="Tree_Item" wx:for="{{userTopic}}" wx:key="{{index}}" bindtap='ToDetail' bindlongtap="deleteTopic" data-tpid="{{item.id}}">
                 <text class='content_text'>{{item.content}}</text>

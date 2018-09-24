@@ -22,7 +22,7 @@ Page({
         })
         this.getMessageList();
     },
-    onShow: function () {
+    onShow: function() {
         if (wx.getStorageSync('IsUpdateMsg') == true) {
             wx.setStorage({
                 key: 'IsUpdateMsg',
@@ -74,7 +74,7 @@ Page({
         wx.stopPullDownRefresh();
     },
     //跳转详情页面
-    ToDetail: function (e) {
+    ToDetail: function(e) {
         let tpid = e.currentTarget.dataset.tpid;
         wx.navigateTo({
             url: '../treeDetail/index?tid=' + tpid

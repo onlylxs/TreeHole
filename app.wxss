@@ -2,38 +2,251 @@
 @import "pages/seach-templ/index.wxss";
 @import "pages/fieldhot-templ/index.wxss";
 @import "pages/loadmore-templ/index.wxss";
+
 /**app.wxss**/
-.container{padding-bottom: 5rpx;}
-Text{font-family: Microsoft YaHei;font-size: 24rpx;}
-.TreeHole{background: #fff;}
-.mb__header{padding-bottom: 90rpx;}
-.Tree_List{padding: 0 30rpx 0 30rpx;clear: both;margin-top: 40rpx;}
-.Tree_List .Tree_Item{box-shadow: 0 3rpx 1px 3rpx #ccc;border-radius:6rpx; padding: 20rpx;margin-bottom: 20rpx;position: relative;}
-.Tree_List .Tree_Item::after{content:'';display: block;clear: both;}
-.Tree_List .Tree_Item.Tree_Item_Mark{margin: 70rpx 0 45rpx 0;}
-.Tree_List .Tree_Item .mark-box{width: 140rpx;height: 50rpx;line-height: 50rpx;position: absolute;top: -35rpx;left: 20rpx;border: 1rpx solid #ed711a;color: #ed711a;text-align: center;font-size: 26rpx;background: #fff;font-weight: 800;}
-.Tree_List .Tree_Item .content_text{font-size:28rpx;max-height: 120rpx;line-height: 1.55;display: -webkit-box;-webkit-line-clamp: 3;overflow: hidden;-webkit-line-break: auto;-webkit-box-orient: vertical;}
-.Tree_List .Tree_Item .content_text.No_Overflow{max-height: inherit;height: auto !important;overflow: inherit !important;-webkit-line-clamp: inherit !important;}
-.Tree_bottom{display: flex;flex-direction: row;align-items: flex-end;}
-.Tree_bottom .time_text{color: #999;width: 300rpx;}
-.Tree_bottom .botton_right{flex: 1;text-align: right;display: flex;justify-content: flex-end}
-.Tree_bottom .botton_right label{margin-left: 30rpx;}
-.Tree_bottom .botton_right .photo-box{background: #ed711a;border-radius: 2px;padding: 0 6rpx;height: 36rpx;line-height: 34rpx;margin-top:6rpx;}
-.Tree_bottom .botton_right .photo-box text{color: #fff;font-size:24rpx;}
-.Tree_bottom .botton_right .photo-box text.iconfont{color: #fff;font-size:30rpx;}
-.Tree_bottom .botton_right text{font-size: 26rpx;color: #787878;}
-.Tree_bottom .botton_right text.iconfont{font-size: 36rpx;vertical-align: middle;margin-right: 3rpx;color: #787878;}
-.Tree_bottom .botton_right text.selected{color:red !important;}
-.choice__HD::after, .Tree_List::after,choice__HD .choice__Left .TimeBoxBtn:after{content: '';display: block;clear: both;}
-.nick_name{color:#00aeff;}
-.NotTopic{padding:1rem 0;text-align:center;font-size:28rpx;color:#999;}
-.adverp_nav {background: #fff;margin-bottom: 10rpx;}
-.adverp {width: 100%;height: 200rpx;margin-bottom: 5rpx;}
-.advert_fiexd{position: fixed;bottom:10rpx;right:20rpx;}
-.advert_fiexd .adverp_nav{background: none;}
-.advert_fiexd image{width:200rpx;height:200rpx;border-radius: 15rpx;}
-.advert_fiexd image.closeImageBtn{width:30rpx;height:30rpx;position: absolute;right:0;top:0;}
-.advert_across image.closeImageBtn{width:30rpx;height:30rpx;position: absolute;right:0;top:0;}
-.advert_across{position: relative;}
-.adver_text{width:60rpx;height:30rpx;line-height:30rox;font-size:22rpx;border: 1rpx solid #fff;position: absolute;right:0;bottom:17rpx;text-align: center;color:#fff;}
-.advert_across .adver_text{bottom:17rpx;}
+
+.container {
+    padding-bottom: 5rpx;
+}
+
+Text {
+    font-family: Microsoft YaHei;
+    font-size: 24rpx;
+}
+
+.TreeHole {
+    background: #fff;
+}
+
+.mb__header {
+    padding-bottom: 90rpx;
+}
+
+.Tree_List {
+    padding: 0 30rpx 0 30rpx;
+    clear: both;
+    margin-top: 40rpx;
+}
+
+.Tree_List .Tree_Item {
+    box-shadow: 0 3rpx 1px 3rpx #ccc;
+    border-radius: 6rpx;
+    padding: 15rpx 25rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+    background: #e16b8c;
+}
+
+.Tree_List .Tree_Item.item1 {
+    background: #e16b8c;
+}
+.Tree_List .Tree_Item.item2 {
+    background: #f17c67;
+}
+.Tree_List .Tree_Item.item3 {
+    background: #86c166;
+}
+.Tree_List .Tree_Item.item4 {
+    background: #5dac81;
+}
+.Tree_List .Tree_Item.item5 {
+    background: #00aa90;
+}
+.Tree_List .Tree_Item.item6 {
+    background: #58b2dc;
+}
+.Tree_List .Tree_Item.item7 {
+    background: #8f77b5;
+}
+.Tree_List .Tree_Item.item8 {
+    background: #2f2147;
+}
+
+.Tree_List .Tree_Item::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.Tree_List .Tree_Item.Tree_Item_Mark {
+    margin: 70rpx 0 65rpx 0;
+    background: url("https://xiao.xinyuanhudong.com/uploads/images/20180924/013249d921cd57bd65d85292afddc116.png");
+    background-size: 100% 100%;
+}
+
+.Tree_List .Tree_Item.Tree_Item_Mark .content_text {
+    color: #aaa;
+}
+
+.Tree_List .Tree_Item .mark-box {
+    width: 140rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    position: absolute;
+    top: -35rpx;
+    left: 20rpx;
+    border: 1rpx solid #ed711a;
+    color: #ed711a;
+    text-align: center;
+    font-size: 26rpx;
+    background: #fff;
+    font-weight: 800;
+}
+
+.Tree_List .Tree_Item .content_text {
+    font-size: 28rpx;
+    max-height: 120rpx;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    -webkit-line-break: auto;
+    -webkit-box-orient: vertical;
+}
+
+.Tree_List .Tree_Item .content_text.No_Overflow {
+    max-height: inherit;
+    height: auto !important;
+    overflow: inherit !important;
+    -webkit-line-clamp: inherit !important;
+}
+
+.Tree_bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.Tree_bottom .time_text {
+    color: #fff;
+    width: 300rpx;
+}
+
+.Tree_bottom .botton_right {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Tree_bottom .botton_right label {
+    margin-left: 30rpx;
+}
+
+.Tree_bottom .botton_right .photo-box {
+    background: #ed711a;
+    border-radius: 2px;
+    padding: 0 6rpx;
+    height: 36rpx;
+    line-height: 34rpx;
+    margin-top: 6rpx;
+}
+
+.Tree_bottom .botton_right .photo-box text {
+    color: #fff;
+    font-size: 24rpx;
+}
+
+.Tree_bottom .botton_right .photo-box text.iconfont {
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.Tree_bottom .botton_right text {
+    font-size: 26rpx;
+    color: #fff;
+}
+
+.Tree_bottom .botton_right text.iconfont {
+    font-size: 36rpx;
+    vertical-align: middle;
+    margin-right: 3rpx;
+    color: #fff;
+}
+
+.Tree_bottom .botton_right text.selected {
+    color: red !important;
+}
+
+.choice__HD::after, .Tree_List::after,
+choice__HD .choice__Left .TimeBoxBtn:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.nick_name {
+    color: #fff;
+}
+
+.NotTopic {
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 28rpx;
+    color: #aaa;
+}
+
+.adverp_nav {
+    background: #fff;
+    margin-bottom: 10rpx;
+}
+
+.adverp {
+    width: 100%;
+    height: 200rpx;
+    margin-bottom: 5rpx;
+    border-radius: 6rpx;
+}
+
+.advert_fiexd {
+    position: fixed;
+    bottom: 10rpx;
+    right: 20rpx;
+}
+
+.advert_fiexd .adverp_nav {
+    background: none;
+}
+
+.advert_fiexd image {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 6rpx;
+}
+
+.advert_fiexd image.closeImageBtn {
+    width: 30rpx;
+    height: 30rpx;
+    position: absolute;
+    right: 6rpx;
+    top: 6rpx;
+}
+
+.advert_across image.closeImageBtn {
+    width: 30rpx;
+    height: 30rpx;
+    position: absolute;
+    right: 6rpx;
+    top: 8rpx;
+}
+
+.advert_across2, .advert_across {
+    position: relative;
+}
+
+.adver_text {
+    width: 60rpx;
+    height: 30rpx;
+    line-height: 30rox;
+    font-size: 22rpx;
+    border: 1rpx solid #fff;
+    position: absolute;
+    right: 6rpx;
+    bottom: 24rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.advert_across .adver_text {
+    bottom: 24rpx;
+}
