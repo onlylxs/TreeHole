@@ -1,28 +1,22 @@
-/* pages/user/index.wxss */
+.lists {
+    padding: 0 30rpx;
+    margin-top: 70rpx;
+}
 
-.QueryAll {
-    width: 140rpx;
+.lists .item {
+    padding: 20rpx 0;
+    border-bottom: 1rpx solid #aaa;
+}
+
+.lists image {
+    width: 40rpx;
     height: 40rpx;
-    line-height: 40rpx;
-    font-size: 26rpx;
-    border: 1rpx solid #454545;
-    border-radius: 2px;
-    text-align: center;
-    color: #454545;
-    position: fixed;
-    top: 24rpx;
-    z-index: 999;
-    left: 250rpx;
+    display: inline-block;
+    vertical-align: sub;
+    margin-right: 15rpx;
 }
 
-.User_Tree_List .Tree_Item {
-    background: #2f2147;
-}
-
-.User_Tree_List .Tree_Item .content_text {
-    color: #fff;
-}
-
-.User_Tree_List .Tree_bottom .time_text {
-    color: #aaa;
+.lists text {
+    font-size: 28rpx;
+    color: #0b0b0b;
 }

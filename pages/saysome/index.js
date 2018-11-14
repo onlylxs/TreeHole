@@ -1,4 +1,3 @@
-// pages/saysome/index.js
 const app = getApp();
 import util from '../../utils/util.js';
 
@@ -61,23 +60,29 @@ Page({
     },
     //获取地址经纬度
     getMap: function(e) {
-        wx.chooseLocation({
-            success: res => {
-                this.setData({
-                    longt: res.longitude,
-                    lat: res.latitude,
-                    positionT: res.address
-                });
-            },
-            fail: res => {
-                if (res.errMsg == 'chooseLocation:fail auth deny') {
+        if (this.data.positionT == '请选择位置') {
+            wx.chooseLocation({
+                success: res => {
                     this.setData({
-                        isOpenLocation: true,
-                        positionT: '未授权位置，点击授权'
+                        longt: res.longitude,
+                        lat: res.latitude,
+                        positionT: res.address
                     });
+                },
+                fail: res => {
+                    if (res.errMsg == 'chooseLocation:fail auth deny') {
+                        this.setData({
+                            isOpenLocation: true,
+                            positionT: '未授权位置，点击授权'
+                        });
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            this.setData({
+                positionT: '请选择位置'
+            });
+        }
     },
     //获取输入的内容
     sayContent: function(e) {
@@ -187,7 +192,7 @@ Page({
             })
         });
     },
-    delImage: function (e) {
+    delImage: function(e) {
         let eidx = e.target.dataset.idx,
             list_id = this.data.listid,
             list_path = this.data.listpath;

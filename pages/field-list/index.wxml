@@ -12,11 +12,11 @@
     <view>
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}" style='margin-bottom:30rpx;'>
+            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}" style='margin-bottom:30rpx;background:url({{realm}}MarkBag.png)'>
                 <view class="mark-box">今日话题</view>
                 <view class="NotTopic">虚位以待</view>
             </view>
-            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{todays != ''}}" style='margin-bottom:30rpx;'>
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{todays != ''}}" style='margin-bottom:30rpx;background:url({{realm}}MarkBag.png)'>
                 <view class="mark-box">今日话题</view>
                 <text class='content_text'>{{item.content}}</text>
                 <view class='Tree_bottom'>

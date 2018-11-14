@@ -1,0 +1,72 @@
+.changename {
+    margin-top: 30vh;
+    text-align: center;
+    position: relative;
+}
+
+.changename image {
+    position: absolute;
+    top: 15rpx;
+    left: 0;
+    z-index: -1;
+    display: flex;
+    width: 100%;
+}
+
+.changename .name_title {
+    font-size: 30rpx;
+    margin: 25rpx 0;
+}
+
+.changename .name_title text {
+    color: #1a37cd;
+    font-size: 30rpx;
+}
+
+.changename .name_content {
+    text-align: center;
+    font-size: 27rpx;
+    color: #999;
+    line-height: 1.7;
+}
+
+.changename .name_content text {
+    color: red;
+}
+
+.from_container {
+    width: 60%;
+    margin: 30rpx auto;
+}
+
+.from_container input {
+    width: 90%;
+    font-size: 28rpx;
+    text-align: left;
+    background: #fff;
+    border: 1rpx solid #aaa;
+    border-radius: 4rpx;
+    padding: 15rpx 5%;
+}
+
+.from_container .button__btn {
+    margin-top: 40rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.from_container .button__btn button {
+    width: 150rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 28rpx;
+    border: 1rpx solid #aaa;
+    background: #fff;
+    margin: 0;
+    border-radius: 4rpx;
+}
+
+.from_container .button__btn button::after {
+    border: 0;
+}

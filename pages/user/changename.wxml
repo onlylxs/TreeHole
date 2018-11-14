@@ -1,0 +1,21 @@
+<view class="container">
+    <view class="changename">
+        <image src="../../static/images/authorize.png"></image>
+        <view class="name_title">
+            您现在的昵称为：
+            <text>用户802938</text>
+        </view>
+        <view class="name_content">
+            您有
+            <text>1</text> 次改名机会
+        </view>
+        <view class="name_content">想将昵称修改为：</view>
+        <view class="from_container">
+            <input bindinput="getNameVal" placeholder="单行输入" />
+            <view class="button__btn">
+                <button bindtap="ReturnFunc" hover-class="none">返回</button>
+                <button bindtap="ConfirmFunc" hover-class="none">确定</button>
+            </view>
+        </view>
+    </view>
+</view>

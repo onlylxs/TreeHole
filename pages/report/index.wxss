@@ -1,0 +1,72 @@
+.report {
+    width: 70vw;
+    margin: 50rpx auto;
+    text-align: center;
+}
+
+.report-box {
+    margin-bottom: 25rpx;
+}
+
+.report-box view {
+    font-size: 30rpx;
+    margin-bottom: 10rpx;
+}
+
+.report-box .v1 {
+    color: #232323;
+}
+
+.report-box .v2 {
+    color: #1a37cd;
+}
+
+.report-box .v2 text {
+    font-size: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 85%;
+    display: inline-block;
+}
+
+.report-box .time {
+    font-size: 27rpx;
+    color: #aaa;
+}
+
+.report-box .t3 {
+    color: #232323;
+}
+
+.from_container textarea {
+    width: 94%;
+    font-size: 28rpx;
+    text-align: left;
+    background: #fff;
+    border: 1rpx solid #aaa;
+    border-radius: 4rpx;
+    padding: 15rpx 3%;
+}
+
+.from_container .button__btn {
+    margin-top: 40rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.from_container .button__btn button {
+    width: 150rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 28rpx;
+    border: 1rpx solid #aaa;
+    background: #fff;
+    margin: 0;
+    border-radius: 4rpx;
+}
+
+.from_container .button__btn button::after {
+    border: 0;
+}

@@ -40,24 +40,31 @@ Text {
 .Tree_List .Tree_Item.item1 {
     background: #e16b8c;
 }
+
 .Tree_List .Tree_Item.item2 {
     background: #f17c67;
 }
+
 .Tree_List .Tree_Item.item3 {
     background: #86c166;
 }
+
 .Tree_List .Tree_Item.item4 {
     background: #5dac81;
 }
+
 .Tree_List .Tree_Item.item5 {
     background: #00aa90;
 }
+
 .Tree_List .Tree_Item.item6 {
     background: #58b2dc;
 }
+
 .Tree_List .Tree_Item.item7 {
     background: #8f77b5;
 }
+
 .Tree_List .Tree_Item.item8 {
     background: #2f2147;
 }
@@ -66,12 +73,6 @@ Text {
     content: '';
     display: block;
     clear: both;
-}
-
-.Tree_List .Tree_Item.Tree_Item_Mark {
-    margin: 70rpx 0 65rpx 0;
-    background: url("https://xiao.xinyuanhudong.com/uploads/images/20180924/013249d921cd57bd65d85292afddc116.png");
-    background-size: 100% 100%;
 }
 
 .Tree_List .Tree_Item.Tree_Item_Mark .content_text {
@@ -249,4 +250,19 @@ choice__HD .choice__Left .TimeBoxBtn:after {
 
 .advert_across .adver_text {
     bottom: 24rpx;
+}
+
+.Tree_List .Tree_Item.Tree_Item_Mark {
+    margin: 70rpx 0 65rpx 0;
+    border: 4rpx solid #834a2a;
+    /* background: url(); */
+    background-size: cover;
+}
+
+.Tree_Item .report {
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 10rpx;
+    top: 10rpx;
 }

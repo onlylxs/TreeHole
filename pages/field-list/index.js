@@ -5,6 +5,7 @@ import util from '../../utils/util.js';
 
 Page({
     data: {
+        realm: util.REALM,
         height: '',
         TimeCk: true,
         TimeTF: false,

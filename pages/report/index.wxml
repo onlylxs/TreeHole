@@ -1,0 +1,17 @@
+<view class="container">
+    <view class="report">
+        <view class="report-box">
+            <view class='v1'>您举报的内容是：</view>
+            <view class='v2'>“<text>{{detail.content}}</text>”</view>
+            <view class='time'>{{detail.create_time}}</view>
+            <view class='v3'>举报描述：</view>
+        </view>
+        <view class="from_container">
+            <textarea bindinput='getTextVal' placeholder="请输入(可留空)……" name="textarea" />
+            <view class="button__btn">
+                <button bindtap="ReturnFunc" hover-class="none">返回</button>
+                <button bindtap='ConfirmFunc' hover-class="none">确定</button>
+            </view>
+        </view>
+    </view>
+</view>

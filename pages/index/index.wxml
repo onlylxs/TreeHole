@@ -9,11 +9,11 @@
     <view wx:if="{{wx_show}}">
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}">
+            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}" style="background:url({{realm}}MarkBag.png);">
                 <view class="mark-box">今日话题</view>
                 <view class="NotTopic">虚位以待</view>
             </view>
-            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{todays != ''}}">
+            <view class="Tree_Item Tree_Item_Mark" bindtap='ToDetail' data-tpid="{{item.id}}" wx:for="{{todays}}" wx:key="{{index}}" wx:if="{{todays != ''}}" style="background:url({{realm}}MarkBag.png)">
                 <view class="mark-box">今日话题</view>
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
@@ -36,11 +36,11 @@
                 </view>
             </view>
             <!-- 热话题 -->
-            <view class="Tree_Item Tree_Item_Mark" wx:if="{{hots == ''}}" style="margin-bottom:30rpx;">
+            <view class="Tree_Item Tree_Item_Mark" wx:if="{{hots == ''}}" style="margin-bottom:30rpx;background:url({{realm}}MarkBag.png)">
                 <view class="mark-box">热话题</view>
                 <view class="NotTopic">虚位以待</view>
             </view>
-            <view class="Tree_Item Tree_Item_Mark" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{hots != ''}}" bindtap='ToDetail' data-tpid="{{item.id}}" style="margin-bottom:30rpx;">
+            <view class="Tree_Item Tree_Item_Mark" wx:for="{{hots}}" wx:key="{{index}}" wx:if="{{hots != ''}}" bindtap='ToDetail' data-tpid="{{item.id}}" style="margin-bottom:30rpx;background:url({{realm}}MarkBag.png)">
                 <view class="mark-box">热话题</view>
                 <text class='nick_name'>{{item.nick_name}}</text>
                 <text class='content_text'>{{item.content}}</text>
@@ -62,11 +62,11 @@
                     </view>
                 </view>
             </view>
-
             <!-- 话题列表 -->
             <template is="adverBox" data="{{advert,index:-1,per_page,IsAdvertClose}}" />
             <view wx:for="{{topicList}}" wx:key="{{index}}">
                 <view class="Tree_Item item{{index%per_page+1}}" bindtap='ToDetail' data-tpid="{{item.id}}">
+                    <image src="../../static/images/report.png" class="report" bindtap='reportFunc' data-id="{{item.id}}"/>
                     <text class='nick_name'> {{item.nick_name}}</text>
                     <text class='content_text'>{{item.content}}</text>
                     <view class='Tree_bottom'>

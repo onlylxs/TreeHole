@@ -1,0 +1,33 @@
+<import src="../seach-templ/index.wxml" />
+<import src="../loadmore-templ/index.wxml" />
+<view class="container" bindtouchmove="handletouchmove">
+    <!--调用seachHD查询模版  -->
+    <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
+    <view class="QueryAll" bindtap="QueryAllTap">查看全部</view>
+    <view wx:if="{{wx_show}}">
+        <view class="User_Tree_List Tree_List">
+            <!-- 话题列表 -->
+            <view class="Tree_Item" wx:for="{{userTopic}}" wx:key="{{index}}" bindtap='ToDetail' bindlongtap="deleteTopic" data-tpid="{{item.id}}">
+                <text class='content_text'>{{item.content}}</text>
+                <view class='Tree_bottom'>
+                    <text class="time_text">{{item.create_time}}</text>
+                    <view class="botton_right">
+                        <label class="photo-box" wx:if="{{item.photos.length>0}}">
+                            <text class='iconfont icon-picture'></text>
+                            <text>{{item.photos.length}}</text>
+                        </label>
+                        <label class="live-box">
+                            <text class='iconfont icon-aixin'></text>
+                            <text>{{item.likes}}</text>
+                        </label>
+                        <label class="mess-box">
+                            <text class='iconfont icon-xiaoxi'></text>
+                            <text>{{item.details}}</text>
+                        </label>
+                    </view>
+                </view>
+            </view>
+            <template is="loadmoreBox" data="{{loadmore}}" />
+        </view>
+    </view>
+</view>

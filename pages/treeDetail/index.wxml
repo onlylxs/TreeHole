@@ -5,7 +5,7 @@
     <template is="seachTemplBox" data="{{TimeCk,sortList,clss,sortText,SortTF}}" />
     <view wx:if="{{wx_show}}" style='padding-bottom:90rpx;'>
         <view class="Tree_List">
-            <view class="Tree_Item Tree_Item_Mark" style="margin-bottom:10rpx;">
+            <view class="Tree_Item Tree_Item_Mark" style="margin-bottom:10rpx;background:url({{realm}}MarkBag.png)">
                 <view class="mark-box" style="width:auto;padding:0 15rpx;">树洞主</view>
                 <text class='nick_name'>{{d_content.nick_name}}</text>
                 <text class='content_text No_Overflow'>{{d_content.content}}</text>
@@ -52,6 +52,7 @@
         <view wx:if="{{comm_detailList.length > 0}}">
             <view class="Tree_List">
                 <view class="Tree_Item item{{index%7+1}}" wx:for="{{comm_detailList}}" wx:key="{{index}}">
+                    <image src="../../static/images/report.png" class="report" bindtap='reportFunc' data-id="{{item.id}}" data-content="{{item.content}}" data-create_time="{{item.create_time}}" />
                     <text class='nick_name'>{{item.nick_name}}</text>
                     <text class='content_text'>{{item.content}}</text>
                     <view class='Tree_bottom'>

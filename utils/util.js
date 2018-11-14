@@ -1,6 +1,8 @@
-const BASEURL = "https://xiao.xinyuanhudong.com/index.php/api/";
+// const BASEURL = "https://xiao.xinyuanhudong.com/index.php/api/";
+const BASEURL = "http://dev.enfukeji.com/index.php/api/";
+const REALM = "http://dev.enfukeji.com/";
 
-Array.prototype.remove = function (obj) {
+Array.prototype.remove = function(obj) {
     for (var i = 0; i < this.length; i++) {
         var temp = this[i];
         if (!isNaN(obj)) {
@@ -203,5 +205,6 @@ module.exports = {
     ChangeTimes: ChangeTimes,
     GetDateParse: GetDateParse,
     BASEURL: BASEURL,
+    REALM: REALM,
     requests: requests
 }

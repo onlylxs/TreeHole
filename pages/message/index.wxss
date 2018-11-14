@@ -23,7 +23,8 @@
 }
 
 view.m_time {
-    margin-top: 10rpx;
+    margin-top: 5rpx;
+    font-size: 23rpx;
 }
 
 .msg-cont {

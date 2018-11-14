@@ -5,6 +5,7 @@ import util from '../../utils/util.js';
 
 Page({
     data: {
+        realm: util.REALM,
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
@@ -404,6 +405,12 @@ Page({
         }
         this.setData({
             IsAdvertClose: IsAdvertClose
+        })
+    },
+    //举报
+    reportFunc(e) {
+        wx.navigateTo({
+            url: '/pages/report/index?reptype=huati&id=' + e.currentTarget.dataset.id
         })
     }
 })

@@ -1,0 +1,29 @@
+/* pages/user/index.wxss */
+
+.QueryAll {
+    width: 140rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    border: 1rpx solid #454545;
+    border-radius: 2px;
+    text-align: center;
+    color: #454545;
+    position: fixed;
+    top: 24rpx;
+    z-index: 999;
+    left: 250rpx;
+}
+
+.User_Tree_List .Tree_Item {
+    background: #2f2147;
+}
+
+.User_Tree_List .Tree_Item .content_text {
+    color: #fff;
+}
+
+.User_Tree_List .Tree_bottom .time_text {
+    color: #aaa;
+    font-size:23rpx;
+}

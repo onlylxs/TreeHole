@@ -4,11 +4,14 @@
         "pages/field/index",
         "pages/field-list/index",
         "pages/field-new/index",
-        "pages/saysome/index",
         "pages/message/index",
+        "pages/saysome/index",
         "pages/user/index",
+        "pages/user/release",
+        "pages/user/changename",
         "pages/treeDetail/index",
         "pages/authorize/index",
+        "pages/report/index",
         "pages/web-view/index"
     ],
     "window": {

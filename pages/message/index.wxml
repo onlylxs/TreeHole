@@ -5,14 +5,14 @@
             <view class="msg-item" wx:for="{{message_list}}" wx:key="item.id" wx:if="{{item.likes>0 || item.son.length>0}}">
                 <view class="msg-hd" wx:if="{{item.likes > 0}}" bindtap='ToDetail' data-tpid="{{item.id}}">
                     <text>{{item.likes}}人赞了你的树洞</text>“{{item.content}}”
-                    <view class="m_time">{{item.create_time}}</view>
+                    <view class="m_time">{{itemSon.create_time}}</view>
                 </view>
                 <view class="msg-cont" wx:for="{{item.son}}" wx:key="{{index}}" wx:for-item="itemSon" bindtap='ToDetail' data-tpid="{{item.id}}">
                     <view>
                         <text class="syname">{{itemSon.nick_name}}、 </text>回复了你的树洞“{{item.content}}”
                     </view>
                     <view>说：“{{itemSon.detail}}”</view>
-                    <view class="m_time">{{item.create_time}}</view>
+                    <view class="m_time">{{itemSon.create_time}}</view>
                 </view>
             </view>
         </view>

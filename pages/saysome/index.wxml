@@ -8,11 +8,11 @@
     <view class="say_textarea">
         <textarea placeholder="请输入内容..." bindinput="sayContent" value="{{sayContent}}"></textarea>
     </view>
-    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation == false}}">
+    <view class="addre_box" bindtap="getMap" wx:if="{{!isOpenLocation}}">
         <text class="iconfont icon-dizhi"></text>
         <text>{{positionT}}</text>
     </view>
-    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation == true}}">
+    <view class="addre_box" bindtap="getMap" wx:if="{{isOpenLocation}}">
         <button open-type="openSetting" bindopensetting="openSettingFunc" class="openSettingBtn">
             <text class="iconfont icon-dizhi"></text>
             <text>{{positionT}}</text>

@@ -3,6 +3,7 @@ import util from '../../utils/util.js';
 
 Page({
     data: {
+        realm: util.REALM,
         height: '',
         TimeCk: false,
         SortTF: false,
@@ -31,7 +32,7 @@ Page({
         comm_content: '',
         lastY: 0, //滑动开始y轴位置
         indexArr: [-1, 6, 13, 20, 27, 34, 41, 48, 55, 62],
-        isShowAdver:true
+        isShowAdver: true
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -273,15 +274,22 @@ Page({
         this.data.lastY = currentY
     },
     // 打开网页
-    openWebView: function (e) {
+    openWebView: function(e) {
         let weburl = e.currentTarget.dataset.weburl;
         wx.navigateTo({
             url: '/pages/web-view/index?weburl=' + weburl
         })
     },
-    CloseAdverAcross:function(){
+    CloseAdverAcross: function() {
         this.setData({
-            isShowAdver:false
+            isShowAdver: false
+        })
+    },
+    //举报
+    reportFunc(e) {
+        let ds = e.currentTarget.dataset;
+        wx.navigateTo({
+            url: '/pages/report/index?reptype=huifu&id=' + ds.id + "&content=" + ds.content + "&create_time=" + ds.create_time
         })
     }
 })
