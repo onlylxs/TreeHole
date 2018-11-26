@@ -60,7 +60,15 @@ Page({
         param.data.comment = ths.textval;
         param.closeLoad = true;
         util.requests(param, res => {
-            console.info(res);
+            wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                success:function(res){
+                    if(res.confirm){
+                        wx.navigateBack();
+                    }
+                }
+            })
         });
     },
 })

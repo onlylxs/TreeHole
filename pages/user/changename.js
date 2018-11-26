@@ -12,7 +12,7 @@ Page({
     },
     ConfirmFunc() {
         let param = {};
-        param.url = "WeUsers/changeName";
+        param.url = "we_users/changeName";
         param.data = {};
         param.data.token = wx.getStorageSync('token');
         param.data.nick_name = this.data.inputValue;
