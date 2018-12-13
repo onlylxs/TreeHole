@@ -1,6 +1,8 @@
 // const BASEURL = "https://xiao.xinyuanhudong.com/index.php/api/";
-const BASEURL = "http://dev.enfukeji.com/index.php/api/";
-const REALM = "http://dev.enfukeji.com/";
+// const BASEURL = "http://dev.enfukeji.com/index.php/api/";
+// const REALM = "http://dev.enfukeji.com/";
+const BASEURL = "https://shudong.ciyuanguiji.com/index.php/api/";
+const REALM = "https://shudong.ciyuanguiji.com/";
 
 Array.prototype.remove = function(obj) {
     for (var i = 0; i < this.length; i++) {
