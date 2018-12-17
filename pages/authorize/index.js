@@ -1,11 +1,6 @@
-// pages/authorize/index.js
 import util from '../../utils/util.js';
 var app = getApp();
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {},
     onLoad() {},
 
@@ -55,6 +50,14 @@ Page({
                             wx.setStorage({
                                 key: 'nick_name',
                                 data: res.data.data.nick_name,
+                            })
+                            wx.setStorage({
+                                key: 'reset_name',
+                                data: res.data.data.reset_name,
+                            })
+                            wx.setStorage({
+                                key: 'change_name',
+                                data: res.data.data.change_name,
                             })
                             util.setStorageAll();
                             wx.navigateBack();

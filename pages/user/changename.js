@@ -1,7 +1,10 @@
 import util from '../../utils/util.js';
 var app = getApp();
 Page({
-    data: {},
+    data: {
+        changeNum: wx.getStorageSync('change_name') == 1 ? 0 : 1,
+        resetName: wx.getStorageSync('reset_name'),
+    },
     ReturnFunc() {
         wx.navigateBack();
     },
@@ -18,10 +21,14 @@ Page({
         param.data.nick_name = this.data.inputValue;
         param.closeLoad = true;
         util.requests(param, res => {
+            wx.setStorage({
+                key: 'change_name',
+                data: 0,
+            })
             wx.showModal({
                 title: '提示',
                 content: res.data.msg,
-                success: function (res) {
+                success: function(res) {
                     if (res.confirm) {
                         wx.navigateBack();
                     }

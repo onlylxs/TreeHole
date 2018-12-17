@@ -16,6 +16,10 @@ Page({
         sortText: '时间倒序',
         page: 1,
         sortList: [{
+            'idx': 0,
+            'clss': 'icon-zhifeiji',
+            'text': '最新回复'
+        },{
             'idx': 1,
             'clss': 'icon-paixu',
             'text': '时间倒序'
@@ -126,7 +130,9 @@ Page({
             loadmore: true
         })
         if (sortIdx == 3) {
-            this.theHot();
+            this.theHot("we_topic/theHot");
+        } else if (sortIdx == 0) {
+            this.theHot("we_topic/theReply");
         } else {
             this.getTopicList();
         }
@@ -216,9 +222,9 @@ Page({
         });
     },
     // 最热门
-    theHot: function() {
+    theHot: function(url) {
         let param = {};
-        param.url = "we_topic/theHot";
+        param.url = url;
         param.data = {};
         param.data.category_id = this.data.cid;
         param.data.order = this.data.sortIdx;
@@ -256,7 +262,9 @@ Page({
             is_onPullDown: true
         })
         if (this.data.sortIdx == 3) {
-            this.theHot();
+            this.theHot("we_topic/theHot");
+        } else if (this.data.sortIdx == 0) {
+            this.theHot("we_topic/theReply");
         } else {
             this.getTopicList();
         }
@@ -266,7 +274,9 @@ Page({
         if (!this.data.loadmore) return;
         if (this.data.last_page >= this.data.page) {
             if (this.data.sortIdx == 3) {
-                this.theHot();
+                this.theHot("we_topic/theHot");
+            } else if (this.data.sortIdx == 0) {
+                this.theHot("we_topic/theReply");
             } else {
                 this.getTopicList();
             }

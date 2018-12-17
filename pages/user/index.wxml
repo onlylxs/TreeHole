@@ -4,6 +4,14 @@
         <text>我的发布</text>
     </navigator>
     <navigator class='item' hover-class='none' url="changename">
+        <image src='../../static/images/reply.png' />
+        <text>我回复的</text>
+    </navigator>
+    <navigator class='item' hover-class='none' url="release">
+        <image src='../../static/images/browse.png' />
+        <text>我浏览的</text>
+    </navigator>
+    <navigator class='item' hover-class='none' url="changename">
         <image src='../../static/images/edit.png' />
         <text>修改昵称</text>
     </navigator>
