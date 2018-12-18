@@ -7,7 +7,9 @@
         <view class="Tree_List">
             <view class="Tree_Item Tree_Item_Mark" style="margin-bottom:10rpx;background:url({{realm}}MarkBag.png)">
                 <view class="mark-box" style="width:auto;padding:0 15rpx;">树洞主</view>
-                <text class='nick_name'>{{d_content.nick_name}}</text>
+                <text class='nike_name' wx:if="{{d_content.we_nick_name != ''}}">{{d_content.we_nick_name}}</text>
+                <text class='nike_name' wx:elif="{{d_content.we_nick_name == '' && d_content.reset_name != ''}}">{{d_content.reset_name}}</text>
+                <text class='nike_name' wx:else>{{d_content.nike_name}}</text>
                 <text class='content_text No_Overflow'>{{d_content.content}}</text>
                 <view class="Tree_Photo">
                     <image wx:for="{{d_content.photos}}" src="{{item}}" wx:key="{{index}}" lazy-load="true" mode="aspectFill" bindtap="imgYu" data-list="{{d_content.photos}}" data-src="{{item}}" />
@@ -21,6 +23,7 @@
                         </label>
                     </view>
                 </view>
+                <image src='../../static/images/MarkBag.png' class="MarkBagImage" />
             </view>
             <view class="addre_box" wx:if="{{location!=''}}">
                 <text class="iconfont icon-dizhi"></text>
@@ -53,7 +56,9 @@
             <view class="Tree_List">
                 <view class="Tree_Item item{{index%7+1}}" wx:for="{{comm_detailList}}" wx:key="{{index}}">
                     <image src="../../static/images/report.png" class="report" bindtap='reportFunc' data-id="{{item.id}}" data-content="{{item.content}}" data-create_time="{{item.create_time}}" />
-                    <text class='nick_name'>{{item.nick_name}}</text>
+                    <text class='nike_name' wx:if="{{item.we_nick_name != ''}}">{{item.we_nick_name}}</text>
+                    <text class='nike_name' wx:elif="{{item.we_nick_name == '' && item.reset_name != ''}}">{{item.reset_name}}</text>
+                    <text class='nike_name' wx:else>{{item.nike_name}}</text>
                     <text class='content_text'>{{item.content}}</text>
                     <view class='Tree_bottom'>
                         <text class="time_text">{{item.create_time}}</text>

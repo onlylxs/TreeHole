@@ -8,7 +8,13 @@
                     <view class="m_time">{{item.create_time}}</view>
                 </view>
                 <view class="msg-cont" wx:for="{{item.son}}" wx:key="{{index}}" wx:for-item="itemSon" bindtap='ToDetail' data-tpid="{{item.id}}">
-                    <view>
+                    <view wx:if="{{item.we_nick_name != ''}}">
+                        <text class="syname">{{itemSon.we_nick_name}}、 </text>回复了你的树洞“{{item.content}}”
+                    </view>
+                    <view wx:elif="{{item.we_nick_name == '' && item.reset_name != ''}}">
+                        <text class="syname">{{itemSon.reset_name}}、 </text>回复了你的树洞“{{item.content}}”
+                    </view>
+                    <view wx:else>
                         <text class="syname">{{itemSon.nick_name}}、 </text>回复了你的树洞“{{item.content}}”
                     </view>
                     <view>说：“{{itemSon.detail}}”</view>
