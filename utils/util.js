@@ -172,6 +172,12 @@ const requests = (param, success) => {
                         content: res.data.msg
                     })
                     break;
+                case 666:
+                    wx.showToast({
+                        title: res.data.msg,
+                        icon: 'none',
+                    });
+                    break;
                 case 10000:
                     wx.navigateTo({
                         url: "/pages/authorize/index"

@@ -15,6 +15,7 @@
     border-radius: 10rpx;
     background: #89916b;
     margin-bottom: 24rpx;
+    box-shadow: 0 3rpx 7rpx rgba(0,0,0,0.55);
 }
 
 .msg-hd text {

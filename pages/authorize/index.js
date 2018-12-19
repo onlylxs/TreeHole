@@ -48,6 +48,10 @@ Page({
                                 data: res.data.data.token,
                             })
                             wx.setStorage({
+                                key: 'change_name',
+                                data: res.data.data.change_name,
+                            })
+                            wx.setStorage({
                                 key: 'nick_name',
                                 data: res.data.data.nick_name,
                             })
@@ -56,8 +60,8 @@ Page({
                                 data: res.data.data.reset_name,
                             })
                             wx.setStorage({
-                                key: 'change_name',
-                                data: res.data.data.change_name,
+                                key: 'we_nick_name',
+                                data: res.data.data.we_nick_name,
                             })
                             util.setStorageAll();
                             wx.navigateBack();

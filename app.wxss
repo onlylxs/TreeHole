@@ -29,7 +29,7 @@ Text {
 }
 
 .Tree_List .Tree_Item {
-    box-shadow: 0 3rpx 1px 3rpx #ccc;
+    box-shadow: 0 3rpx 7rpx rgba(0,0,0,0.55);
     border-radius: 6rpx;
     padding: 15rpx 25rpx;
     margin-bottom: 20rpx;

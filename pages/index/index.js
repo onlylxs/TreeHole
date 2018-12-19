@@ -9,6 +9,7 @@ Page({
         TimeCk: true,
         TimeTF: false,
         SortTF: false,
+        topic_seach: false,
         startDate: util.GetFilterDate('start'),
         endDate: util.GetFilterDate('end'),
         clss: 'icon-paixu',
@@ -39,6 +40,7 @@ Page({
         loadmore: true,
         lastY: 0, //滑动开始y轴位置
         isShowAdver: true,
+        keywords: '',
     },
     // 生命周期函数--监听页面加载
     onLoad: function(options) {
@@ -305,14 +307,14 @@ Page({
         }
     },
     // 最热门
-    theHot: function (url,category_id) {
+    theHot: function(url, category_id) {
         let param = {};
         param.url = url;
         param.data = {};
         param.data.token = wx.getStorageSync('token');
-        if (this.data.sortIdx == 0){
+        if (this.data.sortIdx == 0) {
             param.data.category_id = category_id;
-        }else{
+        } else {
             param.data.order = this.data.sortIdx;
         }
         param.closeLoad = true;
@@ -337,6 +339,52 @@ Page({
             }
             this.data.page++;
             wx.stopPullDownRefresh();
+        });
+    },
+    //获取搜索内容
+    search_content: function(e) {
+        this.setData({
+            keywords: e.detail.value,
+            page: 1
+        });
+    },
+    // 搜索
+    searchFunc: function() {
+        let param = {},
+            startData = '';
+        if (!this.data.QueryAll) {
+            startData = util.GetDateParse('start', this.data.startDate)
+        }
+        param.url = 'search/topicContent';
+        param.data = {};
+        param.data.keywords = this.data.keywords;
+        param.data.start_time = startData;
+        param.data.end_time = util.GetDateParse('end', this.data.endDate);
+        param.data.page = this.data.page;
+        param.data.token = wx.getStorageSync('token');
+        param.closeLoad = true;
+        util.requests(param, res => {
+            if (this.data.page == 1) {
+                this.setData({
+                    loadmore: true,
+                    topicList: []
+                });
+            }
+            let topic_list = res.data.data,
+                list = this.data.topicList;
+            list = list.concat(topic_list.data);
+            this.setData({
+                topicList: list,
+                last_page: topic_list.last_page,
+                is_onPullDown: false,
+                isSearch: true
+            });
+            if (topic_list.last_page <= this.data.page) {
+                this.setData({
+                    loadmore: false
+                });
+            }
+            this.data.page++;
         });
     },
     // 跳转小程序
@@ -366,6 +414,12 @@ Page({
             this.theHot("we_topic/theHot");
         } else if (this.data.sortIdx == 0) {
             this.theHot("we_topic/theReply");
+        } else if (this.data.isSearch) {
+            this.setData({
+                isSearch: false,
+                topic_seach: false,
+            });
+            this.getTopicList();
         } else {
             this.getTopicList();
         }
@@ -378,6 +432,8 @@ Page({
                 this.theHot("we_topic/theHot");
             } else if (this.data.sortIdx == 0) {
                 this.theHot("we_topic/theReply");
+            } else if (this.data.isSearch) {
+                this.searchFunc();
             } else {
                 this.getTopicList();
             }
@@ -425,5 +481,18 @@ Page({
         wx.navigateTo({
             url: '/pages/report/index?reptype=huati&id=' + e.currentTarget.dataset.id
         })
-    }
+    },
+    ICONFunc() {
+        this.setData({
+            topic_seach: !this.data.topic_seach
+        })
+    },
+    onShareAppMessage: function() {
+        return {
+            title: "",
+            path: "/pages/index/index",
+            success: function(t) {},
+            fail: function(t) {}
+        };
+    },
 })

@@ -1,18 +1,124 @@
-.choice__HD{display: flex;padding: 20rpx 0;background: #fff;top: 0;left: 0;z-index: 99;position: fixed;width: 100%;}
-.choice__HD .choice__title .iconfont{margin-right: 8rpx;font-size: 38rpx;vertical-align: middle;}
-.choice__HD .choice__title{font-size: 30rpx;color:#454545;}
-.choice__HD .choice__Left{flex: 1;margin-left: 30rpx;}
-.choice__HD .choice__Left .TimeBox{width:350rpx;display: block;font-size:26rpx;position: fixed;background: #fff;padding:20rpx;box-shadow: 0 3rpx 2rpx 3rpx #ccc;margin-top:20rpx;border-radius: 8rpx;}
-.choice__HD .choice__Left .TimeBox view{color:#666;}
+.choice__HD {
+    padding: 20rpx 0;
+    background: #fff;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 1rpx 6rpx rgba(0,0,0,0.35);
+}
+
+.choice__HD .choice__title .iconfont {
+    margin-right: 8rpx;
+    font-size: 38rpx;
+    vertical-align: middle;
+}
+
+.choice__HD .choice__title {
+    font-size: 30rpx;
+    color: #454545;
+}
+
+.choice__HD .choice__Left {
+    flex: 1;
+    margin-left: 30rpx;
+}
+
+.choice__HD .choice__Left .TimeBox {
+    width: 350rpx;
+    display: block;
+    font-size: 26rpx;
+    position: fixed;
+    background: #fff;
+    padding: 20rpx;
+    box-shadow: 0 3rpx 7rpx rgba(0,0,0,0.35);
+    margin-top: 20rpx;
+    border-radius: 8rpx;
+}
+
+.choice__HD .choice__Left .TimeBox view {
+    color: #666;
+}
+
 .choice__HD .choice__Left .TimeBox .startTBox,
-.choice__HD .choice__Left .TimeBox .endTBox{display: flex;align-items: center;}
-.choice__HD .choice__Left .TimeBox picker{width:100%;display: inline-block;padding:4rpx 8rpx;border-radius: 4rpx;margin:10rpx 10rpx 10rpx 0;color:#333;text-align: center; box-shadow: 1rpx 0 2rpx 2rpx rgba(0,186,255,0.45);}
-.choice__HD .choice__Left .TimeBox text{margin-right: 10rpx;}
-.choice__HD .choice__Left .TimeBoxBtn text{width: 390rpx;text-align:center;font-size:26rpx;margin:20rpx -20rpx -20rpx -20rpx;padding:10rpx 0;color:#fff;border-radius: 5rpx;background: #ffd101;display: block;}
-.choice__HD .choice__Right{flex: 1;text-align: right;position: relative;}
-.choice__HD .choice__Right .choice__title{padding:14rpx 32rpx;}
-.choice__HD .sort__box{position: absolute;z-index:999;padding:8rpx 0;background: #fff;top:68rpx;right: 30rpx;text-align: left;box-shadow: 0 3rpx 2rpx 3rpx #ccc;border-radius: 6rpx;}
-.choice__HD .sort__box text{display: block;}
-.choice__HD .sort__box text.iconfont{display: inline-block; }
-.after{position: absolute; display: block; top: -8rpx; left: 60rpx; width: 0; height: 0px; content: ''; border-style: solid; border-width: 10rpx; border-color: #fff #fff transparent transparent; transform: rotate(-45deg); box-shadow: 2rpx -2rpx 2rpx #eee;}
-.sort__box .after{ left: 150rpx;}
+.choice__HD .choice__Left .TimeBox .endTBox {
+    display: flex;
+    align-items: center;
+}
+
+.choice__HD .choice__Left .TimeBox picker {
+    width: 100%;
+    display: inline-block;
+    padding: 4rpx 8rpx;
+    border-radius: 4rpx;
+    margin: 10rpx 10rpx 10rpx 0;
+    color: #333;
+    text-align: center;
+    box-shadow: 1rpx 0 2rpx 2rpx rgba(0, 186, 255, 0.45);
+}
+
+.choice__HD .choice__Left .TimeBox text {
+    margin-right: 10rpx;
+}
+
+.choice__HD .choice__Left .TimeBoxBtn text {
+    width: 390rpx;
+    text-align: center;
+    font-size: 26rpx;
+    margin: 20rpx -20rpx -20rpx -19rpx;
+    padding: 10rpx 0;
+    color: #fff;
+    border-radius: 5rpx;
+    background: #ffd101;
+    display: block;
+}
+
+.choice__HD .choice__Right {
+    flex: 1;
+    text-align: right;
+    position: relative;
+}
+
+.choice__HD .choice__Right .choice__title {
+    padding: 14rpx 32rpx;
+}
+
+.choice__HD .sort__box {
+    position: absolute;
+    z-index: 999;
+    padding: 8rpx 0;
+    background: #fff;
+    top: 68rpx;
+    right: 30rpx;
+    text-align: left;
+    box-shadow: 0 3rpx 7rpx rgba(0,0,0,0.35);
+    border-radius: 6rpx;
+}
+
+.choice__HD .sort__box text {
+    display: block;
+}
+
+.choice__HD .sort__box text.iconfont {
+    display: inline-block;
+}
+
+.after {
+    position: absolute;
+    display: block;
+    top: -8rpx;
+    left: 60rpx;
+    width: 0;
+    height: 0px;
+    content: '';
+    border-style: solid;
+    border-width: 10rpx;
+    border-color: #fff #fff transparent transparent;
+    transform: rotate(-45deg);
+    box-shadow: 2rpx -2rpx 2rpx #eee;
+}
+
+.sort__box .after {
+    left: 150rpx;
+}

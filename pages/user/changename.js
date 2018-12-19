@@ -3,7 +3,19 @@ var app = getApp();
 Page({
     data: {
         changeNum: wx.getStorageSync('change_name') == 1 ? 0 : 1,
-        resetName: wx.getStorageSync('reset_name'),
+    },
+    onShow(){
+        let resetName='';
+        if (wx.getStorageSync('we_nick_name') !=''){
+            resetName = wx.getStorageSync('we_nick_name');
+        } else if (wx.getStorageSync('reset_name') !=''){
+            resetName = wx.getStorageSync('reset_name');
+        }else{
+            resetName = wx.getStorageSync('nick_name');
+        }
+        this.setData({
+            resetName: resetName
+        })
     },
     ReturnFunc() {
         wx.navigateBack();

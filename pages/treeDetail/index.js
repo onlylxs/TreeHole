@@ -51,6 +51,12 @@ Page({
         })
         this.topicDetail();
     },
+    onShareAppMessage: function () {
+        return {
+            title: "",
+            path: "/pages/treeDetail/index?tid=" + this.data.tid,
+        };
+    },
     // 排序显示隐藏
     ChangeSortTF: function(e) {
         this.setData({
@@ -157,8 +163,7 @@ Page({
         util.requests(param, res => {
             wx.hideLoading();
             wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
+                title: res.data.msg
             });
             let list = this.data.comm_detailList,
                 commObj = {},
@@ -168,6 +173,8 @@ Page({
             commObj.likes = 0;
             commObj.is_liked = 0;
             commObj.nick_name = wx.getStorageSync('nick_name');
+            commObj.reset_name = wx.getStorageSync('reset_name');
+            commObj.we_nick_name = wx.getStorageSync('we_nick_name');
             commObj.create_time = util.formatTime(new Date(), true);
             list.splice(0, 0, commObj);
             this.setData({
@@ -240,8 +247,7 @@ Page({
                 d_content: dcon
             })
             wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
+                title: res.data.msg
             });
         });
     },

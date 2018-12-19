@@ -4,12 +4,13 @@
 <import src="../adverfiexd-templ/index.wxml" />
 <view class="container" bindtouchmove="handletouchmove">
     <!--调用seachHD查询模版  -->
-    <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF}}" />
+    <template is="seachTemplBox" data="{{TimeCk,TimeTF,startDate,endDate,sortList,clss,sortText,SortTF,topic_seach}}" />
     <view class="QueryAll" bindtap="QueryAllTap">查看全部</view>
+    <view class='iconfont icon-search' bindtap='ICONFunc'></view>
     <view wx:if="{{wx_show}}">
         <view class="Tree_List">
             <!-- 今日话题 -->
-            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}" style="background:url({{realm}}MarkBag.png);">
+            <view class="Tree_Item Tree_Item_Mark" wx:if="{{todays == ''}}" style="background:url({{realm}}MarkBag.png)">
                 <view class="mark-box">今日话题</view>
                 <view class="NotTopic">虚位以待</view>
                 <image src='../../static/images/MarkBag.png' class="MarkBagImage" />
@@ -54,7 +55,7 @@
                 <view class='Tree_bottom'>
                     <text class="time_text">{{item.create_time}}</text>
                     <view class="botton_right">
-                        <label class="photo-box">
+                        <label class="photo-box" wx:if="{{item.photos.length>0}}">
                             <text class='iconfont icon-picture'></text>
                             <text>{{item.photos.length}}</text>
                         </label>
@@ -74,7 +75,7 @@
             <template is="adverBox" data="{{advert,index:-1,per_page,IsAdvertClose}}" />
             <view wx:for="{{topicList}}" wx:key="{{index}}">
                 <view class="Tree_Item item{{index%per_page+1}}" bindtap='ToDetail' data-tpid="{{item.id}}">
-                    <image src="../../static/images/report.png" class="report" bindtap='reportFunc' data-id="{{item.id}}"/>
+                    <image src="../../static/images/report.png" class="report" catchtap='reportFunc' data-id="{{item.id}}"/>
                     <text class='nike_name' wx:if="{{item.we_nick_name != ''}}">{{item.we_nick_name}}</text>
                     <text class='nike_name' wx:elif="{{item.we_nick_name == '' && item.reset_name != ''}}">{{item.reset_name}}</text>
                     <text class='nike_name' wx:else>{{item.nike_name}}</text>

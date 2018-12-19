@@ -12,5 +12,37 @@
     position: fixed;
     top: 24rpx;
     z-index: 999;
-    left:250rpx;
+    left: 250rpx;
+}
+
+.topic_seach {
+    display: flex;
+    padding: 20rpx 30rpx 0 30rpx;
+}
+
+.topic_seach .SeachBtns {
+    margin-left: 20rpx;
+    font-size: 27rpx;
+    line-height: 58rpx;
+    padding:0 30rpx;
+    background: #3ab54a;
+    color:#fff;
+    border-radius: 4rpx;
+}
+
+.topic_seach input {
+    font-size: 27rpx;
+    padding: 10rpx 15rpx;
+    flex: 2;
+    border-radius: 4rpx;
+    box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.35);
+}
+
+.icon-search {
+    font-size: 50rpx;
+    color: #999;
+    position: fixed;
+    top: 18rpx;
+    right: 230rpx;
+    z-index: 999;
 }

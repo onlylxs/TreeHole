@@ -1,15 +1,84 @@
-/* pages/field/index.wxss */
-.field_seach{display: flex;padding:20rpx 30rpx;margin-bottom: 40rpx;}
-.field_seach input{font-size:28rpx;padding:6rpx 10rpx;flex: 2;border:1rpx solid #cccccc;}
-.field_seach icon{margin-top: 4rpx;}
-.fieldList{margin:10rpx 30rpx 40rpx 30rpx;border:1rpx solid #cccccc;position: relative;}
-.fieldList .item{display: flex;padding:20rpx 0;border-bottom:1rpx solid #cccccc;margin:0 20rpx;}
-.fieldList .item:last-child{border-bottom:0;}
-.fieldList .item .title{flex:2;font-size:28rpx;}
-.fieldList .item .number{font-size:28rpx;}
-.fieldList .item.more{color:#999;font-size:24rpx;border-bottom:0;}
-.fieldList .mark-box{width: 200rpx;height: 50rpx;line-height: 50rpx;position: absolute;top: -35rpx;left: 20rpx;border: 1rpx solid #ed711a;color: #ed711a;text-align: center;font-size: 26rpx;background: #fff;}
-.mt{margin-top:100rpx;}
-.notField{padding:30rpx 0;text-align: center;background: #eeeeee;font-size:28rpx;}
-.notField navigator{display: inline-block;color:#00aeff;}
-.NotFoundField{padding:0 30rpx 30rpx 30rpx;font-size:28rpx;}
+.field_seach {
+    display: flex;
+    padding: 20rpx 30rpx;
+    margin-bottom: 40rpx;
+}
+
+.field_seach input {
+    font-size: 27rpx;
+    padding: 10rpx 15rpx;
+    flex: 2;
+    box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.65);
+    border-radius: 4rpx;
+}
+
+.field_seach icon {
+    margin-top: 4rpx;
+}
+
+.fieldList {
+    margin: 10rpx 30rpx 40rpx 30rpx;
+    border: 1rpx solid #ccc;
+    position: relative;
+}
+
+.fieldList .item {
+    display: flex;
+    padding: 20rpx 0;
+    border-bottom: 1rpx solid #ccc;
+    margin: 0 20rpx;
+}
+
+.fieldList .item:last-child {
+    border-bottom: 0;
+}
+
+.fieldList .item .title {
+    flex: 2;
+    font-size: 28rpx;
+}
+
+.fieldList .item .number {
+    font-size: 28rpx;
+}
+
+.fieldList .item.more {
+    color: #999;
+    font-size: 24rpx;
+    border-bottom: 0;
+}
+
+.fieldList .mark-box {
+    width: 200rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    position: absolute;
+    top: -35rpx;
+    left: 20rpx;
+    border: 1rpx solid #ed711a;
+    color: #ed711a;
+    text-align: center;
+    font-size: 26rpx;
+    background: #fff;
+}
+
+.mt {
+    margin-top: 100rpx;
+}
+
+.notField {
+    padding: 30rpx 0;
+    text-align: center;
+    background: #eee;
+    font-size: 28rpx;
+}
+
+.notField navigator {
+    display: inline-block;
+    color: #00aeff;
+}
+
+.NotFoundField {
+    padding: 0 30rpx 30rpx 30rpx;
+    font-size: 28rpx;
+}
